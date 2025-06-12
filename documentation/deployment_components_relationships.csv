@@ -1,0 +1,17 @@
+Component,Type,Purpose,Depends On,Affects,Configuration Details
+next.config.ts,Configuration File,Configures Next.js for static export and GitHub Pages,None,Build Process,"output: 'export', basePath: '/GCMS' in production, images: { unoptimized: true }, trailingSlash: true"
+.github/workflows/deploy.yml,GitHub Actions Workflow,Automates build and deployment process,next.config.ts,GitHub Pages Deployment,"Triggered on push to main branch, Sets up Node.js, Installs dependencies, Builds Next.js app, Deploys to GitHub Pages"
+GitHub Secrets,Environment Variables,Secures sensitive configuration values,None,Build Process,"NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY, STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, NEXTAUTH_URL, NEXTAUTH_SECRET"
+GitHub Pages Settings,Repository Configuration,Enables GitHub Pages deployment,GitHub Actions Workflow,Site Accessibility,"Source: GitHub Actions, Custom domain (optional)"
+Build Process,Process,Generates static files for deployment,next.config.ts,Deployment Process,"Runs npm run build, Generates static files in 'out' directory"
+Deployment Process,Process,Publishes site to GitHub Pages,Build Process,Live Website,"Uploads build artifact, Deploys to GitHub Pages"
+Live Website,End Result,Public-facing website,Deployment Process,User Experience,"Available at https://rsgdata.github.io/GCMS, Static HTML/CSS/JS files"
+
+Component Relationships
+From,To,Relationship Type,Description
+next.config.ts,Build Process,Configures,Determines how the Next.js app is built
+.github/workflows/deploy.yml,Build Process,Executes,Runs the build process in GitHub Actions
+GitHub Secrets,.github/workflows/deploy.yml,Provides Data,Supplies environment variables to the workflow
+Build Process,Deployment Process,Produces,Generates the files that get deployed
+Deployment Process,Live Website,Publishes,Makes the website publicly accessible
+GitHub Pages Settings,Deployment Process,Enables,Configures where the site is deployed
