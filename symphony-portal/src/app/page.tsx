@@ -12,21 +12,21 @@ const ConcertCarousel = () => {
     {
       id: 'soloist',
       title: 'Soloist Series',
-      image: '/soloist.jpg',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
       description: 'Experience world-renowned soloists performing classical masterpieces with our chamber ensemble.',
       link: '/concerts/soloist'
     },
     {
       id: 'chamber',
       title: 'Chamber Music',
-      image: '/chamber.png',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`,
       description: 'Intimate chamber music performances featuring string quartets, piano trios, and wind ensembles.',
       link: '/concerts/chamber'
     },
     {
       id: 'pops',
       title: 'Pops Concert',
-      image: '/pops.png',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/pops.png`,
       description: 'Popular classics and contemporary favorites in a relaxed, family-friendly atmosphere.',
       link: '/concerts/pops'
     }
@@ -146,7 +146,7 @@ export default function HomePage() {
       <section className="relative">
         <div className="w-full min-h-[calc(100vh-4rem)] h-[calc(100vh-4rem)] relative flex items-center justify-center overflow-hidden">
           <img
-            src="/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg"
+            src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg`}
             alt="London Symphony Orchestra performing on stage"
             className="absolute inset-0 w-full h-full object-cover object-center"
             draggable="false"

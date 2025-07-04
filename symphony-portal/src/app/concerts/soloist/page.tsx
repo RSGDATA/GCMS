@@ -74,11 +74,11 @@ export default function SoloistPage() {
               </button>
             </div>
             <div className="relative">
-              <img
-                src="/soloist.jpg"
-                alt="Soloist performing with chamber ensemble"
-                className="w-full h-96 object-cover rounded-lg shadow-2xl"
-              />
+        <img
+          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`}
+          alt="Soloist performing with chamber ensemble"
+          className="w-full h-96 object-cover"
+        />
             </div>
           </div>
         </div>

@@ -74,11 +74,11 @@ export default function PopsPage() {
               </button>
             </div>
             <div className="relative">
-              <img
-                src="/pops.png"
-                alt="Pops concert with colorful lighting"
-                className="w-full h-96 object-cover rounded-lg shadow-2xl"
-              />
+        <img
+          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/pops.png`}
+          alt="Pops concert with colorful lighting"
+          className="w-full h-96 object-cover"
+        />
             </div>
           </div>
         </div>

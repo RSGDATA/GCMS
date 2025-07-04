@@ -74,11 +74,11 @@ export default function ChamberPage() {
               </button>
             </div>
             <div className="relative">
-              <img
-                src="/chamber.png"
-                alt="Chamber music ensemble performing"
-                className="w-full h-96 object-cover rounded-lg shadow-2xl"
-              />
+        <img
+          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+          alt="Chamber music ensemble performing"
+          className="w-full h-96 object-cover"
+        />
             </div>
           </div>
         </div>
