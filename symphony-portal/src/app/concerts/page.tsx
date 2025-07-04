@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Music, Calendar, MapPin, Users, CreditCard } from 'lucide-react'
+import { Music, Calendar, MapPin, Users, CreditCard, Menu, X } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { formatDate } from '@/lib/utils'
 
@@ -20,6 +20,7 @@ interface Concert {
 export default function ConcertsPage() {
   const [concerts, setConcerts] = useState<Concert[]>([])
   const [loading, setLoading] = useState(true)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     fetchConcerts()
@@ -57,12 +58,20 @@ export default function ConcertsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-2">
-              <Music className="h-8 w-8 text-amber-400" />
-              <span className="text-xl font-bold text-white">Symphony Portal</span>
+              <Music className="h-6 w-6 sm:h-8 sm:w-8 text-amber-400" />
+              <span className="text-lg sm:text-xl font-bold text-white truncate">
+                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
+                <span className="sm:hidden">GCMS</span>
+              </span>
             </Link>
+            
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               <Link href="/" className="text-white hover:text-amber-400 transition-colors">
                 Home
+              </Link>
+              <Link href="/calendar" className="text-white hover:text-amber-400 transition-colors">
+                Calendar
               </Link>
               <Link href="/about" className="text-white hover:text-amber-400 transition-colors">
                 About
@@ -74,17 +83,69 @@ export default function ConcertsPage() {
                 Student Program
               </Link>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden text-white hover:text-amber-400 transition-colors p-2"
+              aria-label="Toggle mobile menu"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden bg-black/90 backdrop-blur-sm border-t border-white/10">
+              <div className="px-2 pt-2 pb-3 space-y-1">
+                <Link
+                  href="/"
+                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/calendar"
+                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Calendar
+                </Link>
+                <Link
+                  href="/about"
+                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/musicians/login"
+                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Musicians
+                </Link>
+                <Link
+                  href="/students/signup"
+                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Student Program
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
       {/* Header */}
-      <section className="py-16 px-4">
+      <section className="py-12 sm:py-16 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
             Upcoming Concerts
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Experience the beauty of classical music with our world-class orchestra. 
             Secure your tickets today for an unforgettable evening.
           </p>
@@ -106,45 +167,45 @@ export default function ConcertsPage() {
               <p className="text-gray-400">Check back soon for our next performance schedule.</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {concerts.map((concert) => (
                 <div key={concert.id} className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-white/15 transition-all duration-300">
                   {concert.image_url && (
-                    <div className="h-48 bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center">
-                      <Music className="h-16 w-16 text-white" />
+                    <div className="h-40 sm:h-48 bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center">
+                      <Music className="h-12 w-12 sm:h-16 sm:w-16 text-white" />
                     </div>
                   )}
                   
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-white mb-3">{concert.title}</h3>
-                    <p className="text-gray-300 mb-4 line-clamp-3">{concert.description}</p>
+                  <div className="p-4 sm:p-6">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{concert.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">{concert.description}</p>
                     
-                    <div className="space-y-2 mb-6">
+                    <div className="space-y-1 sm:space-y-2 mb-4 sm:mb-6">
                       <div className="flex items-center text-gray-300">
-                        <Calendar className="h-4 w-4 mr-2" />
-                        <span className="text-sm">{formatDate(concert.date)}</span>
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">{formatDate(concert.date)}</span>
                       </div>
                       <div className="flex items-center text-gray-300">
-                        <MapPin className="h-4 w-4 mr-2" />
-                        <span className="text-sm">{concert.venue}</span>
+                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm truncate">{concert.venue}</span>
                       </div>
                       <div className="flex items-center text-gray-300">
-                        <Users className="h-4 w-4 mr-2" />
-                        <span className="text-sm">{concert.available_seats} seats available</span>
+                        <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm">{concert.available_seats} seats available</span>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between">
-                      <div className="text-2xl font-bold text-amber-400">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                      <div className="text-xl sm:text-2xl font-bold text-amber-400">
                         ${concert.ticket_price}
                       </div>
                       <button
                         onClick={() => handlePurchaseTicket(concert.id)}
                         disabled={concert.available_seats === 0}
-                        className="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-black disabled:text-gray-400 font-semibold py-2 px-4 rounded-lg transition-colors"
+                        className="flex items-center justify-center space-x-2 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-black disabled:text-gray-400 font-semibold py-2 px-4 rounded-lg transition-colors touch-manipulation w-full sm:w-auto"
                       >
                         <CreditCard className="h-4 w-4" />
-                        <span>{concert.available_seats === 0 ? 'Sold Out' : 'Buy Tickets'}</span>
+                        <span className="text-sm sm:text-base">{concert.available_seats === 0 ? 'Sold Out' : 'Buy Tickets'}</span>
                       </button>
                     </div>
                   </div>
