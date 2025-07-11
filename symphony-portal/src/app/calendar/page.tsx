@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, CreditCard } from 'lucide-react'
 // import { supabase } from '@/lib/supabase'
 // import { formatDate } from '@/lib/utils'
@@ -28,6 +29,7 @@ interface CalendarEvent {
 }
 
 export default function CalendarPage() {
+  const router = useRouter()
   const [concerts, setConcerts] = useState<Concert[]>([])
   const [loading, setLoading] = useState(true)
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -186,8 +188,11 @@ export default function CalendarPage() {
   }
 
   const handleViewConcert = (concertId: string) => {
+    console.log('Navigating to concert:', concertId)
+    
     // Determine the concert series based on the ID
-    let concertType = 'gpo'
+    let concertType: string | null = null
+    
     if (concertId.includes('gpo')) {
       concertType = 'gpo'
     } else if (concertId.includes('piano-contest')) {
@@ -204,8 +209,28 @@ export default function CalendarPage() {
       concertType = 'dhaka-standard'
     }
     
-    // Redirect to concert description page
-    window.location.href = `/concerts/${concertType}`
+    // If no match found, log error and fallback to gpo
+    if (!concertType) {
+      console.error('Unknown concert ID:', concertId)
+      concertType = 'gpo'
+    }
+    
+    console.log('Resolved concert type:', concertType)
+    
+    // Get the base path for production (GitHub Pages)
+    const basePath = process.env.NODE_ENV === 'production' ? '/GCMS' : ''
+    const targetUrl = `${basePath}/concerts/${concertType}/`
+    
+    console.log('Target URL:', targetUrl)
+    
+    // Use Next.js router for navigation
+    try {
+      router.push(`/concerts/${concertType}/`)
+    } catch (error) {
+      console.error('Navigation error:', error)
+      // Fallback to window.location with proper base path
+      window.location.href = targetUrl
+    }
   }
 
   const formatDate = (date: string): string => {
