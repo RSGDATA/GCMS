@@ -217,20 +217,16 @@ export default function CalendarPage() {
     
     console.log('Resolved concert type:', concertType)
     
-    // Get the base path for production (GitHub Pages)
+    // For static export with GitHub Pages, use window.location directly
+    // This ensures proper navigation in production environment
     const basePath = process.env.NODE_ENV === 'production' ? '/GCMS' : ''
     const targetUrl = `${basePath}/concerts/${concertType}/`
     
     console.log('Target URL:', targetUrl)
+    console.log('Environment:', process.env.NODE_ENV)
     
-    // Use Next.js router for navigation
-    try {
-      router.push(`/concerts/${concertType}/`)
-    } catch (error) {
-      console.error('Navigation error:', error)
-      // Fallback to window.location with proper base path
-      window.location.href = targetUrl
-    }
+    // Use window.location for reliable navigation in static export
+    window.location.href = targetUrl
   }
 
   const formatDate = (date: string): string => {

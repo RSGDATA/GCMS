@@ -1,13 +1,7 @@
-'use client'
-
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft, Trophy, Users } from 'lucide-react'
 
 export default function PianoContestPage() {
-  const handlePurchaseTicket = () => {
-    // Redirect to ticket purchase page
-    window.location.href = 'https://tickets.example.com/piano-contest'
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
@@ -65,13 +59,15 @@ export default function PianoContestPage() {
               <p className="text-xl text-gray-300 mb-8">
                 Witness the next generation of piano virtuosos compete in our prestigious annual piano competition, featuring talented young musicians from across the region.
               </p>
-              <button
-                onClick={handlePurchaseTicket}
+              <a
+                href="https://tickets.example.com/piano-contest"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center space-x-2"
               >
                 <CreditCard className="h-5 w-5" />
                 <span>Purchase Tickets</span>
-              </button>
+              </a>
             </div>
             <div className="relative">
               <img
@@ -186,13 +182,15 @@ export default function PianoContestPage() {
             </div>
           </div>
 
-          <button
-            onClick={handlePurchaseTicket}
+          <a
+            href="https://tickets.example.com/piano-contest"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-12 rounded-lg transition-colors inline-flex items-center space-x-2 text-lg"
           >
             <CreditCard className="h-6 w-6" />
             <span>Purchase Tickets Now</span>
-          </button>
+          </a>
         </div>
       </section>
 

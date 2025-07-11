@@ -1,13 +1,7 @@
-'use client'
-
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
 
 export default function GPOPage() {
-  const handlePurchaseTicket = () => {
-    // Redirect to ticket purchase page
-    window.location.href = 'https://tickets.example.com/gpo-concert'
-  }
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
@@ -65,13 +59,15 @@ export default function GPOPage() {
               <p className="text-xl text-gray-300 mb-8">
                 Experience the grandeur of orchestral music with the Greenville Philharmonic Orchestra in spectacular performances featuring classical masterworks.
               </p>
-              <button
-                onClick={handlePurchaseTicket}
+              <a
+                href="https://tickets.example.com/gpo-concert"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-8 rounded-lg transition-colors inline-flex items-center space-x-2"
               >
                 <CreditCard className="h-5 w-5" />
                 <span>Purchase Tickets</span>
-              </button>
+              </a>
             </div>
             <div className="relative">
               <img
@@ -177,13 +173,15 @@ export default function GPOPage() {
             </div>
           </div>
 
-          <button
-            onClick={handlePurchaseTicket}
+          <a
+            href="https://tickets.example.com/gpo-concert"
+            target="_blank"
+            rel="noopener noreferrer"
             className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-4 px-12 rounded-lg transition-colors inline-flex items-center space-x-2 text-lg"
           >
             <CreditCard className="h-6 w-6" />
             <span>Purchase Tickets Now</span>
-          </button>
+          </a>
         </div>
       </section>
 
