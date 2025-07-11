@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
+import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft, Users } from 'lucide-react'
 
-export default function ChamberPage() {
+export default function GCMSPage() {
   const handlePurchaseTicket = () => {
     // Redirect to ticket purchase page
-    window.location.href = 'https://tickets.example.com/chamber-music'
+    window.location.href = 'https://tickets.example.com/gcms-concert'
   }
 
   return (
@@ -60,10 +60,10 @@ export default function ChamberPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Chamber Music
+                GCMS Concert
               </h1>
               <p className="text-xl text-gray-300 mb-8">
-                Intimate chamber music performances featuring string quartets, piano trios, and wind ensembles in our most beloved concert series.
+                Experience the Greenville Chamber Music Society's signature performances featuring our talented resident musicians and special guest artists in intimate chamber music settings.
               </p>
               <button
                 onClick={handlePurchaseTicket}
@@ -74,11 +74,11 @@ export default function ChamberPage() {
               </button>
             </div>
             <div className="relative">
-        <img
-          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
-          alt="Chamber music ensemble performing"
-          className="w-full h-96 object-cover"
-        />
+              <img
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+                alt="GCMS ensemble performing"
+                className="w-full h-96 object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -87,64 +87,71 @@ export default function ChamberPage() {
       {/* Detailed Description */}
       <section className="py-16 px-4 bg-black/20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">About Our Chamber Music Series</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">About GCMS Concerts</h2>
           
           <div className="prose prose-lg text-gray-300 space-y-6">
             <p>
-              Chamber music represents the most intimate form of classical music performance, where small groups of 
-              musicians come together to create intricate musical conversations. Our Chamber Music Series celebrates 
-              this tradition with performances that showcase the beauty of musical collaboration and the power of 
-              intimate musical expression.
+              GCMS concerts showcase the very best of our chamber music society, featuring performances by our 
+              resident musicians alongside distinguished guest artists. These concerts represent the heart of our 
+              organization's mission to bring exceptional chamber music to the Greenville community.
             </p>
             
             <p>
-              From the elegant sophistication of Mozart&apos;s string quartets to the passionate intensity of Brahms&apos; 
-              piano trios, our chamber music concerts offer audiences the opportunity to experience classical music 
-              in its most personal and communicative form. Each performance is carefully curated to create a cohesive 
-              and emotionally resonant program.
+              Each GCMS concert is carefully programmed to highlight the unique strengths of our ensemble members 
+              while exploring diverse repertoire from baroque masterpieces to contemporary works. These performances 
+              demonstrate the collaborative spirit and artistic excellence that define the Greenville Chamber Music Society.
             </p>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Our Ensembles</h3>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Featured Artists</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-300">
-              <li>String Quartets featuring works by Mozart, Beethoven, Schubert, and Brahms</li>
-              <li>Piano Trios exploring the romantic and classical repertoire</li>
-              <li>Wind Quintets presenting both traditional and contemporary works</li>
-              <li>Mixed chamber ensembles for unique instrumental combinations</li>
-              <li>Guest artists collaborating with our resident musicians</li>
+              <li>Giordi - Renowned for expressive interpretations and technical mastery</li>
+              <li>Hamin - Celebrated chamber musician with international experience</li>
+              <li>Robert - Versatile performer specializing in both classical and contemporary works</li>
+              <li>John - Accomplished musician with extensive solo and ensemble experience</li>
+              <li>Amanda - Dynamic performer known for engaging stage presence</li>
+              <li>Ashley - Talented artist bringing fresh perspectives to classical repertoire</li>
             </ul>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">This Season&apos;s Highlights</h3>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">This Season's GCMS Concerts</h3>
             <div className="grid md:grid-cols-2 gap-6 mt-6">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">Beethoven String Quartet Cycle</h4>
+                <h4 className="text-xl font-semibold text-white mb-2">Holiday Concert</h4>
                 <p className="text-gray-300 text-sm mb-3">
-                  Complete late quartets performed over three concerts
+                  Featuring Giordi, Hamin, and Robert in festive chamber works
                 </p>
                 <div className="space-y-1 text-sm text-gray-300">
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>February 14, 28 & March 14, 2025</span>
+                    <span>December 20, 2025</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span>Heritage Main Library</span>
                   </div>
+                  <div className="flex items-center">
+                    <Users className="h-4 w-4 mr-2" />
+                    <span>Giordi, Hamin, Robert</span>
+                  </div>
                 </div>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">Brahms Piano Trios</h4>
+                <h4 className="text-xl font-semibold text-white mb-2">Spring Showcase</h4>
                 <p className="text-gray-300 text-sm mb-3">
-                  An evening dedicated to Brahms&apos; masterful chamber works
+                  Collaborative performance featuring John, Amanda, and Ashley
                 </p>
                 <div className="space-y-1 text-sm text-gray-300">
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>April 18, 2025 at 7:30 PM</span>
+                    <span>March 22, 2025</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span>Greenville Concert Hall</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Users className="h-4 w-4 mr-2" />
+                    <span>John, Amanda, Ashley</span>
                   </div>
                 </div>
               </div>
@@ -161,19 +168,19 @@ export default function ChamberPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-xl font-semibold text-white mb-2">General Admission</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$35</div>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$40</div>
               <p className="text-gray-300 text-sm">Standard seating</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border-2 border-amber-500">
               <h3 className="text-xl font-semibold text-white mb-2">Premium Seating</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$50</div>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$60</div>
               <p className="text-gray-300 text-sm">Front rows with best acoustics</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-xl font-semibold text-white mb-2">Student/Senior</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$20</div>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$25</div>
               <p className="text-gray-300 text-sm">With valid ID</p>
             </div>
           </div>

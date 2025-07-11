@@ -52,63 +52,133 @@ export default function CalendarPage() {
   const setSampleConcerts = () => {
     const sampleConcerts: Concert[] = [
       {
-        id: 'soloist',
-        title: 'Soloist Series - Maria Rodriguez',
-        description: 'Experience world-renowned violinist Maria Rodriguez performing classical masterpieces with our chamber ensemble.',
-        date: '2025-01-15T19:30:00Z',
+        id: 'gpo-oct',
+        title: 'GPO Concert',
+        description: 'Experience the grandeur of orchestral performances with the Greenville Philharmonic Orchestra.',
+        date: '2025-10-03T19:30:00Z',
         venue: 'Heritage Main Library',
-        ticket_price: 45,
-        available_seats: 150,
-        image_url: null
-      },
-      {
-        id: 'chamber',
-        title: 'Chamber Music - Beethoven Quartets',
-        description: 'Intimate chamber music featuring Beethoven\'s late string quartets performed by our resident ensemble.',
-        date: '2025-02-14T19:30:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 35,
-        available_seats: 80,
-        image_url: null
-      },
-      {
-        id: 'pops',
-        title: 'Pops Concert - Movie Magic Night',
-        description: 'Popular classics and movie themes in a relaxed, family-friendly atmosphere featuring iconic film scores.',
-        date: '2025-03-08T19:00:00Z',
-        venue: 'Falls Park Amphitheater',
-        ticket_price: 25,
-        available_seats: 300,
-        image_url: null
-      },
-      {
-        id: 'soloist-2',
-        title: 'Soloist Series - James Chen',
-        description: 'International Chopin Competition winner James Chen performs piano masterworks with chamber accompaniment.',
-        date: '2025-03-22T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 45,
+        ticket_price: 50,
         available_seats: 200,
         image_url: null
       },
       {
-        id: 'chamber-2',
-        title: 'Chamber Music - Brahms Piano Trios',
-        description: 'An evening dedicated to Brahms\' masterful chamber works featuring piano trios and string quartets.',
-        date: '2025-04-18T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 35,
+        id: 'piano-contest-oct',
+        title: 'Piano Contest',
+        description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
+        date: '2025-10-18T19:00:00Z',
+        venue: 'Heritage Main Library',
+        ticket_price: 15,
         available_seats: 150,
         image_url: null
       },
       {
-        id: 'pops-2',
-        title: 'Pops Concert - Broadway Favorites',
-        description: 'Songs from Hamilton, Phantom of the Opera, and Les Misérables in a family-friendly concert setting.',
-        date: '2025-05-17T19:00:00Z',
+        id: 'ashley-oct',
+        title: 'Ashley Concert',
+        description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
+        date: '2025-10-19T19:30:00Z',
+        venue: 'Heritage Main Library',
+        ticket_price: 40,
+        available_seats: 120,
+        image_url: null
+      },
+      {
+        id: 'eldred-nov',
+        title: 'Eldred Concert',
+        description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
+        date: '2025-11-08T19:30:00Z',
+        venue: 'Heritage Main Library',
+        ticket_price: 35,
+        available_seats: 100,
+        image_url: null
+      },
+      {
+        id: 'gpo-dec',
+        title: 'GPO Concert',
+        description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
+        date: '2025-12-07T19:30:00Z',
         venue: 'Greenville Concert Hall',
-        ticket_price: 25,
+        ticket_price: 50,
         available_seats: 250,
+        image_url: null
+      },
+      {
+        id: 'ashley-dec',
+        title: 'Ashley Concert',
+        description: 'Holiday performance featuring seasonal classics and beloved favorites.',
+        date: '2025-12-13T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 40,
+        available_seats: 150,
+        image_url: null
+      },
+      {
+        id: 'gcms-dec',
+        title: 'GCMS Concert',
+        description: 'Holiday concert featuring Giordi, Hamin, and Robert in festive chamber works.',
+        date: '2025-12-20T19:30:00Z',
+        venue: 'Heritage Main Library',
+        ticket_price: 40,
+        available_seats: 120,
+        image_url: null
+      },
+      {
+        id: 'gpo-feb',
+        title: 'GPO Concert',
+        description: 'Winter orchestral performance featuring classical masterworks.',
+        date: '2025-02-06T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 50,
+        available_seats: 200,
+        image_url: null
+      },
+      {
+        id: 'mt-vernon-feb',
+        title: 'Mt. Vernon Concert',
+        description: 'Special concert at Mt. Vernon featuring exceptional chamber music performances.',
+        date: '2025-02-21T19:30:00Z',
+        venue: 'Mt. Vernon Historic Hall',
+        ticket_price: 45,
+        available_seats: 100,
+        image_url: null
+      },
+      {
+        id: 'gcms-mar',
+        title: 'GCMS Concert',
+        description: 'Spring showcase featuring John, Amanda, and Ashley in collaborative performances.',
+        date: '2025-03-22T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 40,
+        available_seats: 150,
+        image_url: null
+      },
+      {
+        id: 'ashley-apr',
+        title: 'Ashley Concert',
+        description: 'Spring recital featuring classical favorites and contemporary works.',
+        date: '2025-04-17T19:30:00Z',
+        venue: 'Heritage Main Library',
+        ticket_price: 40,
+        available_seats: 120,
+        image_url: null
+      },
+      {
+        id: 'piano-contest-apr',
+        title: 'Piano Contest',
+        description: 'Spring piano competition featuring advanced young pianists.',
+        date: '2025-04-18T19:00:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 15,
+        available_seats: 200,
+        image_url: null
+      },
+      {
+        id: 'dhaka-standard-apr',
+        title: 'Dhaka Standard Concert',
+        description: 'International concert celebrating global musical traditions and cross-cultural collaboration.',
+        date: '2025-04-25T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 50,
+        available_seats: 180,
         image_url: null
       }
     ]
@@ -117,11 +187,21 @@ export default function CalendarPage() {
 
   const handleViewConcert = (concertId: string) => {
     // Determine the concert series based on the ID
-    let concertType = 'soloist'
-    if (concertId.includes('chamber')) {
-      concertType = 'chamber'
-    } else if (concertId.includes('pops')) {
-      concertType = 'pops'
+    let concertType = 'gpo'
+    if (concertId.includes('gpo')) {
+      concertType = 'gpo'
+    } else if (concertId.includes('piano-contest')) {
+      concertType = 'piano-contest'
+    } else if (concertId.includes('ashley')) {
+      concertType = 'ashley'
+    } else if (concertId.includes('eldred')) {
+      concertType = 'eldred'
+    } else if (concertId.includes('gcms')) {
+      concertType = 'gcms'
+    } else if (concertId.includes('mt-vernon')) {
+      concertType = 'mt-vernon'
+    } else if (concertId.includes('dhaka-standard')) {
+      concertType = 'dhaka-standard'
     }
     
     // Redirect to concert description page
@@ -243,29 +323,35 @@ export default function CalendarPage() {
   const selectedEvents = selectedDate ? getEventsForDate(selectedDate) : []
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <Music className="h-8 w-8 text-amber-400" />
-              <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
+          <div className="flex justify-between items-center h-20">
+            <Link href="/" className="flex items-center space-x-3">
+              <Music className="h-8 w-8 text-blue-600" />
+              <span className="text-xl font-bold text-gray-900">
+                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
+                <span className="sm:hidden">GCMS</span>
+              </span>
             </Link>
             <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Home
               </Link>
-              <Link href="/concerts" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Concerts
               </Link>
-              <Link href="/about" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/calendar" className="text-blue-600 font-medium uppercase text-sm tracking-wide">
+                Calendar
+              </Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 About
               </Link>
-              <Link href="/musicians/login" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Musicians
               </Link>
-              <Link href="/students/signup" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
                 Student Program
               </Link>
             </div>
@@ -274,12 +360,12 @@ export default function CalendarPage() {
       </nav>
 
       {/* Header */}
-      <section className="py-16 px-4">
+      <section className="py-20 px-4">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-light text-gray-900 mb-6">
             Concert Calendar
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             View all upcoming concerts and events in our interactive calendar. 
             Click on any date with events to see details and purchase tickets.
           </p>
@@ -287,11 +373,11 @@ export default function CalendarPage() {
       </section>
 
       {/* Calendar Section */}
-      <section className="py-12 px-4">
+      <section className="py-12 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           {loading ? (
-            <div className="text-center text-white">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-400 mx-auto"></div>
+            <div className="text-center text-gray-900">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
               <p className="mt-4">Loading calendar...</p>
             </div>
           ) : (
@@ -300,21 +386,21 @@ export default function CalendarPage() {
               <div className="lg:col-span-2">
                 {/* Calendar Header */}
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-gray-900">
                     {currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
                   </h2>
                   <div className="flex space-x-2">
                     <button
                       onClick={() => navigateMonth('prev')}
-                      className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                      className="p-2 bg-white hover:bg-gray-100 rounded-lg transition-colors shadow-sm border border-gray-200"
                     >
-                      <ChevronLeft className="h-5 w-5 text-white" />
+                      <ChevronLeft className="h-5 w-5 text-gray-600" />
                     </button>
                     <button
                       onClick={() => navigateMonth('next')}
-                      className="p-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
+                      className="p-2 bg-white hover:bg-gray-100 rounded-lg transition-colors shadow-sm border border-gray-200"
                     >
-                      <ChevronRight className="h-5 w-5 text-white" />
+                      <ChevronRight className="h-5 w-5 text-gray-600" />
                     </button>
                   </div>
                 </div>
@@ -323,13 +409,13 @@ export default function CalendarPage() {
                 {renderCalendar()}
 
                 {/* Legend */}
-                <div className="mt-4 flex items-center space-x-6 text-sm text-gray-300">
+                <div className="mt-4 flex items-center space-x-6 text-sm text-gray-600">
                   <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 bg-amber-500/20 border border-amber-500 rounded"></div>
+                    <div className="w-4 h-4 bg-blue-100 border border-blue-500 rounded"></div>
                     <span>Today</span>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <div className="w-4 h-4 bg-blue-500/10 border border-gray-700 rounded"></div>
+                    <div className="w-4 h-4 bg-blue-50 border border-gray-300 rounded"></div>
                     <span>Has Events</span>
                   </div>
                 </div>
@@ -337,8 +423,8 @@ export default function CalendarPage() {
 
               {/* Event Details Sidebar */}
               <div className="lg:col-span-1">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 sticky top-4">
-                  <h3 className="text-xl font-bold text-white mb-4">
+                <div className="bg-white rounded-lg p-6 sticky top-4 shadow-lg border border-gray-200">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">
                     {selectedDate 
                       ? `Events on ${selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`
                       : 'Select a date with events'

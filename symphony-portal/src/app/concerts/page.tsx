@@ -28,17 +28,70 @@ export default function ConcertsPage() {
 
   const fetchConcerts = async () => {
     try {
-      const { data, error } = await supabase
-        .from('concerts')
-        .select('*')
-        .gte('date', new Date().toISOString())
-        .order('date', { ascending: true })
-
-      if (error) {
-        console.error('Error fetching concerts:', error)
-      } else {
-        setConcerts(data || [])
-      }
+      // Use the new season's concerts
+      const newSeasonConcerts: Concert[] = [
+        {
+          id: 'gpo-oct',
+          title: 'GPO Concert',
+          description: 'Experience the grandeur of orchestral performances with the Greenville Philharmonic Orchestra.',
+          date: '2025-10-03T19:30:00Z',
+          venue: 'Heritage Main Library',
+          ticket_price: 50,
+          available_seats: 200,
+          image_url: null
+        },
+        {
+          id: 'piano-contest-oct',
+          title: 'Piano Contest',
+          description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
+          date: '2025-10-18T19:00:00Z',
+          venue: 'Heritage Main Library',
+          ticket_price: 15,
+          available_seats: 150,
+          image_url: null
+        },
+        {
+          id: 'ashley-oct',
+          title: 'Ashley Concert',
+          description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
+          date: '2025-10-19T19:30:00Z',
+          venue: 'Heritage Main Library',
+          ticket_price: 40,
+          available_seats: 120,
+          image_url: null
+        },
+        {
+          id: 'eldred-nov',
+          title: 'Eldred Concert',
+          description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
+          date: '2025-11-08T19:30:00Z',
+          venue: 'Heritage Main Library',
+          ticket_price: 35,
+          available_seats: 100,
+          image_url: null
+        },
+        {
+          id: 'gpo-dec',
+          title: 'GPO Concert',
+          description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
+          date: '2025-12-07T19:30:00Z',
+          venue: 'Greenville Concert Hall',
+          ticket_price: 50,
+          available_seats: 250,
+          image_url: null
+        },
+        {
+          id: 'ashley-dec',
+          title: 'Ashley Concert',
+          description: 'Holiday performance featuring seasonal classics and beloved favorites.',
+          date: '2025-12-13T19:30:00Z',
+          venue: 'Greenville Concert Hall',
+          ticket_price: 40,
+          available_seats: 150,
+          image_url: null
+        }
+      ]
+      setConcerts(newSeasonConcerts)
     } catch (error) {
       console.error('Error:', error)
     } finally {
@@ -47,19 +100,37 @@ export default function ConcertsPage() {
   }
 
   const handlePurchaseTicket = (concertId: string) => {
-    // Redirect to ticket purchase page
-    window.location.href = `/concerts/${concertId}/purchase`
+    // Determine the concert series based on the ID and redirect to concert page
+    let concertType = 'gpo'
+    if (concertId.includes('gpo')) {
+      concertType = 'gpo'
+    } else if (concertId.includes('piano-contest')) {
+      concertType = 'piano-contest'
+    } else if (concertId.includes('ashley')) {
+      concertType = 'ashley'
+    } else if (concertId.includes('eldred')) {
+      concertType = 'eldred'
+    } else if (concertId.includes('gcms')) {
+      concertType = 'gcms'
+    } else if (concertId.includes('mt-vernon')) {
+      concertType = 'mt-vernon'
+    } else if (concertId.includes('dhaka-standard')) {
+      concertType = 'dhaka-standard'
+    }
+    
+    // Redirect to concert description page
+    window.location.href = `/concerts/${concertType}`
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <div className="min-h-screen bg-white">
       {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <Music className="h-6 w-6 sm:h-8 sm:w-8 text-amber-400" />
-              <span className="text-lg sm:text-xl font-bold text-white truncate">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/" className="flex items-center space-x-3">
+              <Music className="h-8 w-8 text-blue-600" />
+              <span className="text-xl font-bold text-gray-900">
                 <span className="hidden sm:inline">Greenville Chamber Music Society</span>
                 <span className="sm:hidden">GCMS</span>
               </span>
@@ -67,19 +138,19 @@ export default function ConcertsPage() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Home
               </Link>
-              <Link href="/calendar" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Calendar
               </Link>
-              <Link href="/about" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 About
               </Link>
-              <Link href="/musicians/login" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Musicians
               </Link>
-              <Link href="/students/signup" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
                 Student Program
               </Link>
             </div>
@@ -87,7 +158,7 @@ export default function ConcertsPage() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white hover:text-amber-400 transition-colors p-2"
+              className="md:hidden text-gray-700 hover:text-blue-600 transition-colors p-2"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -96,39 +167,39 @@ export default function ConcertsPage() {
 
           {/* Mobile Navigation Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-black/90 backdrop-blur-sm border-t border-white/10">
+            <div className="md:hidden bg-white border-t border-gray-200">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link
                   href="/"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/calendar"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Calendar
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/musicians/login"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Musicians
                 </Link>
                 <Link
                   href="/students/signup"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 bg-blue-600 text-white rounded-md font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Student Program
@@ -140,72 +211,70 @@ export default function ConcertsPage() {
       </nav>
 
       {/* Header */}
-      <section className="py-12 sm:py-16 px-4">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
-            Upcoming Concerts
+          <h1 className="text-4xl md:text-6xl font-light text-gray-900 mb-6">
+            Upcoming Concerts & Events
           </h1>
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Experience the beauty of classical music with our world-class orchestra. 
-            Secure your tickets today for an unforgettable evening.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            Experience the beauty of chamber music with our world-class artists. 
+            Secure your tickets today for an unforgettable evening of musical excellence.
           </p>
         </div>
       </section>
 
       {/* Concerts Grid */}
-      <section className="py-12 px-4">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           {loading ? (
-            <div className="text-center text-white">
-              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-amber-400 mx-auto"></div>
+            <div className="text-center text-gray-900">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
               <p className="mt-4">Loading concerts...</p>
             </div>
           ) : concerts.length === 0 ? (
-            <div className="text-center text-white">
+            <div className="text-center text-gray-900">
               <Music className="h-16 w-16 text-gray-400 mx-auto mb-4" />
               <h3 className="text-xl font-semibold mb-2">No Upcoming Concerts</h3>
-              <p className="text-gray-400">Check back soon for our next performance schedule.</p>
+              <p className="text-gray-600">Check back soon for our next performance schedule.</p>
             </div>
           ) : (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {concerts.map((concert) => (
-                <div key={concert.id} className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden hover:bg-white/15 transition-all duration-300">
-                  {concert.image_url && (
-                    <div className="h-40 sm:h-48 bg-gradient-to-r from-amber-400 to-amber-600 flex items-center justify-center">
-                      <Music className="h-12 w-12 sm:h-16 sm:w-16 text-white" />
-                    </div>
-                  )}
+                <div key={concert.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200">
+                  <div className="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                    <Music className="h-16 w-16 text-white" />
+                  </div>
                   
-                  <div className="p-4 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">{concert.title}</h3>
-                    <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3">{concert.description}</p>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3">{concert.title}</h3>
+                    <p className="text-gray-600 mb-4 line-clamp-3">{concert.description}</p>
                     
-                    <div className="space-y-1 sm:space-y-2 mb-4 sm:mb-6">
-                      <div className="flex items-center text-gray-300">
-                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm">{formatDate(concert.date)}</span>
+                    <div className="space-y-2 mb-6">
+                      <div className="flex items-center text-gray-600">
+                        <Calendar className="h-4 w-4 mr-2 flex-shrink-0 text-blue-600" />
+                        <span className="text-sm">{formatDate(concert.date)}</span>
                       </div>
-                      <div className="flex items-center text-gray-300">
-                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm truncate">{concert.venue}</span>
+                      <div className="flex items-center text-gray-600">
+                        <MapPin className="h-4 w-4 mr-2 flex-shrink-0 text-blue-600" />
+                        <span className="text-sm truncate">{concert.venue}</span>
                       </div>
-                      <div className="flex items-center text-gray-300">
-                        <Users className="h-3 w-3 sm:h-4 sm:w-4 mr-2 flex-shrink-0" />
-                        <span className="text-xs sm:text-sm">{concert.available_seats} seats available</span>
+                      <div className="flex items-center text-gray-600">
+                        <Users className="h-4 w-4 mr-2 flex-shrink-0 text-blue-600" />
+                        <span className="text-sm">{concert.available_seats} seats available</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
-                      <div className="text-xl sm:text-2xl font-bold text-amber-400">
+                    <div className="flex items-center justify-between">
+                      <div className="text-2xl font-bold text-blue-600">
                         ${concert.ticket_price}
                       </div>
                       <button
                         onClick={() => handlePurchaseTicket(concert.id)}
                         disabled={concert.available_seats === 0}
-                        className="flex items-center justify-center space-x-2 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-black disabled:text-gray-400 font-semibold py-2 px-4 rounded-lg transition-colors touch-manipulation w-full sm:w-auto"
+                        className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
                       >
                         <CreditCard className="h-4 w-4" />
-                        <span className="text-sm sm:text-base">{concert.available_seats === 0 ? 'Sold Out' : 'Buy Tickets'}</span>
+                        <span>{concert.available_seats === 0 ? 'Sold Out' : 'Buy Tickets'}</span>
                       </button>
                     </div>
                   </div>

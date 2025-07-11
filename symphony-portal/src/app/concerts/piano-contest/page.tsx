@@ -1,12 +1,12 @@
 'use client'
 
 import Link from 'next/link'
-import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
+import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft, Trophy, Users } from 'lucide-react'
 
-export default function SoloistPage() {
+export default function PianoContestPage() {
   const handlePurchaseTicket = () => {
     // Redirect to ticket purchase page
-    window.location.href = 'https://tickets.example.com/soloist-series'
+    window.location.href = 'https://tickets.example.com/piano-contest'
   }
 
   return (
@@ -60,10 +60,10 @@ export default function SoloistPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Soloist Series
+                Piano Contest
               </h1>
               <p className="text-xl text-gray-300 mb-8">
-                Experience world-renowned soloists performing classical masterpieces with our chamber ensemble in intimate, unforgettable performances.
+                Witness the next generation of piano virtuosos compete in our prestigious annual piano competition, featuring talented young musicians from across the region.
               </p>
               <button
                 onClick={handlePurchaseTicket}
@@ -74,11 +74,11 @@ export default function SoloistPage() {
               </button>
             </div>
             <div className="relative">
-        <img
-          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`}
-          alt="Soloist performing with chamber ensemble"
-          className="w-full h-96 object-cover"
-        />
+              <img
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`}
+                alt="Young pianist performing at piano contest"
+                className="w-full h-96 object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -87,62 +87,72 @@ export default function SoloistPage() {
       {/* Detailed Description */}
       <section className="py-16 px-4 bg-black/20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">About Our Soloist Series</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">About Our Piano Contest</h2>
           
           <div className="prose prose-lg text-gray-300 space-y-6">
             <p>
-              Our Soloist Series brings together internationally acclaimed artists with our talented chamber musicians 
-              to create magical musical moments. Each performance features a world-class soloist accompanied by carefully 
-              selected chamber works that complement and enhance the evening's program.
+              Our annual Piano Contest celebrates the exceptional talent of young pianists in our community and beyond. 
+              This prestigious competition provides a platform for emerging artists to showcase their skills, compete for 
+              valuable prizes, and gain performance experience in a professional setting.
             </p>
             
             <p>
-              From virtuosic violin concertos to intimate piano sonatas, our soloist series showcases the full range 
-              of classical repertoire. We pride ourselves on presenting both beloved masterworks and lesser-known gems, 
-              offering our audience a rich and varied musical experience.
+              The contest features multiple age categories and attracts participants from across the Southeast. 
+              Each contestant performs a carefully prepared program, demonstrating technical proficiency, musical 
+              interpretation, and artistic maturity. Our distinguished panel of judges includes renowned pianists, 
+              pedagogues, and music professionals.
             </p>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">What to Expect</h3>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Contest Features</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-300">
-              <li>World-renowned soloists from major international orchestras and conservatories</li>
-              <li>Intimate venue settings that bring you close to the music</li>
-              <li>Pre-concert talks with the artists (select performances)</li>
-              <li>A diverse repertoire spanning Baroque to Contemporary works</li>
-              <li>Professional chamber musicians providing expert accompaniment</li>
+              <li>Multiple age divisions from elementary through college level</li>
+              <li>Distinguished panel of professional judges</li>
+              <li>Cash prizes, trophies, and certificates for winners</li>
+              <li>Master class opportunities with guest artists</li>
+              <li>Performance opportunities with local ensembles</li>
+              <li>Professional recording of winning performances</li>
             </ul>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Featured Artists This Season</h3>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Contest Schedule</h3>
             <div className="grid md:grid-cols-2 gap-6 mt-6">
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">Maria Rodriguez, Violin</h4>
+                <h4 className="text-xl font-semibold text-white mb-2">Fall Competition</h4>
                 <p className="text-gray-300 text-sm mb-3">
-                  Concertmaster of the Metropolitan Symphony Orchestra
+                  Annual competition featuring young pianists ages 8-18
                 </p>
                 <div className="space-y-1 text-sm text-gray-300">
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>January 15, 2025 at 7:30 PM</span>
+                    <span>October 18, 2025</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span>Heritage Main Library</span>
                   </div>
+                  <div className="flex items-center">
+                    <Trophy className="h-4 w-4 mr-2" />
+                    <span>Judges, Certificates, Trophies</span>
+                  </div>
                 </div>
               </div>
 
               <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">James Chen, Piano</h4>
+                <h4 className="text-xl font-semibold text-white mb-2">Spring Competition</h4>
                 <p className="text-gray-300 text-sm mb-3">
-                  Winner of the International Chopin Competition
+                  Spring showcase featuring advanced young pianists
                 </p>
                 <div className="space-y-1 text-sm text-gray-300">
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2" />
-                    <span>March 22, 2025 at 7:30 PM</span>
+                    <span>April 18, 2025</span>
                   </div>
                   <div className="flex items-center">
                     <MapPin className="h-4 w-4 mr-2" />
                     <span>Greenville Concert Hall</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Trophy className="h-4 w-4 mr-2" />
+                    <span>Judges, Certificates, Trophies</span>
                   </div>
                 </div>
               </div>
@@ -159,20 +169,20 @@ export default function SoloistPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-xl font-semibold text-white mb-2">General Admission</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$45</div>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$15</div>
               <p className="text-gray-300 text-sm">Standard seating</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border-2 border-amber-500">
-              <h3 className="text-xl font-semibold text-white mb-2">Premium Seating</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$65</div>
-              <p className="text-gray-300 text-sm">Front rows with best acoustics</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Family Pack</h3>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$50</div>
+              <p className="text-gray-300 text-sm">4 tickets for families</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Student/Senior</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$25</div>
-              <p className="text-gray-300 text-sm">With valid ID</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Students</h3>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$5</div>
+              <p className="text-gray-300 text-sm">With valid student ID</p>
             </div>
           </div>
 

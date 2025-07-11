@@ -3,10 +3,10 @@
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
 
-export default function PopsPage() {
+export default function MtVernonPage() {
   const handlePurchaseTicket = () => {
     // Redirect to ticket purchase page
-    window.location.href = 'https://tickets.example.com/pops-concert'
+    window.location.href = 'https://tickets.example.com/mt-vernon-concert'
   }
 
   return (
@@ -60,10 +60,10 @@ export default function PopsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Pops Concert
+                Mt. Vernon Concert
               </h1>
               <p className="text-xl text-gray-300 mb-8">
-                Popular classics and contemporary favorites in a relaxed, family-friendly atmosphere that brings classical music to everyone.
+                Join us for a special concert at Mt. Vernon, featuring exceptional chamber music performances in a historic and intimate setting.
               </p>
               <button
                 onClick={handlePurchaseTicket}
@@ -74,11 +74,11 @@ export default function PopsPage() {
               </button>
             </div>
             <div className="relative">
-        <img
-          src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/pops.png`}
-          alt="Pops concert with colorful lighting"
-          className="w-full h-96 object-cover"
-        />
+              <img
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+                alt="Mt. Vernon concert venue"
+                className="w-full h-96 object-cover rounded-lg"
+              />
             </div>
           </div>
         </div>
@@ -87,65 +87,45 @@ export default function PopsPage() {
       {/* Detailed Description */}
       <section className="py-16 px-4 bg-black/20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-8">About Our Pops Concert Series</h2>
+          <h2 className="text-3xl font-bold text-white mb-8">About Mt. Vernon Concerts</h2>
           
           <div className="prose prose-lg text-gray-300 space-y-6">
             <p>
-              Our Pops Concert Series breaks down the barriers between classical and popular music, creating an 
-              accessible and enjoyable experience for audiences of all ages and musical backgrounds. These concerts 
-              feature beloved classical pieces alongside movie themes, Broadway hits, and contemporary arrangements 
-              that showcase the versatility and relevance of orchestral music.
+              Our Mt. Vernon concerts offer a unique musical experience in a setting that combines historical significance 
+              with exceptional acoustics. These special performances showcase chamber music in an intimate environment 
+              that allows for deep connection between performers and audience.
             </p>
             
             <p>
-              From John Williams&apos; iconic film scores to arrangements of popular songs, our pops concerts prove 
-              that classical music can be both sophisticated and fun. We create a relaxed atmosphere where families 
-              can enjoy music together, often featuring interactive elements and opportunities for audience participation.
+              The Mt. Vernon venue provides an ideal setting for chamber music, with its warm acoustics and elegant 
+              atmosphere creating the perfect backdrop for classical performances. Each concert is carefully programmed 
+              to take advantage of the venue's unique characteristics and create memorable musical experiences.
             </p>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">What Makes Our Pops Concerts Special</h3>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Concert Features</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-300">
-              <li>Family-friendly programming suitable for all ages</li>
-              <li>Mix of classical favorites and popular music arrangements</li>
-              <li>Interactive elements and audience participation</li>
-              <li>Relaxed atmosphere with optional pre-concert activities</li>
-              <li>Educational components that make classical music accessible</li>
-              <li>Special themed concerts throughout the year</li>
+              <li>Historic venue with exceptional acoustic properties</li>
+              <li>Intimate seating arrangement for optimal listening experience</li>
+              <li>Carefully curated programs featuring diverse repertoire</li>
+              <li>Pre-concert receptions and artist meet-and-greets</li>
+              <li>Educational program notes and historical context</li>
+              <li>Collaborative performances with regional artists</li>
             </ul>
 
-            <h3 className="text-2xl font-bold text-white mt-8 mb-4">This Season&apos;s Pops Highlights</h3>
-            <div className="grid md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">Movie Magic Night</h4>
-                <p className="text-gray-300 text-sm mb-3">
-                  Iconic film scores from Star Wars, Harry Potter, and more
-                </p>
-                <div className="space-y-1 text-sm text-gray-300">
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>March 8, 2025 at 7:00 PM</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>Falls Park Amphitheater</span>
-                  </div>
+            <h3 className="text-2xl font-bold text-white mt-8 mb-4">Upcoming Performance</h3>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
+              <h4 className="text-xl font-semibold text-white mb-2">Winter Concert</h4>
+              <p className="text-gray-300 text-sm mb-3">
+                An evening of classical chamber music in the historic Mt. Vernon setting
+              </p>
+              <div className="space-y-1 text-sm text-gray-300">
+                <div className="flex items-center">
+                  <Calendar className="h-4 w-4 mr-2" />
+                  <span>February 21, 2025</span>
                 </div>
-              </div>
-
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-                <h4 className="text-xl font-semibold text-white mb-2">Broadway Favorites</h4>
-                <p className="text-gray-300 text-sm mb-3">
-                  Songs from Hamilton, Phantom of the Opera, and Les Misérables
-                </p>
-                <div className="space-y-1 text-sm text-gray-300">
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>May 17, 2025 at 7:00 PM</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>Greenville Concert Hall</span>
-                  </div>
+                <div className="flex items-center">
+                  <MapPin className="h-4 w-4 mr-2" />
+                  <span>Mt. Vernon Historic Hall</span>
                 </div>
               </div>
             </div>
@@ -161,20 +141,20 @@ export default function PopsPage() {
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
               <h3 className="text-xl font-semibold text-white mb-2">General Admission</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$25</div>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$45</div>
               <p className="text-gray-300 text-sm">Standard seating</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 border-2 border-amber-500">
-              <h3 className="text-xl font-semibold text-white mb-2">Family Pack</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$80</div>
-              <p className="text-gray-300 text-sm">4 tickets (2 adults + 2 children)</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Premium Seating</h3>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$65</div>
+              <p className="text-gray-300 text-sm">Front rows with best acoustics</p>
             </div>
             
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-2">Children Under 12</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-2">$10</div>
-              <p className="text-gray-300 text-sm">With adult ticket purchase</p>
+              <h3 className="text-xl font-semibold text-white mb-2">Student/Senior</h3>
+              <div className="text-3xl font-bold text-amber-400 mb-2">$30</div>
+              <p className="text-gray-300 text-sm">With valid ID</p>
             </div>
           </div>
 

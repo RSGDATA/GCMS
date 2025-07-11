@@ -10,25 +10,39 @@ const ConcertCarousel = () => {
   
   const concerts = [
     {
-      id: 'soloist',
-      title: 'Soloist Series',
+      id: 'gpo',
+      title: 'GPO Concerts',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/orchestra-hero.jpg`,
+      description: 'Experience the grandeur of orchestral performances with the Greenville Philharmonic Orchestra.',
+      link: '/concerts/gpo'
+    },
+    {
+      id: 'piano-contest',
+      title: 'Piano Contest',
       image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
-      description: 'Experience world-renowned soloists performing classical masterpieces with our chamber ensemble.',
-      link: '/concerts/soloist'
+      description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
+      link: '/concerts/piano-contest'
     },
     {
-      id: 'chamber',
-      title: 'Chamber Music',
+      id: 'ashley',
+      title: 'Ashley Concerts',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
+      description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
+      link: '/concerts/ashley'
+    },
+    {
+      id: 'gcms',
+      title: 'GCMS Ensemble',
       image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`,
-      description: 'Intimate chamber music performances featuring string quartets, piano trios, and wind ensembles.',
-      link: '/concerts/chamber'
+      description: 'Our signature performances featuring talented resident musicians and special guest artists.',
+      link: '/concerts/gcms'
     },
     {
-      id: 'pops',
-      title: 'Pops Concert',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/pops.png`,
-      description: 'Popular classics and contemporary favorites in a relaxed, family-friendly atmosphere.',
-      link: '/concerts/pops'
+      id: 'dhaka-standard',
+      title: 'Dhaka Standard',
+      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
+      description: 'A unique fusion of classical traditions and international influences celebrating global heritage.',
+      link: '/concerts/dhaka-standard'
     }
   ]
 
@@ -66,7 +80,7 @@ const ConcertCarousel = () => {
                     <p className="text-sm sm:text-base md:text-lg mb-4 sm:mb-6 text-gray-200 line-clamp-2 sm:line-clamp-none">{concert.description}</p>
                     <Link
                       href={concert.link}
-                      className="bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-black font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-colors inline-block text-sm sm:text-base touch-manipulation"
+                      className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-colors inline-block text-sm sm:text-base touch-manipulation"
                     >
                       Learn More
                     </Link>
@@ -101,7 +115,7 @@ const ConcertCarousel = () => {
             key={index}
             onClick={() => goToSlide(index)}
             className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-colors touch-manipulation ${
-              index === currentSlide ? 'bg-amber-500' : 'bg-white/30 hover:bg-white/50 active:bg-white/60'
+              index === currentSlide ? 'bg-blue-600' : 'bg-white/30 hover:bg-white/50 active:bg-white/60'
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -115,14 +129,14 @@ export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Music className="h-6 w-6 sm:h-8 sm:w-8 text-amber-400" />
-              <span className="text-lg sm:text-xl font-bold text-white truncate">
+          <div className="flex justify-between items-center h-20">
+            <div className="flex items-center space-x-3">
+              <Music className="h-8 w-8 text-blue-600" />
+              <span className="text-xl font-bold text-gray-900 truncate">
                 <span className="hidden sm:inline">Greenville Chamber Music Society</span>
                 <span className="sm:hidden">GCMS</span>
               </span>
@@ -130,19 +144,19 @@ export default function HomePage() {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              <Link href="/concerts" className="text-white hover:text-amber-400 transition-colors">
-                Concerts
+              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                Concerts & Events
               </Link>
-              <Link href="/calendar" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Calendar
               </Link>
-              <Link href="/about" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 About
               </Link>
-              <Link href="/musicians/login" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
                 Musicians
               </Link>
-              <Link href="/students/signup" className="text-white hover:text-amber-400 transition-colors">
+              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
                 Student Program
               </Link>
             </div>
@@ -150,7 +164,7 @@ export default function HomePage() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white hover:text-amber-400 transition-colors p-2"
+              className="md:hidden text-gray-700 hover:text-blue-600 transition-colors p-2"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -159,39 +173,39 @@ export default function HomePage() {
 
           {/* Mobile Navigation Menu */}
           {mobileMenuOpen && (
-            <div className="md:hidden bg-black/90 backdrop-blur-sm border-t border-white/10">
+            <div className="md:hidden bg-white border-t border-gray-200">
               <div className="px-2 pt-2 pb-3 space-y-1">
                 <Link
                   href="/concerts"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Concerts
+                  Concerts & Events
                 </Link>
                 <Link
                   href="/calendar"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Calendar
                 </Link>
                 <Link
                   href="/about"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/musicians/login"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md transition-colors font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Musicians
                 </Link>
                 <Link
                   href="/students/signup"
-                  className="block px-3 py-2 text-white hover:text-amber-400 hover:bg-white/10 rounded-md transition-colors"
+                  className="block px-3 py-2 bg-blue-600 text-white rounded-md font-medium"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Student Program
@@ -203,57 +217,146 @@ export default function HomePage() {
       </nav>
 
       {/* Hero Image Section */}
-      <section className="relative">
-        <div className="w-full min-h-[calc(100vh-4rem)] h-[calc(100vh-4rem)] relative flex items-center justify-center overflow-hidden">
+      <section className="relative pt-20">
+        <div className="w-full h-[70vh] relative flex items-center justify-center overflow-hidden">
           <img
             src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg`}
-            alt="London Symphony Orchestra performing on stage"
+            alt="Orchestra performing on stage"
             className="absolute inset-0 w-full h-full object-cover object-center"
             draggable="false"
           />
+          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-light mb-6 leading-tight">
+              Experience the Beauty of <br />
+              <span className="font-bold">Chamber Music</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 font-light opacity-90">
+              Intimate performances. World-class artists. Unforgettable moments.
+            </p>
+            <Link 
+              href="/concerts"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-4 px-8 rounded-md transition-colors text-lg"
+            >
+              View Upcoming Concerts
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Concert Series Carousel Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center mb-8 sm:mb-12 md:mb-16">
-            Our Concert Series
-          </h2>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-gray-900 mb-4">
+              Upcoming Concerts & Events
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Discover our diverse season of chamber music performances featuring renowned artists and emerging talents.
+            </p>
+          </div>
           <ConcertCarousel />
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-12 sm:py-16 md:py-20 px-4 bg-black/20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 sm:mb-6">
-            About Our Society
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-light text-gray-900 mb-6">
+                About Our Society
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                The Greenville Chamber Music Society has been bringing world-class chamber music to the Upstate since 1985. 
+                We present intimate concerts featuring renowned artists and emerging talents, fostering a deep appreciation 
+                for the chamber music tradition in our community.
+              </p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                Our mission is to enrich the cultural landscape of Greenville through exceptional musical experiences 
+                that inspire, educate, and connect our community.
+              </p>
+              <Link 
+                href="/about"
+                className="text-blue-600 hover:text-blue-700 font-medium text-lg border-b-2 border-blue-600 hover:border-blue-700 transition-colors"
+              >
+                Learn More About Us →
+              </Link>
+            </div>
+            <div className="relative">
+              <img
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+                alt="Chamber music performance"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-20 px-4 bg-blue-600">
+        <div className="max-w-4xl mx-auto text-center text-white">
+          <h2 className="text-4xl font-light mb-6">
+            Join Our Musical Community
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 sm:mb-8 leading-relaxed">
-            The Greenville Chamber Music Society has been bringing world-class chamber music to the Upstate since 1985. 
-            We present intimate concerts featuring renowned artists and emerging talents, fostering a deep appreciation 
-            for the chamber music tradition in our community.
+          <p className="text-xl mb-8 opacity-90">
+            Subscribe to our newsletter for the latest concert announcements, artist spotlights, and exclusive content.
           </p>
-          <Link 
-            href="/about"
-            className="bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-black font-semibold py-3 px-6 sm:px-8 rounded-lg transition-colors touch-manipulation inline-block"
-          >
-            Learn More About Us
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="flex-1 px-4 py-3 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            />
+            <button className="bg-white text-blue-600 hover:bg-gray-100 font-medium py-3 px-6 rounded-md transition-colors">
+              Subscribe
+            </button>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/40 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Music className="h-6 w-6 text-amber-400" />
-            <span className="text-lg font-semibold text-white">Greenville Chamber Music Society</span>
+      <footer className="bg-gray-900 py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <Music className="h-8 w-8 text-blue-400" />
+                <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Bringing world-class chamber music to the Upstate since 1985.
+              </p>
+              <div className="text-gray-400">
+                <p>Heritage Main Library</p>
+                <p>25 Heritage Green Pl, Greenville, SC 29601</p>
+                <p className="mt-2">(864) 467-3000</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
+                <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
+              <ul className="space-y-2">
+                <li><Link href="/students/signup" className="text-gray-400 hover:text-white transition-colors">Student Program</Link></li>
+                <li><Link href="/concerts/piano-contest" className="text-gray-400 hover:text-white transition-colors">Piano Contest</Link></li>
+                <li><Link href="/concerts/gcms" className="text-gray-400 hover:text-white transition-colors">GCMS Ensemble</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-gray-400">
-            © 2024 Greenville Chamber Music Society. Bringing classical music to our community.
-          </p>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400">
+              © 2024 Greenville Chamber Music Society. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>
