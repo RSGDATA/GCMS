@@ -189,14 +189,45 @@ export default function AshleyPage() {
 
       {/* Footer */}
       <footer className="bg-gray-900 py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Music className="h-6 w-6 text-blue-400" />
-            <span className="text-lg font-semibold text-white">Greenville Chamber Music Society</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <Music className="h-8 w-8 text-blue-400" />
+                <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Bringing world-class chamber music to the Upstate since 1985.
+              </p>
+              <div className="text-gray-400">
+                <p>Heritage Main Library</p>
+                <p>25 Heritage Green Pl, Greenville, SC 29601</p>
+                <p className="mt-2">(864) 467-3000</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
+                <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
+              <ul className="space-y-2">
+                <li><Link href="/students/signup" className="text-gray-400 hover:text-white transition-colors">Student Program</Link></li>
+                <li><Link href="/concerts/piano-contest" className="text-gray-400 hover:text-white transition-colors">Piano Contest</Link></li>
+                <li><Link href="/concerts/gcms" className="text-gray-400 hover:text-white transition-colors">GCMS Ensemble</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-gray-400">
-            © 2024 Greenville Chamber Music Society. Bringing classical music to our community.
-          </p>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400">
+              © 2024 Greenville Chamber Music Society. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

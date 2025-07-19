@@ -26,18 +26,21 @@ export default function MusicianDashboard() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <Music className="h-8 w-8 text-amber-400" />
-              <span className="text-xl font-bold text-white">Symphony Portal</span>
+          <div className="flex justify-between items-center h-20">
+            <Link href="/" className="flex items-center space-x-3">
+              <Music className="h-8 w-8 text-blue-600" />
+              <span className="text-xl font-bold text-gray-900">
+                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
+                <span className="sm:hidden">GCMS</span>
+              </span>
             </Link>
             <div className="flex items-center space-x-4">
-              <Bell className="h-6 w-6 text-gray-300 hover:text-amber-400 cursor-pointer" />
-              <Link href="/musicians/login" className="flex items-center space-x-2 text-gray-300 hover:text-amber-400">
+              <Bell className="h-6 w-6 text-gray-700 hover:text-blue-600 cursor-pointer transition-colors" />
+              <Link href="/musicians/login" className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
                 <LogOut className="h-5 w-5" />
                 <span>Logout</span>
               </Link>
@@ -46,16 +49,16 @@ export default function MusicianDashboard() {
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">Musician Dashboard</h1>
-          <p className="text-gray-300">Welcome back! Here's what's happening with the orchestra.</p>
+          <h1 className="text-4xl font-light text-gray-900 mb-4">Musician Dashboard</h1>
+          <p className="text-xl text-gray-600">Welcome back! Here's what's happening with the orchestra.</p>
         </div>
 
         {/* Tab Navigation */}
         <div className="mb-8">
-          <div className="border-b border-gray-600">
+          <div className="border-b border-gray-200">
             <nav className="-mb-px flex space-x-8">
               {[
                 { id: 'overview', name: 'Overview', icon: Calendar },
@@ -69,10 +72,10 @@ export default function MusicianDashboard() {
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm ${
+                    className={`flex items-center space-x-2 py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
                       activeTab === tab.id
-                        ? 'border-amber-400 text-amber-400'
-                        : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
+                        ? 'border-blue-600 text-blue-600'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
                     }`}
                   >
                     <Icon className="h-5 w-5" />
@@ -88,57 +91,57 @@ export default function MusicianDashboard() {
         {activeTab === 'overview' && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Upcoming Rehearsals */}
-            <div className="bg-white/5 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                <Calendar className="h-6 w-6 text-amber-400 mr-2" />
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                <Calendar className="h-6 w-6 text-blue-600 mr-2" />
                 Upcoming Rehearsals
               </h3>
               <div className="space-y-4">
                 {upcomingRehearsals.map((rehearsal) => (
-                  <div key={rehearsal.id} className="bg-slate-800/50 rounded-lg p-4">
+                  <div key={rehearsal.id} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-medium text-white">{rehearsal.piece}</h4>
-                      <span className="text-sm text-gray-400">{rehearsal.date}</span>
+                      <h4 className="font-medium text-gray-900">{rehearsal.piece}</h4>
+                      <span className="text-sm text-gray-500">{rehearsal.date}</span>
                     </div>
-                    <p className="text-gray-300 text-sm">{rehearsal.time} • {rehearsal.location}</p>
+                    <p className="text-gray-600 text-sm">{rehearsal.time} • {rehearsal.location}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Upcoming Concerts */}
-            <div className="bg-white/5 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                <Music className="h-6 w-6 text-amber-400 mr-2" />
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                <Music className="h-6 w-6 text-blue-600 mr-2" />
                 Upcoming Concerts
               </h3>
               <div className="space-y-4">
                 {upcomingConcerts.map((concert) => (
-                  <div key={concert.id} className="bg-slate-800/50 rounded-lg p-4">
+                  <div key={concert.id} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-medium text-white">{concert.title}</h4>
-                      <span className="text-sm text-gray-400">{concert.date}</span>
+                      <h4 className="font-medium text-gray-900">{concert.title}</h4>
+                      <span className="text-sm text-gray-500">{concert.date}</span>
                     </div>
-                    <p className="text-gray-300 text-sm">{concert.time} • {concert.venue}</p>
+                    <p className="text-gray-600 text-sm">{concert.time} • {concert.venue}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Announcements */}
-            <div className="lg:col-span-2 bg-white/5 rounded-lg p-6">
-              <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                <Bell className="h-6 w-6 text-amber-400 mr-2" />
+            <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                <Bell className="h-6 w-6 text-blue-600 mr-2" />
                 Recent Announcements
               </h3>
               <div className="space-y-4">
                 {announcements.map((announcement) => (
-                  <div key={announcement.id} className="bg-slate-800/50 rounded-lg p-4">
+                  <div key={announcement.id} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
                     <div className="flex justify-between items-start mb-2">
-                      <h4 className="font-medium text-white">{announcement.title}</h4>
-                      <span className="text-sm text-gray-400">{announcement.date}</span>
+                      <h4 className="font-medium text-gray-900">{announcement.title}</h4>
+                      <span className="text-sm text-gray-500">{announcement.date}</span>
                     </div>
-                    <p className="text-gray-300 text-sm">{announcement.content}</p>
+                    <p className="text-gray-600 text-sm">{announcement.content}</p>
                   </div>
                 ))}
               </div>
@@ -147,38 +150,38 @@ export default function MusicianDashboard() {
         )}
 
         {activeTab === 'schedule' && (
-          <div className="bg-white/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-6">Full Schedule</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">Full Schedule</h3>
             <div className="space-y-6">
               <div>
-                <h4 className="text-lg font-medium text-amber-400 mb-3">This Week</h4>
+                <h4 className="text-lg font-medium text-blue-600 mb-3">This Week</h4>
                 <div className="space-y-3">
                   {upcomingRehearsals.slice(0, 2).map((rehearsal) => (
-                    <div key={rehearsal.id} className="bg-slate-800/50 rounded-lg p-4 flex justify-between items-center">
+                    <div key={rehearsal.id} className="bg-gray-50 rounded-lg p-4 flex justify-between items-center border border-gray-100">
                       <div>
-                        <h5 className="font-medium text-white">{rehearsal.piece}</h5>
-                        <p className="text-gray-300 text-sm">{rehearsal.location}</p>
+                        <h5 className="font-medium text-gray-900">{rehearsal.piece}</h5>
+                        <p className="text-gray-600 text-sm">{rehearsal.location}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-white">{rehearsal.date}</p>
-                        <p className="text-gray-400 text-sm">{rehearsal.time}</p>
+                        <p className="text-gray-900">{rehearsal.date}</p>
+                        <p className="text-gray-500 text-sm">{rehearsal.time}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
               <div>
-                <h4 className="text-lg font-medium text-amber-400 mb-3">Upcoming Concerts</h4>
+                <h4 className="text-lg font-medium text-blue-600 mb-3">Upcoming Concerts</h4>
                 <div className="space-y-3">
                   {upcomingConcerts.map((concert) => (
-                    <div key={concert.id} className="bg-slate-800/50 rounded-lg p-4 flex justify-between items-center">
+                    <div key={concert.id} className="bg-gray-50 rounded-lg p-4 flex justify-between items-center border border-gray-100">
                       <div>
-                        <h5 className="font-medium text-white">{concert.title}</h5>
-                        <p className="text-gray-300 text-sm">{concert.venue}</p>
+                        <h5 className="font-medium text-gray-900">{concert.title}</h5>
+                        <p className="text-gray-600 text-sm">{concert.venue}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-white">{concert.date}</p>
-                        <p className="text-gray-400 text-sm">{concert.time}</p>
+                        <p className="text-gray-900">{concert.date}</p>
+                        <p className="text-gray-500 text-sm">{concert.time}</p>
                       </div>
                     </div>
                   ))}
@@ -189,8 +192,8 @@ export default function MusicianDashboard() {
         )}
 
         {activeTab === 'music' && (
-          <div className="bg-white/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-6">Music Library</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">Music Library</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { title: 'Symphony No. 9', composer: 'Beethoven', status: 'Current' },
@@ -200,13 +203,13 @@ export default function MusicianDashboard() {
                 { title: 'Ave Maria', composer: 'Schubert', status: 'Archive' },
                 { title: 'Brandenburg Concerto', composer: 'Bach', status: 'Upcoming' }
               ].map((piece, index) => (
-                <div key={index} className="bg-slate-800/50 rounded-lg p-4">
-                  <h4 className="font-medium text-white mb-1">{piece.title}</h4>
-                  <p className="text-gray-300 text-sm mb-2">{piece.composer}</p>
-                  <span className={`inline-block px-2 py-1 rounded text-xs ${
-                    piece.status === 'Current' ? 'bg-green-900 text-green-300' :
-                    piece.status === 'Upcoming' ? 'bg-amber-900 text-amber-300' :
-                    'bg-gray-700 text-gray-300'
+                <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                  <h4 className="font-medium text-gray-900 mb-1">{piece.title}</h4>
+                  <p className="text-gray-600 text-sm mb-2">{piece.composer}</p>
+                  <span className={`inline-block px-2 py-1 rounded text-xs font-medium ${
+                    piece.status === 'Current' ? 'bg-green-100 text-green-800' :
+                    piece.status === 'Upcoming' ? 'bg-blue-100 text-blue-800' :
+                    'bg-gray-100 text-gray-600'
                   }`}>
                     {piece.status}
                   </span>
@@ -217,8 +220,8 @@ export default function MusicianDashboard() {
         )}
 
         {activeTab === 'members' && (
-          <div className="bg-white/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-6">Orchestra Members</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">Orchestra Members</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
                 { name: 'Sarah Johnson', instrument: 'First Violin', section: 'Strings' },
@@ -228,10 +231,10 @@ export default function MusicianDashboard() {
                 { name: 'Lisa Park', instrument: 'Percussion', section: 'Percussion' },
                 { name: 'James Wilson', instrument: 'Viola', section: 'Strings' }
               ].map((member, index) => (
-                <div key={index} className="bg-slate-800/50 rounded-lg p-4">
-                  <h4 className="font-medium text-white mb-1">{member.name}</h4>
-                  <p className="text-gray-300 text-sm">{member.instrument}</p>
-                  <p className="text-gray-400 text-xs">{member.section}</p>
+                <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-100">
+                  <h4 className="font-medium text-gray-900 mb-1">{member.name}</h4>
+                  <p className="text-gray-600 text-sm">{member.instrument}</p>
+                  <p className="text-gray-500 text-xs">{member.section}</p>
                 </div>
               ))}
             </div>
@@ -239,64 +242,64 @@ export default function MusicianDashboard() {
         )}
 
         {activeTab === 'settings' && (
-          <div className="bg-white/5 rounded-lg p-6">
-            <h3 className="text-xl font-semibold text-white mb-6">Account Settings</h3>
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">Account Settings</h3>
             <div className="space-y-6">
               <div>
-                <h4 className="text-lg font-medium text-white mb-3">Profile Information</h4>
+                <h4 className="text-lg font-medium text-gray-900 mb-3">Profile Information</h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <input
                       type="text"
                       defaultValue="John Musician"
-                      className="w-full px-3 py-2 bg-slate-800/50 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                     <input
                       type="email"
                       defaultValue="john@example.com"
-                      className="w-full px-3 py-2 bg-slate-800/50 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Phone</label>
                     <input
                       type="tel"
                       defaultValue="(555) 123-4567"
-                      className="w-full px-3 py-2 bg-slate-800/50 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Primary Instrument</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Primary Instrument</label>
                     <input
                       type="text"
                       defaultValue="Violin"
-                      className="w-full px-3 py-2 bg-slate-800/50 border border-gray-600 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-amber-400"
+                      className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
                 </div>
-                <button className="mt-4 bg-amber-500 hover:bg-amber-600 text-black font-medium py-2 px-4 rounded-md transition-colors">
+                <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
                   Update Profile
                 </button>
               </div>
               
               <div>
-                <h4 className="text-lg font-medium text-white mb-3">Notification Preferences</h4>
+                <h4 className="text-lg font-medium text-gray-900 mb-3">Notification Preferences</h4>
                 <div className="space-y-3">
                   <label className="flex items-center">
-                    <input type="checkbox" defaultChecked className="mr-3 rounded" />
-                    <span className="text-gray-300">Email notifications for rehearsal changes</span>
+                    <input type="checkbox" defaultChecked className="mr-3 rounded text-blue-600 focus:ring-blue-500" />
+                    <span className="text-gray-700">Email notifications for rehearsal changes</span>
                   </label>
                   <label className="flex items-center">
-                    <input type="checkbox" defaultChecked className="mr-3 rounded" />
-                    <span className="text-gray-300">SMS reminders for upcoming concerts</span>
+                    <input type="checkbox" defaultChecked className="mr-3 rounded text-blue-600 focus:ring-blue-500" />
+                    <span className="text-gray-700">SMS reminders for upcoming concerts</span>
                   </label>
                   <label className="flex items-center">
-                    <input type="checkbox" className="mr-3 rounded" />
-                    <span className="text-gray-300">Weekly schedule digest</span>
+                    <input type="checkbox" className="mr-3 rounded text-blue-600 focus:ring-blue-500" />
+                    <span className="text-gray-700">Weekly schedule digest</span>
                   </label>
                 </div>
               </div>

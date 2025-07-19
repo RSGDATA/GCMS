@@ -455,29 +455,29 @@ export default function CalendarPage() {
                   {selectedEvents.length > 0 ? (
                     <div className="space-y-4">
                       {selectedEvents.map((event) => (
-                        <div key={event.id} className="bg-white/5 rounded-lg p-4">
-                          <h4 className="font-semibold text-white mb-2">{event.title}</h4>
-                          <p className="text-gray-300 text-sm mb-3 line-clamp-3">{event.description}</p>
+                        <div key={event.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                          <h4 className="font-semibold text-gray-900 mb-2">{event.title}</h4>
+                          <p className="text-gray-600 text-sm mb-3 line-clamp-3">{event.description}</p>
                           
-                          <div className="space-y-1 mb-4 text-sm text-gray-300">
+                          <div className="space-y-1 mb-4 text-sm text-gray-600">
                             <div className="flex items-center">
-                              <Clock className="h-4 w-4 mr-2" />
+                              <Clock className="h-4 w-4 mr-2 text-blue-600" />
                               <span>{event.date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}</span>
                             </div>
                             <div className="flex items-center">
-                              <MapPin className="h-4 w-4 mr-2" />
+                              <MapPin className="h-4 w-4 mr-2 text-blue-600" />
                               <span>{event.venue}</span>
                             </div>
                           </div>
 
                           <div className="flex items-center justify-between">
-                            <div className="text-lg font-bold text-amber-400">
+                            <div className="text-lg font-bold text-blue-600">
                               ${event.ticket_price}
                             </div>
                             <button
                               onClick={() => handleViewConcert(event.id)}
                               disabled={event.available_seats === 0}
-                              className="flex items-center space-x-1 bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-black disabled:text-gray-400 font-semibold py-1 px-3 rounded text-sm transition-colors"
+                              className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-1 px-3 rounded text-sm transition-colors"
                             >
                               <CreditCard className="h-3 w-3" />
                               <span>{event.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
@@ -487,9 +487,9 @@ export default function CalendarPage() {
                       ))}
                     </div>
                   ) : selectedDate ? (
-                    <p className="text-gray-400">No events scheduled for this date.</p>
+                    <p className="text-gray-600">No events scheduled for this date.</p>
                   ) : (
-                    <div className="text-center text-gray-400">
+                    <div className="text-center text-gray-600">
                       <Calendar className="h-12 w-12 mx-auto mb-3 opacity-50" />
                       <p>Click on a date with events to view details and purchase tickets.</p>
                     </div>
@@ -502,38 +502,44 @@ export default function CalendarPage() {
       </section>
 
       {/* Upcoming Events List */}
-      <section className="py-12 px-4 bg-black/20">
+      <section className="py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-white text-center mb-12">All Upcoming Events</h2>
+          <h2 className="text-4xl font-light text-gray-900 text-center mb-12">All Upcoming Events</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {concerts.slice(0, 6).map((concert) => (
-              <div key={concert.id} className="bg-white/10 backdrop-blur-sm rounded-lg p-6 hover:bg-white/15 transition-all duration-300">
-                <h3 className="text-lg font-bold text-white mb-2">{concert.title}</h3>
-                <p className="text-gray-300 text-sm mb-4 line-clamp-2">{concert.description}</p>
-                
-                <div className="space-y-2 mb-4 text-sm text-gray-300">
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span>{formatDate(concert.date)}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    <span>{concert.venue}</span>
-                  </div>
+              <div key={concert.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200">
+                <div className="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                  <Music className="h-16 w-16 text-white" />
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div className="text-xl font-bold text-amber-400">
-                    ${concert.ticket_price}
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{concert.title}</h3>
+                  <p className="text-gray-600 mb-4 line-clamp-3">{concert.description}</p>
+                  
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center text-gray-600">
+                      <Calendar className="h-4 w-4 mr-2 flex-shrink-0 text-blue-600" />
+                      <span className="text-sm">{formatDate(concert.date)}</span>
+                    </div>
+                    <div className="flex items-center text-gray-600">
+                      <MapPin className="h-4 w-4 mr-2 flex-shrink-0 text-blue-600" />
+                      <span className="text-sm truncate">{concert.venue}</span>
+                    </div>
                   </div>
-                  <button
-                    onClick={() => handleViewConcert(concert.id)}
-                    disabled={concert.available_seats === 0}
-                    className="flex items-center space-x-1 bg-amber-500 hover:bg-amber-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-black disabled:text-gray-400 font-semibold py-2 px-3 rounded text-sm transition-colors"
-                  >
-                    <CreditCard className="h-4 w-4" />
-                    <span>{concert.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
-                  </button>
+
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-bold text-blue-600">
+                      ${concert.ticket_price}
+                    </div>
+                    <button
+                      onClick={() => handleViewConcert(concert.id)}
+                      disabled={concert.available_seats === 0}
+                      className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
+                    >
+                      <CreditCard className="h-4 w-4" />
+                      <span>{concert.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
@@ -542,7 +548,7 @@ export default function CalendarPage() {
           <div className="text-center mt-8">
             <Link 
               href="/concerts"
-              className="bg-amber-500 hover:bg-amber-600 text-black font-semibold py-3 px-8 rounded-lg transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-8 rounded-md transition-colors"
             >
               View All Concerts
             </Link>
@@ -551,15 +557,46 @@ export default function CalendarPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/40 py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-2 mb-4">
-            <Music className="h-6 w-6 text-amber-400" />
-            <span className="text-lg font-semibold text-white">Greenville Chamber Music Society</span>
+      <footer className="bg-gray-900 py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <div className="flex items-center space-x-3 mb-4">
+                <Music className="h-8 w-8 text-blue-400" />
+                <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
+              </div>
+              <p className="text-gray-400 mb-4">
+                Bringing world-class chamber music to the Upstate since 1985.
+              </p>
+              <div className="text-gray-400">
+                <p>Heritage Main Library</p>
+                <p>25 Heritage Green Pl, Greenville, SC 29601</p>
+                <p className="mt-2">(864) 467-3000</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
+              <ul className="space-y-2">
+                <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
+                <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
+                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
+                <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
+              <ul className="space-y-2">
+                <li><Link href="/students/signup" className="text-gray-400 hover:text-white transition-colors">Student Program</Link></li>
+                <li><Link href="/concerts/piano-contest" className="text-gray-400 hover:text-white transition-colors">Piano Contest</Link></li>
+                <li><Link href="/concerts/gcms" className="text-gray-400 hover:text-white transition-colors">GCMS Ensemble</Link></li>
+              </ul>
+            </div>
           </div>
-          <p className="text-gray-400">
-            © 2024 Greenville Chamber Music Society. Bringing classical music to our community.
-          </p>
+          <div className="border-t border-gray-800 pt-8 text-center">
+            <p className="text-gray-400">
+              © 2024 Greenville Chamber Music Society. All rights reserved.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

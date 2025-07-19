@@ -137,42 +137,62 @@ export default function MusicianLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-800">
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center space-x-2">
-              <Music className="h-8 w-8 text-amber-400" />
-              <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
+          <div className="flex justify-between items-center h-20">
+            <Link href="/" className="flex items-center space-x-3">
+              <Music className="h-8 w-8 text-blue-600" />
+              <span className="text-xl font-bold text-gray-900">
+                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
+                <span className="sm:hidden">GCMS</span>
+              </span>
             </Link>
-            <Link href="/" className="text-white hover:text-amber-400 transition-colors">
-              Back to Home
-            </Link>
+            <div className="hidden md:flex space-x-8">
+              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                Home
+              </Link>
+              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                Concerts
+              </Link>
+              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                Calendar
+              </Link>
+              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                About
+              </Link>
+              <Link href="/musicians/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
+                Musicians
+              </Link>
+              <Link href="/students/signup" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
+                Student Program
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-4 py-12">
+      <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
           <div className="text-center">
-            <Music className="mx-auto h-12 w-12 text-amber-400" />
-            <h2 className="mt-6 text-3xl font-bold text-white">
-              {isLogin ? 'Musician Login' : 'Apply to Join Our Orchestra'}
+            <Music className="mx-auto h-12 w-12 text-blue-600" />
+            <h2 className="mt-6 text-3xl font-bold text-gray-900">
+              {isLogin ? 'Musician Portal' : 'Join Our Orchestra'}
             </h2>
-            <p className="mt-2 text-sm text-gray-300">
+            <p className="mt-2 text-sm text-gray-600">
               {isLogin 
-                ? 'Access your musician portal' 
-                : 'Submit your application to join our professional orchestra'
+                ? 'Sign in to access your musician dashboard' 
+                : 'Apply to become a member of our orchestra'
               }
             </p>
           </div>
-
+          
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email Address
                 </label>
                 <div className="mt-1 relative">
@@ -184,7 +204,7 @@ export default function MusicianLoginPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                    className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                     placeholder="Enter your email"
                   />
                 </div>
@@ -192,7 +212,7 @@ export default function MusicianLoginPage() {
 
               {isLogin && (
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                     Password
                   </label>
                   <div className="mt-1 relative">
@@ -204,7 +224,7 @@ export default function MusicianLoginPage() {
                       required
                       value={formData.password}
                       onChange={(e) => setFormData({...formData, password: e.target.value})}
-                      className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                      className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                       placeholder="Enter your password"
                     />
                   </div>
@@ -214,7 +234,7 @@ export default function MusicianLoginPage() {
               {!isLogin && (
                 <>
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                       Full Name
                     </label>
                     <div className="mt-1 relative">
@@ -226,14 +246,14 @@ export default function MusicianLoginPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                         placeholder="Enter your full name"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-300">
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
                       Phone Number
                     </label>
                     <div className="mt-1 relative">
@@ -245,14 +265,14 @@ export default function MusicianLoginPage() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                         placeholder="Enter your phone number"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="instrument" className="block text-sm font-medium text-gray-300">
+                    <label htmlFor="instrument" className="block text-sm font-medium text-gray-700">
                       Primary Instrument
                     </label>
                     <div className="mt-1 relative">
@@ -264,14 +284,14 @@ export default function MusicianLoginPage() {
                         required
                         value={formData.instrument}
                         onChange={(e) => setFormData({...formData, instrument: e.target.value})}
-                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                        className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                         placeholder="e.g., Violin, Piano, Trumpet"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label htmlFor="experience_level" className="block text-sm font-medium text-gray-300">
+                    <label htmlFor="experience_level" className="block text-sm font-medium text-gray-700">
                       Experience Level
                     </label>
                     <div className="mt-1">
@@ -281,7 +301,7 @@ export default function MusicianLoginPage() {
                         required
                         value={formData.experience_level}
                         onChange={(e) => setFormData({...formData, experience_level: e.target.value})}
-                        className="appearance-none relative block w-full px-3 py-2 border border-gray-600 placeholder-gray-400 text-white bg-gray-800/50 rounded-md focus:outline-none focus:ring-amber-500 focus:border-amber-500 focus:z-10 sm:text-sm"
+                        className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                       >
                         <option value="beginner">Beginner</option>
                         <option value="intermediate">Intermediate</option>
@@ -291,8 +311,8 @@ export default function MusicianLoginPage() {
                     </div>
                   </div>
 
-                  <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-600">
-                    <p className="text-sm text-gray-300">
+                  <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <p className="text-sm text-blue-800">
                       <strong>Note:</strong> Orchestra positions are by invitation only. We will review your application and contact you if there are openings that match your expertise.
                     </p>
                   </div>
@@ -316,7 +336,7 @@ export default function MusicianLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-amber-500 hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? 'Processing...' : (isLogin ? 'Sign In' : 'Submit Application')}
               </button>
@@ -337,7 +357,7 @@ export default function MusicianLoginPage() {
                     experience_level: 'professional'
                   })
                 }}
-                className="text-amber-400 hover:text-amber-300 text-sm transition-colors"
+                className="text-blue-600 hover:text-blue-700 text-sm transition-colors"
               >
                 {isLogin 
                   ? "Want to join our orchestra? Apply here" 
