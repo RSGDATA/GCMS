@@ -14,7 +14,11 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
-              <Music className="h-8 w-8 text-blue-600" />
+              <img 
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                alt="GCMS Logo" 
+                className="h-12 w-auto object-contain"
+              />
               <span className="text-xl font-bold text-gray-900">
                 <span className="hidden sm:inline">Greenville Chamber Music Society</span>
                 <span className="sm:hidden">GCMS</span>
@@ -286,7 +290,11 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <Music className="h-8 w-8 text-blue-400" />
+                <img 
+                  src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                  alt="GCMS Logo" 
+                  className="h-12 w-auto object-contain"
+                />
                 <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
               </div>
               <p className="text-gray-400 mb-4">

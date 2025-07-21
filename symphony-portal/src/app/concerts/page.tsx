@@ -31,13 +31,13 @@ export default function ConcertsPage() {
       // Use the new season's concerts
       const newSeasonConcerts: Concert[] = [
         {
-          id: 'gpo-oct',
-          title: 'GPO Concert',
-          description: 'Experience the grandeur of orchestral performances with the Greenville Philharmonic Orchestra.',
-          date: '2025-10-03T19:30:00Z',
-          venue: 'Heritage Main Library',
-          ticket_price: 50,
-          available_seats: 200,
+          id: 'NightAtTheMovies-oct',
+          title: 'Night at the Movies',
+          description: 'Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life.',
+          date: '2025-10-03T14:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 35,
+          available_seats: 500,
           image_url: null
         },
         {
@@ -101,9 +101,11 @@ export default function ConcertsPage() {
 
   const handlePurchaseTicket = (concertId: string) => {
     // Determine the concert series based on the ID and redirect to concert page
-    let concertType = 'gpo'
-    if (concertId.includes('gpo')) {
-      concertType = 'gpo'
+    let concertType = 'NightAtTheMovies'
+    if (concertId.includes('NightAtTheMovies')) {
+      concertType = 'NightAtTheMovies'
+    } else if (concertId.includes('gpo')) {
+      concertType = 'NightAtTheMovies'
     } else if (concertId.includes('piano-contest')) {
       concertType = 'piano-contest'
     } else if (concertId.includes('ashley')) {
@@ -129,7 +131,11 @@ export default function ConcertsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
-              <Music className="h-8 w-8 text-blue-600" />
+              <img 
+                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                alt="GCMS Logo" 
+                className="h-12 w-auto object-contain"
+              />
               <span className="text-xl font-bold text-gray-900">
                 <span className="hidden sm:inline">Greenville Chamber Music Society</span>
                 <span className="sm:hidden">GCMS</span>
@@ -370,7 +376,11 @@ export default function ConcertsPage() {
           <div className="grid md:grid-cols-4 gap-8 mb-8">
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
-                <Music className="h-8 w-8 text-blue-400" />
+                <img 
+                  src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                  alt="GCMS Logo" 
+                  className="h-12 w-auto object-contain"
+                />
                 <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
               </div>
               <p className="text-gray-400 mb-4">

@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Greenville Chamber Music Society",
   description: "Experience world-class chamber music performances in Greenville. Join us for intimate concerts featuring renowned artists and emerging talents.",
+  icons: {
+    icon: [
+      { url: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/gcms-favicon-16x16.png`, sizes: '16x16', type: 'image/png' },
+      { url: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/gcms-favicon-32x32.png`, sizes: '32x32', type: 'image/png' },
+    ],
+    shortcut: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/gcms-favicon.ico`,
+  },
 };
 
 export const viewport: Viewport = {
