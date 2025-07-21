@@ -12,35 +12,35 @@ const ConcertCarousel = () => {
     {
       id: 'NightAtTheMovies',
       title: 'Night at the Movies',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/NightAtTheMovies-carousel.png`,
+      image: '/NightAtTheMovies-carousel.png',
       description: 'Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life.',
       link: '/concerts/NightAtTheMovies'
     },
     {
       id: 'piano-contest',
       title: 'Piano Contest',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
+      image: '/soloist.jpg',
       description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
       link: '/concerts/piano-contest'
     },
     {
       id: 'ashley',
       title: 'Ashley Concerts',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
+      image: '/soloist.jpg',
       description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
       link: '/concerts/ashley'
     },
     {
       id: 'gcms',
       title: 'GCMS Ensemble',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`,
+      image: '/chamber.png',
       description: 'Our signature performances featuring talented resident musicians and special guest artists.',
       link: '/concerts/gcms'
     },
     {
       id: 'dhaka-standard',
       title: 'Dhaka Standard',
-      image: `${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/soloist.jpg`,
+      image: '/soloist.jpg',
       description: 'A unique fusion of classical traditions and international influences celebrating global heritage.',
       link: '/concerts/dhaka-standard'
     }
@@ -136,7 +136,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
               <img 
-                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                src="/GCMS_Logo.png"
                 alt="GCMS Logo" 
                 className="h-12 w-auto object-contain"
               />
@@ -224,7 +224,7 @@ export default function HomePage() {
       <section className="relative pt-20">
         <div className="w-full h-[70vh] relative flex items-center justify-center overflow-hidden">
           <img
-            src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg`}
+            src="/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg"
             alt="Orchestra performing on stage"
             className="absolute inset-0 w-full h-full object-cover object-center"
             draggable="false"
@@ -289,7 +289,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <img
-                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+                src="/chamber.png"
                 alt="Chamber music performance"
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
@@ -327,7 +327,7 @@ export default function HomePage() {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                  src="/GCMS_Logo.png"
                   alt="GCMS Logo" 
                   className="h-12 w-auto object-contain"
                 />

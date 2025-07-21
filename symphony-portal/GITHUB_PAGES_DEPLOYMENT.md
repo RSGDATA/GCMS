@@ -1,173 +1,95 @@
 # GitHub Pages Deployment Guide
 
-## ✅ GCMS Website - Ready for GitHub Pages Deployment
+## Overview
+Your Next.js app has been configured for GitHub Pages deployment using GitHub Actions. The changes made include:
 
-This website has been successfully configured and tested for GitHub Pages deployment with the GCMS logo implementation.
+1. **Removed base path configuration** - No longer using `/GCMS` prefix
+2. **Updated all image paths** - All images now use direct paths (e.g., `/GCMS_Logo.png`)
+3. **Created GitHub Actions workflow** - Automated build and deployment
 
-## 🎯 What's Been Implemented
+## Deployment Steps
 
-### GCMS Logo Integration
-- ✅ GCMS logo replaces Music icons in all navigation bars
-- ✅ GCMS logo replaces Music icons in all footers
-- ✅ GCMS favicon implemented across all pages
-- ✅ Responsive design maintained (shows "GCMS" on mobile)
-
-### Pages Updated
-- ✅ Home Page (`src/app/page.tsx`)
-- ✅ Concerts Page (`src/app/concerts/page.tsx`)
-- ✅ About Page (`src/app/about/page.tsx`)
-- ✅ Calendar Page (`src/app/calendar/page.tsx`)
-- ✅ Musicians Login Page (`src/app/musicians/login/page.tsx`)
-- ✅ Students Signup Page (`src/app/students/signup/page.tsx`)
-- ✅ All Concert Detail Pages (`src/components/ConcertPage.tsx`)
-
-### GitHub Pages Configuration
-- ✅ Next.js configured for static export (`output: 'export'`)
-- ✅ Base path set to `/GCMS` for GitHub Pages
-- ✅ Images unoptimized for static hosting
-- ✅ Trailing slash enabled
-- ✅ Build errors disabled for deployment
-
-## 🚀 Deployment Instructions
-
-### 1. Build the Project
+### 1. Push Your Changes
 ```bash
-npm run build
+git add .
+git commit -m "Configure for GitHub Pages deployment with GitHub Actions"
+git push origin main
 ```
 
-### 2. Deploy to GitHub Pages
-The `out/` directory contains all the static files ready for GitHub Pages.
+### 2. Enable GitHub Pages
+1. Go to your GitHub repository: https://github.com/RSGDATA/GCMS
+2. Click on **Settings** tab
+3. Scroll down to **Pages** section
+4. Under **Source**, select **GitHub Actions**
+5. Save the settings
 
-#### Option A: Manual Deployment
-1. Copy all contents from `out/` directory
-2. Push to your GitHub Pages repository
-3. Your site will be available at: `https://yourusername.github.io/GCMS/`
+### 3. Repository Settings
+Make sure your repository has the correct permissions:
+1. Go to **Settings** → **Actions** → **General**
+2. Under **Workflow permissions**, select **Read and write permissions**
+3. Check **Allow GitHub Actions to create and approve pull requests**
+4. Save
 
-#### Option B: GitHub Actions (Recommended)
-Create `.github/workflows/deploy.yml`:
-```yaml
-name: Deploy to GitHub Pages
+### 4. Monitor Deployment
+1. Go to the **Actions** tab in your repository
+2. You should see a workflow run called "Deploy Next.js to GitHub Pages"
+3. Click on it to monitor the build and deployment process
+4. Once complete, your site will be available at: `https://rsgdata.github.io/GCMS/`
 
-on:
-  push:
-    branches: [ main ]
+## What Changed
 
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        cache: 'npm'
-    
-    - name: Install dependencies
-      run: npm ci
-    
-    - name: Build
-      run: npm run build
-    
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./out
-```
+### Configuration Files
+- **next.config.ts**: Removed `basePath` configuration
+- **.github/workflows/deploy.yml**: Added GitHub Actions workflow
+- **src/app/layout.tsx**: Updated favicon paths
+- **All component files**: Updated image paths to use direct references
 
-## ✅ Testing Results
+### Image Paths
+All images now use direct paths:
+- ✅ `src="/GCMS_Logo.png"`
+- ❌ `src={process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`
 
-### Local Testing Completed
-- ✅ Static build successful
-- ✅ All assets loading correctly
-- ✅ GCMS logo displaying properly
-- ✅ Navigation working perfectly
-- ✅ Responsive design functional
-- ✅ All styling preserved
-- ✅ GitHub Pages path structure verified
+### GitHub Actions Workflow
+The workflow will:
+1. Checkout your code
+2. Setup Node.js
+3. Install dependencies with `npm ci`
+4. Build the static site with `npm run build`
+5. Deploy the `out/` directory to GitHub Pages
 
-### Browser Testing
-- ✅ Home page loads with full styling
-- ✅ GCMS logo visible in navigation and footer
-- ✅ Page navigation works correctly
-- ✅ All images and assets load successfully
-- ✅ No console errors
-- ✅ Favicon displays correctly
+## Troubleshooting
 
-## 📁 File Structure for GitHub Pages
-```
-github-pages-deploy/
-└── GCMS/
-    ├── index.html (Home page)
-    ├── about/
-    │   └── index.html
-    ├── concerts/
-    │   ├── index.html
-    │   ├── NightAtTheMovies/
-    │   ├── piano-contest/
-    │   └── [other concerts]/
-    ├── calendar/
-    │   └── index.html
-    ├── musicians/
-    │   └── login/
-    │       └── index.html
-    ├── students/
-    │   └── signup/
-    │       └── index.html
-    ├── _next/ (Next.js assets)
-    ├── GCMS_Logo.png
-    ├── gcms-favicon.ico
-    └── [other assets]
-```
+### If the build fails:
+1. Check the Actions tab for error messages
+2. Ensure all image files exist in the `public/` directory
+3. Verify that `package.json` has the correct build script
 
-## 🎨 GCMS Branding Implementation
+### If images don't load:
+1. Verify image files are in the `public/` directory
+2. Check that image paths in components use direct paths (starting with `/`)
+3. Ensure image file names match exactly (case-sensitive)
 
-### Logo Usage
-- **Navigation**: GCMS logo displays at 48px height (h-12)
-- **Footer**: GCMS logo displays at 48px height (h-12)
-- **Favicon**: Multiple sizes (16x16, 32x32, .ico)
-- **Responsive**: Shows "GCMS" text on mobile screens
+### If the site doesn't update:
+1. Check that the workflow completed successfully
+2. Clear your browser cache
+3. Wait a few minutes for GitHub Pages to update
 
-### Path Configuration
-All assets use the correct `/GCMS/` prefix for GitHub Pages:
-- Images: `/GCMS/GCMS_Logo.png`
-- Favicon: `/GCMS/gcms-favicon.ico`
-- CSS/JS: `/GCMS/_next/static/...`
+## Required Files in public/ Directory
+Make sure these files exist:
+- `GCMS_Logo.png`
+- `london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg`
+- `NightAtTheMovies-carousel.png`
+- `soloist.jpg`
+- `chamber.png`
+- `pops.png`
+- `gcms-favicon.ico`
+- `gcms-favicon-16x16.png`
+- `gcms-favicon-32x32.png`
 
-## 🔧 Technical Details
+## Next Steps
+1. Push your changes to GitHub
+2. Enable GitHub Pages with GitHub Actions as the source
+3. Monitor the deployment in the Actions tab
+4. Visit your live site at `https://rsgdata.github.io/GCMS/`
 
-### Next.js Configuration (`next.config.ts`)
-```typescript
-const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/GCMS' : '',
-  images: {
-    unoptimized: true,
-  },
-  trailingSlash: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-};
-```
-
-### Environment Handling
-The code automatically detects production vs development:
-- **Development**: Assets load from root (`/GCMS_Logo.png`)
-- **Production**: Assets load with base path (`/GCMS/GCMS_Logo.png`)
-
-## 🎯 Ready for Deployment
-
-The website is now fully prepared for GitHub Pages deployment with:
-- ✅ Complete GCMS branding
-- ✅ Proper static file generation
-- ✅ Correct path configuration
-- ✅ Full functionality testing
-- ✅ Professional styling maintained
-
-Simply deploy the contents of the `out/` directory to your GitHub Pages repository and your GCMS website will be live!
+Your site should now deploy automatically whenever you push changes to the main branch!
