@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, CreditCard } from 'lucide-react'
+import { getImagePath } from '@/lib/imagePath'
 // import { supabase } from '@/lib/supabase'
 // import { formatDate } from '@/lib/utils'
 
@@ -353,7 +354,7 @@ export default function CalendarPage() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <img 
-                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                src={getImagePath("/GCMS_Logo.png")}
                 alt="GCMS Logo" 
                 className="h-12 w-auto object-contain"
               />
@@ -569,7 +570,7 @@ export default function CalendarPage() {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                  src={getImagePath("/GCMS_Logo.png")}
                   alt="GCMS Logo" 
                   className="h-12 w-auto object-contain"
                 />

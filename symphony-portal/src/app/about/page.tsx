@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Music, Heart, Users, Award, Star, Calendar, Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { getImagePath } from '@/lib/imagePath'
 
 export default function AboutPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -15,7 +16,7 @@ export default function AboutPage() {
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <img 
-                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                src={getImagePath("/GCMS_Logo.png")}
                 alt="GCMS Logo" 
                 className="h-12 w-auto object-contain"
               />
@@ -291,7 +292,7 @@ export default function AboutPage() {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/GCMS_Logo.png`}
+                  src={getImagePath("/GCMS_Logo.png")}
                   alt="GCMS Logo" 
                   className="h-12 w-auto object-contain"
                 />
