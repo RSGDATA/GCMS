@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: process.env.NODE_ENV === 'production' ? '/GCMS' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/GCMS' : '',
   images: {
     unoptimized: true,
   },
