@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, Menu, X } from 'lucide-react'
 import { JSX, useState } from 'react'
 import React from 'react'
+import { getImagePath } from '@/lib/imagePath'
 
 interface Concert {
   id: string;
@@ -40,32 +41,32 @@ const ConcertCarousel = () => {
   const concerts = [
     {
       id: 'NightAtTheMovies',
-      image: '/NightAtTheMovies-carousel.png',
+      image: getImagePath('/NightAtTheMovies-carousel.png'),
       link: '/concerts/NightAtTheMovies',
     },
     {
       id: 'piano-contest',
       title: 'Piano Contest',
-      image: '/soloist.jpg',
+      image: getImagePath('/soloist.jpg'),
       description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
       link: '/concerts/piano-contest',
     },
     {
       id: 'ashley',
-      image: '/The Melodies Of Nature.png',
+      image: getImagePath('/The Melodies Of Nature.png'),
       link: '/concerts/ashley',
     },
     {
       id: 'gcms',
       title: 'GCMS Ensemble',
-      image: '/chamber.png',
+      image: getImagePath('/chamber.png'),
       description: 'Our signature performances featuring talented resident musicians and special guest artists.',
       link: '/concerts/gcms',
     },
     {
       id: 'dhaka-standard',
       title: 'Dhaka Standard',
-      image: '/soloist.jpg',
+      image: getImagePath('/soloist.jpg'),
       description: 'A unique fusion of classical traditions and international influences celebrating global heritage.',
       link: '/concerts/dhaka-standard',
     },
@@ -157,7 +158,7 @@ export default function HomePage() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-3">
               <img 
-                src="/GCMS_Logo.png"
+                src={getImagePath("/GCMS_Logo.png")}
                 alt="GCMS Logo" 
                 className="h-12 w-auto object-contain"
               />
@@ -245,7 +246,7 @@ export default function HomePage() {
       <section className="relative pt-20">
         <div className="w-full h-[70vh] relative flex items-center justify-center overflow-hidden">
           <img
-            src="/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg"
+            src={getImagePath("/london-symphony-orchestra-589180035-597b9cd003f40200109cd349.jpg")}
             alt="Orchestra performing on stage"
             className="absolute inset-0 w-full h-full object-cover object-center"
             draggable="false"
@@ -310,7 +311,7 @@ export default function HomePage() {
             </div>
             <div className="relative">
               <img
-                src="/chamber.png"
+                src={getImagePath("/chamber.png")}
                 alt="Chamber music performance"
                 className="w-full h-96 object-cover rounded-lg shadow-lg"
               />
@@ -348,7 +349,7 @@ export default function HomePage() {
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src="/GCMS_Logo.png"
+                  src={getImagePath("/GCMS_Logo.png")}
                   alt="GCMS Logo" 
                   className="h-12 w-auto object-contain"
                 />

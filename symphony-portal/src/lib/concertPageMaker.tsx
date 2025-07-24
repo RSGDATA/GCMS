@@ -1,4 +1,5 @@
 import ConcertPage from '../components/ConcertPage'
+import { getImagePath } from './imagePath'
 
 interface ConcertEvent {
   title: string
@@ -33,7 +34,7 @@ export const concertData = {
     title: "GPO",
     subtitle: "Concert",
     description: "Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life with a lush live orchestra.",
-    image: "/NightAtTheMovies.png",
+    image: getImagePath("/NightAtTheMovies.png"),
     imageAlt: "Night at the Movies - Greenville Pops Orchestra conductor",
     aboutTitle: "About Night at the Movies",
     aboutDescription: [
@@ -66,7 +67,7 @@ export const concertData = {
     title: "Piano",
     subtitle: "Contest",
     description: "Witness the next generation of piano virtuosos compete in our prestigious annual piano competition, featuring talented young musicians from across the region.",
-    image: "/soloist.jpg",
+    image: getImagePath("/soloist.jpg"),
     imageAlt: "Young pianist performing at piano contest",
     aboutTitle: "About Our Piano Contest",
     aboutDescription: [
@@ -107,7 +108,7 @@ export const concertData = {
     title: "Ashley",
     subtitle: "Concert",
     description: "Experience exceptional musical artistry with Ashley, featuring intimate performances that showcase technical brilliance and emotional depth in classical repertoire.",
-    image: "/The Melodies Of Nature.png",
+    image: getImagePath("/The Melodies Of Nature.png"),
     imageAlt: "Ashley performing in concert",
     aboutTitle: "About Ashley Concerts",
     aboutDescription: [
@@ -148,7 +149,7 @@ export const concertData = {
     title: "GCMS",
     subtitle: "Concert",
     description: "Experience the Greenville Chamber Music Society's signature performances featuring our talented resident musicians and special guest artists in intimate chamber music settings.",
-    image: "/chamber.png",
+    image: getImagePath("/chamber.png"),
     imageAlt: "GCMS ensemble performing",
     aboutTitle: "About GCMS Concerts",
     aboutDescription: [
@@ -189,7 +190,7 @@ export const concertData = {
     title: "Eldred",
     subtitle: "Concert",
     description: "Experience the artistry of Eldred in an intimate concert setting, featuring masterful interpretations of classical and contemporary repertoire.",
-    image: "/EldredMarshalInConcert.png",
+    image: getImagePath("/EldredMarshalInConcert.png"),
     imageAlt: "Eldred performing in concert",
     aboutTitle: "About Eldred Concerts",
     aboutDescription: [
@@ -230,7 +231,7 @@ export const concertData = {
     title: "All Star",
     subtitle: "Christmas Concert",
     description: "Celebrate the season with beloved holiday films accompanied by live orchestral music in this magical Christmas concert experience.",
-    image: "/AllStartChristmasConcert.png",
+    image: getImagePath("/AllStartChristmasConcert.png"),
     imageAlt: "All Star Christmas Concert - Holiday celebration with orchestra",
     aboutTitle: "About All Star Christmas Concert",
     aboutDescription: [

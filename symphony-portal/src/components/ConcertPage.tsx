@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
+import { getImagePath } from '@/lib/imagePath'
 
 interface ConcertEvent {
   title: string
@@ -51,7 +52,7 @@ export default function ConcertPage({
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center space-x-3">
               <img 
-                src="/GCMS_Logo.png"
+                src={getImagePath("/GCMS_Logo.png")}
                 alt="GCMS Logo" 
                 className="h-12 w-auto object-contain"
               />
@@ -194,7 +195,7 @@ export default function ConcertPage({
             <div className="md:col-span-2">
               <div className="flex items-center space-x-3 mb-4">
                 <img 
-                  src="/GCMS_Logo.png"
+                  src={getImagePath("/GCMS_Logo.png")}
                   alt="GCMS Logo" 
                   className="h-12 w-auto object-contain"
                 />
