@@ -72,7 +72,7 @@ export default function ConcertsPage() {
         },
         {
           id: 'gpo-dec',
-          title: 'GPO Concert',
+          title: 'All Star Christmas Concert',
           description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
           date: '2025-12-07T19:30:00Z',
           venue: 'Greenville Concert Hall',
@@ -105,7 +105,7 @@ export default function ConcertsPage() {
     if (concertId.includes('NightAtTheMovies')) {
       concertType = 'NightAtTheMovies'
     } else if (concertId.includes('gpo')) {
-      concertType = 'NightAtTheMovies'
+      concertType = 'AllStarChristmasConcert'
     } else if (concertId.includes('piano-contest')) {
       concertType = 'piano-contest'
     } else if (concertId.includes('ashley')) {

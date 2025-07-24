@@ -57,14 +57,6 @@ export const concertData = {
         venue: "Greenville Municipal Auditorium",
         seats: "500 seats available",
         price: "$35"
-      },
-      {
-        title: "Holiday Movie Magic",
-        description: "Celebrate the season with beloved holiday films accompanied by live orchestral music.",
-        date: "December 7, 2025 at 1:30 PM",
-        venue: "Greenville Municipal Auditorium",
-        seats: "500 seats available",
-        price: "$35"
       }
     ],
     ticketUrl: "https://showtimeatthegma.com"
@@ -115,7 +107,7 @@ export const concertData = {
     title: "Ashley",
     subtitle: "Concert",
     description: "Experience exceptional musical artistry with Ashley, featuring intimate performances that showcase technical brilliance and emotional depth in classical repertoire.",
-    image: "/soloist.jpg",
+    image: "/The Melodies Of Nature.png",
     imageAlt: "Ashley performing in concert",
     aboutTitle: "About Ashley Concerts",
     aboutDescription: [
@@ -191,5 +183,79 @@ export const concertData = {
       }
     ],
     ticketUrl: "https://tickets.example.com/gcms-concert"
+  },
+
+  eldred: {
+    title: "Eldred",
+    subtitle: "Concert",
+    description: "Experience the artistry of Eldred in an intimate concert setting, featuring masterful interpretations of classical and contemporary repertoire.",
+    image: "/EldredMarshalInConcert.png",
+    imageAlt: "Eldred performing in concert",
+    aboutTitle: "About Eldred Concerts",
+    aboutDescription: [
+      "Eldred concerts offer audiences a unique opportunity to experience classical music through the lens of exceptional artistry and deep musical understanding. These performances showcase a commitment to both traditional repertoire and innovative programming, creating memorable musical experiences that resonate long after the final note.",
+      "Each Eldred performance is characterized by meticulous attention to detail, expressive interpretation, and a profound connection to the music. Whether presenting beloved classics or introducing audiences to lesser-known gems, these concerts demonstrate the transformative power of live classical music performance."
+    ],
+    features: [
+      "Expertly curated programs spanning multiple musical eras",
+      "Intimate venue settings for optimal listening experience",
+      "Educational program notes and pre-concert discussions",
+      "Opportunities for audience interaction and Q&A",
+      "Collaborative performances with guest musicians",
+      "Focus on both technical excellence and emotional expression"
+    ],
+    seasonTitle: "This Season's Eldred Concerts",
+    events: [
+      {
+        title: "Fall Concert",
+        description: "An evening of classical masterworks and contemporary interpretations showcasing exceptional artistry.",
+        date: "November 8, 2025 at 7:30 PM",
+        venue: "Heritage Main Library",
+        seats: "100 seats available",
+        price: "$35"
+      },
+      {
+        title: "Spring Recital",
+        description: "A special spring performance featuring beloved classical favorites and innovative contemporary works.",
+        date: "April 12, 2026 at 7:30 PM",
+        venue: "Heritage Main Library",
+        seats: "100 seats available",
+        price: "$35"
+      }
+    ],
+    ticketUrl: "https://tickets.example.com/eldred-concert"
+  },
+
+  AllStarChristmasConcert: {
+    title: "All Star",
+    subtitle: "Christmas Concert",
+    description: "Celebrate the season with beloved holiday films accompanied by live orchestral music in this magical Christmas concert experience.",
+    image: "/AllStartChristmasConcert.png",
+    imageAlt: "All Star Christmas Concert - Holiday celebration with orchestra",
+    aboutTitle: "About All Star Christmas Concert",
+    aboutDescription: [
+      "The All Star Christmas Concert brings the magic of the holiday season to life through beloved Christmas films and festive orchestral music. This special holiday performance combines the joy of cinema with the warmth of live orchestral accompaniment, creating an unforgettable seasonal celebration.",
+      "Experience the wonder of Christmas through iconic holiday movies enhanced by beautiful live music. From classic Christmas films to modern holiday favorites, this concert captures the spirit of the season and brings families together for a truly magical musical experience."
+    ],
+    features: [
+      "Live orchestral performances of beloved Christmas film scores",
+      "Holiday movie clips synchronized with festive music",
+      "Classic and contemporary Christmas film selections",
+      "Professional orchestra with expert holiday arrangements",
+      "Family-friendly holiday entertainment",
+      "Festive atmosphere perfect for the Christmas season"
+    ],
+    seasonTitle: "This Season's Christmas Concerts",
+    events: [
+      {
+        title: "Holiday Movie Magic",
+        description: "Celebrate the season with beloved holiday films accompanied by live orchestral music.",
+        date: "December 7, 2025 at 1:30 PM",
+        venue: "Greenville Municipal Auditorium",
+        seats: "500 seats available",
+        price: "$35"
+      }
+    ],
+    ticketUrl: "https://showtimeatthegma.com"
   }
 }

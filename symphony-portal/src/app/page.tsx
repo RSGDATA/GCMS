@@ -3,77 +3,98 @@
 "use client";
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { JSX, useState } from 'react'
+import React from 'react'
+
+interface Concert {
+  id: string;
+  image: string;
+  link: string;
+  title?: string;
+  description?: string;
+}
+
+interface RenderConcertImageProps {
+  concert: Concert;
+}
+
+const renderConcertImage = (concert: Concert): JSX.Element => {
+  return (
+    <div className="w-full aspect-video bg-gray-100 flex items-center justify-center">
+      <img
+        src={concert.image}
+        alt={concert.title}
+        className={
+          concert.id === 'NightAtTheMovies'
+            ? "w-full h-full onLoad"
+            : "w-full h-full object-cover"
+        }
+      />
+    </div>
+  );
+};
 
 const ConcertCarousel = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const concerts = [
     {
       id: 'NightAtTheMovies',
-      title: 'Night at the Movies',
       image: '/NightAtTheMovies-carousel.png',
-      description: 'Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life.',
-      link: '/concerts/NightAtTheMovies'
+      link: '/concerts/NightAtTheMovies',
     },
     {
       id: 'piano-contest',
       title: 'Piano Contest',
       image: '/soloist.jpg',
       description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
-      link: '/concerts/piano-contest'
+      link: '/concerts/piano-contest',
     },
     {
       id: 'ashley',
-      title: 'Ashley Concerts',
-      image: '/soloist.jpg',
-      description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
-      link: '/concerts/ashley'
+      image: '/The Melodies Of Nature.png',
+      link: '/concerts/ashley',
     },
     {
       id: 'gcms',
       title: 'GCMS Ensemble',
       image: '/chamber.png',
       description: 'Our signature performances featuring talented resident musicians and special guest artists.',
-      link: '/concerts/gcms'
+      link: '/concerts/gcms',
     },
     {
       id: 'dhaka-standard',
       title: 'Dhaka Standard',
       image: '/soloist.jpg',
       description: 'A unique fusion of classical traditions and international influences celebrating global heritage.',
-      link: '/concerts/dhaka-standard'
-    }
-  ]
+      link: '/concerts/dhaka-standard',
+    },
+  ];
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % concerts.length)
-  }
+    setCurrentSlide((prev) => (prev + 1) % concerts.length);
+  };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + concerts.length) % concerts.length)
-  }
+    setCurrentSlide((prev) => (prev - 1 + concerts.length) % concerts.length);
+  };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index)
-  }
+    setCurrentSlide(index);
+  };
 
   return (
     <div className="relative max-w-4xl mx-auto px-4 sm:px-0">
       {/* Main Carousel */}
       <div className="relative overflow-hidden rounded-lg bg-white/10 backdrop-blur-sm">
-        <div 
+        <div
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {concerts.map((concert, index) => (
+          {concerts.map((concert) => (
             <div key={concert.id} className="w-full flex-shrink-0">
               <div className="relative">
-                <img
-                  src={concert.image}
-                  alt={concert.title}
-                  className="w-full h-64 sm:h-80 md:h-96 object-cover"
-                />
+                {renderConcertImage(concert)}
                 <div className="absolute inset-0 bg-black/40 flex items-end">
                   <div className="p-4 sm:p-6 md:p-8 text-white w-full">
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">{concert.title}</h3>
@@ -122,8 +143,8 @@ const ConcertCarousel = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
