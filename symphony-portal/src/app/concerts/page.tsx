@@ -6,6 +6,7 @@ import { Music, Calendar, MapPin, Users, CreditCard, Menu, X } from 'lucide-reac
 import { supabase } from '@/lib/supabase'
 import { formatDate } from '@/lib/utils'
 import { getImagePath } from '@/lib/imagePath'
+import { getNavigationPath } from '@/lib/navigationPath'
 
 interface Concert {
   id: string
@@ -121,8 +122,8 @@ export default function ConcertsPage() {
       concertType = 'dhaka-standard'
     }
     
-    // Redirect to concert description page
-    window.location.href = `/concerts/${concertType}`
+    // Redirect to concert description page using navigation utility
+    window.location.href = getNavigationPath(`/concerts/${concertType}`)
   }
 
   return (

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, CreditCard } from 'lucide-react'
 import { getImagePath } from '@/lib/imagePath'
+import { getNavigationPath } from '@/lib/navigationPath'
 // import { supabase } from '@/lib/supabase'
 // import { formatDate } from '@/lib/utils'
 
@@ -220,8 +221,8 @@ export default function CalendarPage() {
     
     console.log('Resolved concert type:', concertType)
     
-    // For custom domain deployment, no basePath prefix is needed
-    const targetUrl = `/concerts/${concertType}/`
+    // Use navigation utility for consistent path handling across deployment environments
+    const targetUrl = getNavigationPath(`/concerts/${concertType}/`)
     
     console.log('Target URL:', targetUrl)
     console.log('Environment:', process.env.NODE_ENV)
