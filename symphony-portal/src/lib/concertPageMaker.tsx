@@ -146,10 +146,10 @@ export const concertData = {
   },
 
   gcms: {
-    title: "GCMS",
+    title: "Echoes And Elegance",
     subtitle: "Concert",
     description: "Experience the Greenville Chamber Music Society's signature performances featuring our talented resident musicians and special guest artists in intimate chamber music settings.",
-    image: getImagePath("/chamber.png"),
+    image: getImagePath("/EchoesAndElegance.png"),
     imageAlt: "GCMS ensemble performing",
     aboutTitle: "About GCMS Concerts",
     aboutDescription: [
@@ -194,8 +194,7 @@ export const concertData = {
     imageAlt: "Eldred performing in concert",
     aboutTitle: "About Eldred Concerts",
     aboutDescription: [
-      "Eldred concerts offer audiences a unique opportunity to experience classical music through the lens of exceptional artistry and deep musical understanding. These performances showcase a commitment to both traditional repertoire and innovative programming, creating memorable musical experiences that resonate long after the final note.",
-      "Each Eldred performance is characterized by meticulous attention to detail, expressive interpretation, and a profound connection to the music. Whether presenting beloved classics or introducing audiences to lesser-known gems, these concerts demonstrate the transformative power of live classical music performance."
+     "Virtuoso pianist Eldred Marshall takes the stage for a powerful solo evening. With dynamic range and soulful interpretation, Marshall brings poetic depth and dazzling clarity to every note. Program to be announced."
     ],
     features: [
       "Expertly curated programs spanning multiple musical eras",
@@ -226,37 +225,165 @@ export const concertData = {
     ],
     ticketUrl: "https://tickets.example.com/eldred-concert"
   },
-
-  AllStarChristmasConcert: {
-    title: "All Star",
-    subtitle: "Christmas Concert",
-    description: "Celebrate the season with beloved holiday films accompanied by live orchestral music in this magical Christmas concert experience.",
-    image: getImagePath("/AllStartChristmasConcert.png"),
-    imageAlt: "All Star Christmas Concert - Holiday celebration with orchestra",
-    aboutTitle: "About All Star Christmas Concert",
+    allStarChristmas: {
+    title: "All-Star Christmas",
+    subtitle: "Concert",
+    description: "Celebrate the holiday season with a spectacular orchestral performance featuring festive classics and seasonal favorites.",
+    image: getImagePath("/all-star-christmas.png"),
+    imageAlt: "Orchestra performing a Christmas concert",
+    aboutTitle: "About the All-Star Christmas Concert",
     aboutDescription: [
-      "The All Star Christmas Concert brings the magic of the holiday season to life through beloved Christmas films and festive orchestral music. This special holiday performance combines the joy of cinema with the warmth of live orchestral accompaniment, creating an unforgettable seasonal celebration.",
-      "Experience the wonder of Christmas through iconic holiday movies enhanced by beautiful live music. From classic Christmas films to modern holiday favorites, this concert captures the spirit of the season and brings families together for a truly magical musical experience."
+      "The lights are twinkling, the cocoa's warm — and there's music in the air!",
+      "Join Tatiana Mayfield, the Greenville Pops Orchestra, and a sleigh-full of",
+      "special guests for an evening of holiday cheer. From beloved carols to jazzy",
+      "takes on your favorite tunes, this festive concert is the perfect way to kick off a new holiday tradition with the ones you love."
     ],
     features: [
-      "Live orchestral performances of beloved Christmas film scores",
-      "Holiday movie clips synchronized with festive music",
-      "Classic and contemporary Christmas film selections",
-      "Professional orchestra with expert holiday arrangements",
-      "Family-friendly holiday entertainment",
-      "Festive atmosphere perfect for the Christmas season"
+      "Live orchestral performances of Christmas classics",
+      "Special guest appearances by renowned artists",
+      "Festive decorations and holiday ambiance",
+      "Family-friendly entertainment for all ages",
+      "Opportunities to sing along with popular carols"
     ],
-    seasonTitle: "This Season's Christmas Concerts",
+    seasonTitle: "This Season's Holiday Concerts",
     events: [
       {
-        title: "Holiday Movie Magic",
-        description: "Celebrate the season with beloved holiday films accompanied by live orchestral music.",
-        date: "December 7, 2025 at 1:30 PM",
-        venue: "Greenville Municipal Auditorium",
-        seats: "500 seats available",
-        price: "$35"
+        title: "All-Star Christmas Concert",
+        description: "A festive orchestral performance featuring holiday classics and seasonal favorites.",
+        date: "December 7, 2025 at 7:30 PM",
+        venue: "Greenville Concert Hall",
+        seats: "250 seats available",
+        price: "$50"
       }
     ],
     ticketUrl: "https://showtimeatthegma.com"
-  }
+  },
+rhythmsOfBelonging: {
+  title: "Rhythms of Belonging",
+  subtitle: "Concert",
+  description: "A unique musical experience celebrating the rhythms that connect us all, featuring a blend of global and classical influences.",
+  image: getImagePath("/RhythmsOfBelonging.png"),
+  imageAlt: "Musicians performing in a vibrant concert setting",
+  aboutTitle: "About Rhythms of Belonging",
+  aboutDescription: [
+    "Rhythms of Belonging is a celebration of music's power to unite people across cultures and traditions. This concert features a dynamic blend of global rhythms and classical influences, creating a truly unique and inspiring experience.",
+    "Join us for an evening of connection and harmony, where music becomes the universal language of belonging. Perfect for audiences of all ages, this concert is a testament to the beauty of diversity and togetherness.",
+    "Montgomery, Mendez, and Coleman bring bold, modern energy to a program grounded by Mussorgsky's episodic charm in an evening of rhythm, identity, and contrast that speaks to our deeper sense of belonging."
+  ],
+  features: [
+    "A fusion of global and classical musical styles",
+    "Performances by renowned international and local artists",
+    "Interactive elements that engage the audience",
+    "Vibrant stage design and lighting effects",
+    "Family-friendly entertainment for all ages"
+  ],
+  seasonTitle: "This Season's Special Concerts",
+  events: [
+    {
+      title: "Rhythms of Belonging",
+      description: "An inspiring concert celebrating the rhythms that connect us all, featuring global and classical influences.",
+      date: "January 15, 2026 at 7:00 PM",
+      venue: "Greenville Concert Hall",
+      seats: "300 seats available",
+      price: "$45"
+    }
+  ],
+  ticketUrl: "https://tickets.example.com/rhythms-of-belonging"
+},
+    retroRewind: {
+    title: "Retro Rewind: The Ultimate Mixtape",
+    subtitle: "The Ultimate Mixtape",
+    description: "Take a trip down memory lane with Retro Rewind: The Ultimate Mixtape, featuring live performances of your favorite hits from the '70s, '80s, and '90s.",
+    image: getImagePath("/RetroRewind.png"),
+    imageAlt: "Band performing retro hits on stage with vibrant lighting",
+    aboutTitle: "About Retro Rewind: The Ultimate Mixtape",
+    aboutDescription: [
+      "Get your groove on with symphonic takes on pop and rock legends from the '70s and '80s —",
+      "Whitney, Styx, Queen, Madonna, Elton, The Beatles, and more.",
+      "Come sing along, relive the hits, and make it a night to remember."
+    ],
+    features: [
+      "Live performances of iconic hits from the '70s, '80s, and '90s",
+      "Dynamic stage design and lighting effects",
+      "Audience sing-along opportunities",
+      "Family-friendly entertainment for all ages",
+      "Special guest appearances by tribute artists"
+    ],
+    seasonTitle: "This Season's Retro Concerts",
+    events: [
+      {
+        title: "Retro Rewind: The Ultimate Mixtape",
+        description: "A nostalgic journey through the greatest hits of the '70s, '80s, and '90s.",
+        date: "February 6, 2026 at 7:30 PM",
+        venue: "Greenville Concert Hall",
+        seats: "400 seats available",
+        price: "$50"
+      }
+    ],
+    ticketUrl: "https://tickets.example.com/retro-rewind"
+  },
+    songsOfTheLandAndSoul: {
+    title: "Songs of the Land and Soul",
+    subtitle: "Concert",
+    description: "Explore the power of place in this evocative program of chamber music and songs by Harry T. Burleigh and Stephen Lias.",
+    image: getImagePath("/SongsOfTheLandAndTheSoul.png"),
+    imageAlt: "Musicians performing in a serene natural setting",
+    aboutTitle: "About Songs of the Land and Soul",
+    aboutDescription: [
+      "Explore the power of place in this evocative program of chamber music and songs",
+      "by Harry T. Burleigh and Stephen Lias. With spiritual depth and natural beauty,",
+      "this concert journeys through landscapes both internal and external."
+    ],
+    features: [
+      "Chamber music inspired by natural landscapes",
+      "Songs by Harry T. Burleigh and Stephen Lias",
+      "A blend of spiritual depth and artistic expression",
+      "Intimate venue settings for an immersive experience",
+      "Perfect for lovers of classical and contemporary music"
+    ],
+    seasonTitle: "This Season's Featured Concerts",
+    events: [
+      {
+        title: "Songs of the Land and Soul",
+        description: "A journey through landscapes of spiritual depth and natural beauty.",
+        date: "February 21, 2026 at 7:30 PM",
+        venue: "Greenville Concert Hall",
+        seats: "200 seats available",
+        price: "$45"
+      }
+    ],
+    ticketUrl: "https://tickets.example.com/songs-of-the-land-and-soul"
+  },
+    windsOfChange: {
+    title: "Winds of Change",
+    subtitle: "Concert",
+    description: "An evening of winds and piano — spirited, expressive, and full of character.",
+    image: getImagePath("/WindsOfChange.png"),
+    imageAlt: "Musicians performing with wind instruments and piano",
+    aboutTitle: "About Winds of Change",
+    aboutDescription: [
+      "An evening of winds and piano — spirited, expressive, and full of character.",
+      "This chamber concert showcases the dynamic textures and tonal colors",
+      "that only winds can deliver. Full program to be announced."
+    ],
+    features: [
+      "Dynamic performances featuring wind instruments and piano",
+      "Expressive and spirited chamber music",
+      "Unique tonal colors and textures",
+      "Intimate venue settings for an immersive experience",
+      "Perfect for lovers of classical and chamber music"
+    ],
+    seasonTitle: "This Season's Chamber Concerts",
+    events: [
+      {
+        title: "Winds of Change",
+        description: "A chamber concert featuring winds and piano, showcasing dynamic textures and tonal colors.",
+        date: "May 5, 2026 at 7:30 PM",
+        venue: "Greenville Concert Hall",
+        seats: "150 seats available",
+        price: "$40"
+      }
+    ],
+    ticketUrl: "https://tickets.example.com/winds-of-change"
+  },
 }

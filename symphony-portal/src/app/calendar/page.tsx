@@ -77,8 +77,8 @@ export default function CalendarPage() {
       },
       {
         id: 'ashley-oct',
-        title: 'Ashley Concert',
-        description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
+        title: 'The Melodies of Nature',
+        description: 'Intimate performances showcasing technical brilliance and emotional depth',
         date: '2025-10-19T19:30:00Z',
         venue: 'Heritage Main Library',
         ticket_price: 40,
@@ -96,14 +96,14 @@ export default function CalendarPage() {
         image_url: null
       },
       {
-        id: 'gpo-dec',
-        title: 'GPO Concert',
-        description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
-        date: '2025-12-07T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 50,
-        available_seats: 250,
-        image_url: null
+      id: 'gpo-dec',
+      title: 'All Star Christmas Concert',
+      description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
+      date: '2025-12-07T19:30:00Z',
+      venue: 'Greenville Concert Hall',
+      ticket_price: 50,
+      available_seats: 250,
+      image_url: null
       },
       {
         id: 'ashley-dec',
@@ -117,12 +117,22 @@ export default function CalendarPage() {
       },
       {
         id: 'gcms-dec',
-        title: 'GCMS Concert',
+        title: 'Echoes And Elegance',
         description: 'Holiday concert featuring Giordi, Hamin, and Robert in festive chamber works.',
         date: '2025-12-20T19:30:00Z',
         venue: 'Heritage Main Library',
         ticket_price: 40,
         available_seats: 120,
+        image_url: null
+      },
+      {
+        id: 'retro-rewind-feb',
+        title: 'Retro Rewind: The Ultimate Mixtape',
+        description: 'A nostalgic journey through the greatest hits of the \'70s, \'80s, and \'90s with live performances.',
+        date: '2026-02-06T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 50,
+        available_seats: 400,
         image_url: null
       },
       {
@@ -184,6 +194,36 @@ export default function CalendarPage() {
         ticket_price: 50,
         available_seats: 180,
         image_url: null
+      },
+      {
+        id: 'rhythms-of-belonging-jan',
+        title: 'Rhythms of Belonging',
+        description: 'A unique musical experience celebrating the rhythms that connect us all, featuring a blend of global and classical influences.',
+        date: '2026-01-15T19:00:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 45,
+        available_seats: 300,
+        image_url: null
+      },
+      {
+        id: 'songs-of-the-land-and-soul-feb',
+        title: 'Songs of the Land and Soul',
+        description: 'A journey through landscapes of spiritual depth and natural beauty.',
+        date: '2026-02-21T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 45,
+        available_seats: 200,
+        image_url: null
+      },
+      {
+        id: 'winds-of-change-mar',
+        title: 'Winds of Change',
+        description: 'A transformative musical journey exploring themes of growth, renewal, and the power of change through dynamic chamber works.',
+        date: '2026-03-14T19:30:00Z',
+        venue: 'Greenville Concert Hall',
+        ticket_price: 50,
+        available_seats: 250,
+        image_url: null
       }
     ]
     setConcerts(sampleConcerts)
@@ -197,6 +237,8 @@ export default function CalendarPage() {
     
     if (concertId.includes('NightAtTheMovies')) {
       concertType = 'NightAtTheMovies'
+    } else if (concertId.includes('gpo-dec')) {
+      concertType = 'AllStarChristmasConcert'
     } else if (concertId.includes('gpo')) {
       concertType = 'NightAtTheMovies'
     } else if (concertId.includes('piano-contest')) {
@@ -211,6 +253,14 @@ export default function CalendarPage() {
       concertType = 'mt-vernon'
     } else if (concertId.includes('dhaka-standard')) {
       concertType = 'dhaka-standard'
+    } else if (concertId.includes('rhythms-of-belonging')) {
+      concertType = 'RhythmOfBelonging'
+    } else if (concertId.includes('retro-rewind')) {
+      concertType = 'RetroRewind'
+    } else if (concertId.includes('songs-of-the-land-and-soul')) {
+      concertType = 'SongsOfTheLandAndTheSoul'
+    } else if (concertId.includes('winds-of-change')) {
+      concertType = 'WindsOfChange'
     }
     
     // If no match found, log error and fallback to NightAtTheMovies

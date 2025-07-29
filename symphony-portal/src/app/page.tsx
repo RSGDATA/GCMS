@@ -57,6 +57,13 @@ const ConcertCarousel = () => {
       link: '/concerts/ashley',
     },
     {
+      id: 'eldred',
+      title: 'Eldred Concert',
+      image: getImagePath('/EldredMarshalInConcert.png'),
+      description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
+      link: '/concerts/eldred',
+    },
+    {
       id: 'gcms',
       title: 'GCMS Ensemble',
       image: getImagePath('/chamber.png'),

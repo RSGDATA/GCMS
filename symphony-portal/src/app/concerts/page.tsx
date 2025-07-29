@@ -30,7 +30,7 @@ export default function ConcertsPage() {
 
   const fetchConcerts = async () => {
     try {
-      // Use the new season's concerts
+      // Use the new season's concerts - all concerts from calendar
       const newSeasonConcerts: Concert[] = [
         {
           id: 'NightAtTheMovies-oct',
@@ -43,21 +43,11 @@ export default function ConcertsPage() {
           image_url: null
         },
         {
-          id: 'piano-contest-oct',
-          title: 'Piano Contest',
-          description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
-          date: '2025-10-18T19:00:00Z',
-          venue: 'Heritage Main Library',
-          ticket_price: 15,
-          available_seats: 150,
-          image_url: null
-        },
-        {
           id: 'ashley-oct',
-          title: 'Ashley Concert',
-          description: 'Intimate performances showcasing technical brilliance and emotional depth in classical repertoire.',
+          title: 'The Melodies of Nature',
+          description: 'Intimate performances showcasing technical brilliance and emotional depth',
           date: '2025-10-19T19:30:00Z',
-          venue: 'Heritage Main Library',
+          venue: 'Greenville Municipal Auditorium',
           ticket_price: 40,
           available_seats: 120,
           image_url: null
@@ -67,7 +57,7 @@ export default function ConcertsPage() {
           title: 'Eldred Concert',
           description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
           date: '2025-11-08T19:30:00Z',
-          venue: 'Heritage Main Library',
+          venue: 'Greenville Municipal Auditorium',
           ticket_price: 35,
           available_seats: 100,
           image_url: null
@@ -77,19 +67,99 @@ export default function ConcertsPage() {
           title: 'All Star Christmas Concert',
           description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
           date: '2025-12-07T19:30:00Z',
-          venue: 'Greenville Concert Hall',
+          venue: 'Greenville Municipal Auditorium',
           ticket_price: 50,
           available_seats: 250,
           image_url: null
         },
         {
-          id: 'ashley-dec',
-          title: 'Ashley Concert',
-          description: 'Holiday performance featuring seasonal classics and beloved favorites.',
-          date: '2025-12-13T19:30:00Z',
-          venue: 'Greenville Concert Hall',
+          id: 'gcms-dec',
+          title: 'Echoes And Elegance',
+          description: 'Holiday concert featuring Giordi, Hamin, and Robert in festive chamber works.',
+          date: '2025-12-20T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 40,
+          available_seats: 120,
+          image_url: null
+        },
+        {
+          id: 'rhythms-of-belonging-jan',
+          title: 'Rhythms of Belonging',
+          description: 'A unique musical experience celebrating the rhythms that connect us all, featuring a blend of global and classical influences.',
+          date: '2026-01-15T19:00:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 45,
+          available_seats: 300,
+          image_url: null
+        },
+        {
+          id: 'retro-rewind-feb',
+          title: 'Retro Rewind: The Ultimate Mixtape',
+          description: 'A nostalgic journey through the greatest hits of the \'70s, \'80s, and \'90s with live performances.',
+          date: '2026-02-06T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 50,
+          available_seats: 400,
+          image_url: null
+        },
+        {
+          id: 'gpo-feb',
+          title: 'GPO Concert',
+          description: 'Winter orchestral performance featuring classical masterworks.',
+          date: '2025-02-06T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 50,
+          available_seats: 200,
+          image_url: null
+        },
+        {
+          id: 'songs-of-the-land-and-soul-feb',
+          title: 'Songs of the Land and Soul',
+          description: 'A journey through landscapes of spiritual depth and natural beauty.',
+          date: '2026-02-21T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 45,
+          available_seats: 200,
+          image_url: null
+        },
+        {
+          id: 'mt-vernon-feb',
+          title: 'Mt. Vernon Concert',
+          description: 'Special concert at Mt. Vernon featuring exceptional chamber music performances.',
+          date: '2025-02-21T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 45,
+          available_seats: 100,
+          image_url: null
+        },
+        {
+          id: 'winds-of-change-mar',
+          title: 'Winds of Change',
+          description: 'A transformative musical journey exploring themes of growth, renewal, and the power of change through dynamic chamber works.',
+          date: '2026-03-14T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 50,
+          available_seats: 250,
+          image_url: null
+        },
+        {
+          id: 'gcms-mar',
+          title: 'GCMS Concert',
+          description: 'Spring showcase featuring John, Amanda, and Ashley in collaborative performances.',
+          date: '2025-03-22T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
           ticket_price: 40,
           available_seats: 150,
+          image_url: null
+        },
+        {
+          id: 'dhaka-standard-apr',
+          title: 'Dhaka Standard Concert',
+          description: 'International concert celebrating global musical traditions and cross-cultural collaboration.',
+          date: '2025-04-25T19:30:00Z',
+          venue: 'Greenville Municipal Auditorium',
+          ticket_price: 50,
+          available_seats: 180,
           image_url: null
         }
       ]
@@ -101,13 +171,15 @@ export default function ConcertsPage() {
     }
   }
 
-  const handlePurchaseTicket = (concertId: string) => {
+  const handleLearnMore = (concertId: string) => {
     // Determine the concert series based on the ID and redirect to concert page
     let concertType = 'NightAtTheMovies'
     if (concertId.includes('NightAtTheMovies')) {
       concertType = 'NightAtTheMovies'
-    } else if (concertId.includes('gpo')) {
+    } else if (concertId.includes('gpo-dec')) {
       concertType = 'AllStarChristmasConcert'
+    } else if (concertId.includes('gpo')) {
+      concertType = 'NightAtTheMovies'
     } else if (concertId.includes('piano-contest')) {
       concertType = 'piano-contest'
     } else if (concertId.includes('ashley')) {
@@ -120,6 +192,14 @@ export default function ConcertsPage() {
       concertType = 'mt-vernon'
     } else if (concertId.includes('dhaka-standard')) {
       concertType = 'dhaka-standard'
+    } else if (concertId.includes('rhythms-of-belonging')) {
+      concertType = 'RhythmOfBelonging'
+    } else if (concertId.includes('retro-rewind')) {
+      concertType = 'RetroRewind'
+    } else if (concertId.includes('songs-of-the-land-and-soul')) {
+      concertType = 'SongsOfTheLandAndTheSoul'
+    } else if (concertId.includes('winds-of-change')) {
+      concertType = 'WindsOfChange'
     }
     
     // Redirect to concert description page using navigation utility
@@ -277,12 +357,12 @@ export default function ConcertsPage() {
                         ${concert.ticket_price}
                       </div>
                       <button
-                        onClick={() => handlePurchaseTicket(concert.id)}
+                        onClick={() => handleLearnMore(concert.id)}
                         disabled={concert.available_seats === 0}
                         className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
                       >
-                        <CreditCard className="h-4 w-4" />
-                        <span>{concert.available_seats === 0 ? 'Sold Out' : 'Buy Tickets'}</span>
+                        <Music className="h-4 w-4" />
+                        <span>{concert.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
                       </button>
                     </div>
                   </div>
@@ -357,11 +437,11 @@ export default function ConcertsPage() {
                         ${concert.ticket_price}
                       </div>
                       <button
-                        onClick={() => handlePurchaseTicket(concert.id)}
+                        onClick={() => handleLearnMore(concert.id)}
                         className="flex items-center space-x-2 bg-amber-500 hover:bg-amber-600 text-black font-semibold py-2 px-4 rounded-lg transition-colors"
                       >
-                        <CreditCard className="h-4 w-4" />
-                        <span>Buy Tickets</span>
+                        <Music className="h-4 w-4" />
+                        <span>Learn More</span>
                       </button>
                     </div>
                   </div>

@@ -1,18 +1,19 @@
 # GitHub Pages Deployment Guide
 
 ## Overview
-Your Next.js app has been configured for GitHub Pages deployment using GitHub Actions. The changes made include:
+Your Next.js app has been configured for GitHub Pages deployment using GitHub Actions with a custom domain. The configuration includes:
 
-1. **Removed base path configuration** - No longer using `/GCMS` prefix
-2. **Updated all image paths** - All images now use direct paths (e.g., `/GCMS_Logo.png`)
-3. **Created GitHub Actions workflow** - Automated build and deployment
+1. **Static export configuration** - Using `output: 'export'` for static site generation
+2. **Custom domain setup** - Configured for `https://greenvillechambermusicsociety.org/`
+3. **Optimized images** - All images are unoptimized for static hosting
+4. **GitHub Actions workflow** - Automated build and deployment
 
 ## Deployment Steps
 
 ### 1. Push Your Changes
 ```bash
 git add .
-git commit -m "Configure for GitHub Pages deployment with GitHub Actions"
+git commit -m "Configure for GitHub Pages deployment with custom domain"
 git push origin main
 ```
 
@@ -30,11 +31,16 @@ Make sure your repository has the correct permissions:
 3. Check **Allow GitHub Actions to create and approve pull requests**
 4. Save
 
-### 4. Monitor Deployment
+### 4. Custom Domain Configuration
+The CNAME file has been added to configure the custom domain:
+- **Domain**: `greenvillechambermusicsociety.org`
+- **CNAME file**: Located in `public/CNAME` and automatically included in build
+
+### 5. Monitor Deployment
 1. Go to the **Actions** tab in your repository
 2. You should see a workflow run called "Deploy Next.js to GitHub Pages"
 3. Click on it to monitor the build and deployment process
-4. Once complete, your site will be available at: `https://rsgdata.github.io/GCMS/`
+4. Once complete, your site will be available at: `https://greenvillechambermusicsociety.org/`
 
 ## What Changed
 
@@ -89,7 +95,8 @@ Make sure these files exist:
 ## Next Steps
 1. Push your changes to GitHub
 2. Enable GitHub Pages with GitHub Actions as the source
-3. Monitor the deployment in the Actions tab
-4. Visit your live site at `https://rsgdata.github.io/GCMS/`
+3. Configure your custom domain DNS settings to point to GitHub Pages
+4. Monitor the deployment in the Actions tab
+5. Visit your live site at `https://greenvillechambermusicsociety.org/`
 
 Your site should now deploy automatically whenever you push changes to the main branch!
