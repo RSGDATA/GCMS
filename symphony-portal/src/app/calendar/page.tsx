@@ -220,10 +220,8 @@ export default function CalendarPage() {
     
     console.log('Resolved concert type:', concertType)
     
-    // For static export with GitHub Pages, use window.location directly
-    // This ensures proper navigation in production environment
-    const basePath = process.env.NODE_ENV === 'production' ? '/GCMS' : ''
-    const targetUrl = `${basePath}/concerts/${concertType}/`
+    // For custom domain deployment, no basePath prefix is needed
+    const targetUrl = `/concerts/${concertType}/`
     
     console.log('Target URL:', targetUrl)
     console.log('Environment:', process.env.NODE_ENV)
