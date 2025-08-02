@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
   },
   // This is needed for GitHub Pages to work correctly
   trailingSlash: true,
+  // Set the base path for GitHub Pages deployment
+  basePath: process.env.NODE_ENV === 'production' ? '/GCMS' : '',
+  // Set the asset prefix for GitHub Pages deployment
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/GCMS' : '',
   // Disable ESLint during build to prevent build failures
   eslint: {
     // Don't run ESLint during build

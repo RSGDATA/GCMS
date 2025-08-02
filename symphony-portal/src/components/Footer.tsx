@@ -36,9 +36,7 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
             <ul className="space-y-2">
-              {/* <li><Link href="/students/signup" className="text-gray-400 hover:text-white transition-colors">Student Program</Link></li> */}
-              <li><Link href="/concerts/piano-contest" className="text-gray-400 hover:text-white transition-colors">Piano Contest</Link></li>
-              <li><Link href="/concerts/gcms" className="text-gray-400 hover:text-white transition-colors">GCMS Ensemble</Link></li>
+              {/* Programs section left blank - no programs available yet */}
             </ul>
           </div>
         </div>

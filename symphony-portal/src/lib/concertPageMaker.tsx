@@ -33,7 +33,7 @@ export const concertData = {
   NightAtTheMovies: {
     title: "GPO",
     subtitle: "Concert",
-    description: "Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life with a lush live orchestra.",
+    description: "Blockbusters come to life with lush live orchestration in this dazzling evening of cinematic favorites. Vocal powerhouse Sabatina Maura performs showstoppers like Defying Gravity, The Wizard and I, and Never Enough, in an unforgettable night of drama, sparkle, and song.",
     image: getImagePath("/NightAtTheMovies.png"),
     imageAlt: "Night at the Movies - Greenville Pops Orchestra conductor",
     aboutTitle: "About Night at the Movies",
@@ -107,7 +107,7 @@ export const concertData = {
   ashley: {
     title: "GCMS",
     subtitle: "Concert",
-    description: "Experience exceptional musical artistry with Ashley, featuring intimate performances that showcase technical brilliance and emotional depth in classical repertoire.",
+    description: "Nature hums, whispers, and roars in this vibrant program of Respighi, Mason Bates, Brittney Benton, and Amy Beach. From woodland dreamscapes to earthy rhythms, this evening paints an aural canvas of the wild.",
     image: getImagePath("/The Melodies Of Nature.png"),
     imageAlt: "Ashley performing in concert",
     aboutTitle: "About Ashley Concerts",
@@ -148,7 +148,7 @@ export const concertData = {
   EchoesAndElegance: {
     title: "GCMS",
     subtitle: "Concert",
-    description: "Experience the Greenville Chamber Music Society's signature performances featuring our talented resident musicians and special guest artists in intimate chamber music settings.",
+    description: "Ravel and Brahms piano trios shine in this lush, lyrical evening of romantic and impressionist color. A perfect close to the year — graceful, stirring, and timeless.",
     image: getImagePath("/EchoesAndElegance.png"),
     imageAlt: "GCMS ensemble performing",
     aboutTitle: "About GCMS Concerts",
@@ -189,7 +189,7 @@ export const concertData = {
   eldred: {
     title: "Eldred",
     subtitle: "Concert",
-    description: "Experience the artistry of Eldred in an intimate concert setting, featuring masterful interpretations of classical and contemporary repertoire.",
+    description: "Virtuoso pianist Eldred Marshall takes the stage for a powerful solo evening. With dynamic range and soulful interpretation, Marshall brings poetic depth and dazzling clarity to every note. Program to be announced.",
     image: getImagePath("/EldredMarshalInConcert.png"),
     imageAlt: "Eldred performing in concert",
     aboutTitle: "About Eldred Concerts",
@@ -228,7 +228,7 @@ export const concertData = {
     allStarChristmas: {
     title: "All-Star Christmas",
     subtitle: "Concert",
-    description: "Celebrate the holiday season with a spectacular orchestral performance featuring festive classics and seasonal favorites.",
+    description: "The lights are twinkling, the cocoa's warm — and there's music in the air! Join Tatiana Mayfield, the Greenville Pops Orchestra, and a sleigh-full of special guests for an evening of holiday cheer. From beloved carols to jazzy takes on your favorite tunes, this festive concert is the perfect way to kick off a new holiday tradition with the ones you love.",
     image: getImagePath("/all-star-christmas.png"),
     imageAlt: "Orchestra performing a Christmas concert",
     aboutTitle: "About the All-Star Christmas Concert",
@@ -261,7 +261,7 @@ export const concertData = {
 rhythmsOfBelonging: {
   title: "Rhythms of Belonging",
   subtitle: "Concert",
-  description: "A unique musical experience celebrating the rhythms that connect us all, featuring a blend of global and classical influences.",
+  description: "Montgomery, Mendez, and Coleman bring bold, modern energy to a program grounded by Mussorgsky's episodic charm in an evening of rhythm, identity, and contrast that speaks to our deeper sense of belonging.",
   image: getImagePath("/RhythmsOfBelonging.png"),
   imageAlt: "Musicians performing in a vibrant concert setting",
   aboutTitle: "About Rhythms of Belonging",
@@ -293,7 +293,7 @@ rhythmsOfBelonging: {
     retroRewind: {
     title: "Retro Rewind: The Ultimate Mixtape",
     subtitle: "The Ultimate Mixtape",
-    description: "Take a trip down memory lane with Retro Rewind: The Ultimate Mixtape, featuring live performances of your favorite hits from the '70s, '80s, and '90s.",
+    description: "Get your groove on with symphonic takes on pop and rock legends from the '70s and '80s — Whitney, Styx, Queen, Madonna, Elton, The Beatles, and more. Come sing along, relive the hits, and make it a night to remember.",
     image: getImagePath("/RetroRewind.png"),
     imageAlt: "Band performing retro hits on stage with vibrant lighting",
     aboutTitle: "About Retro Rewind: The Ultimate Mixtape",
@@ -325,7 +325,7 @@ rhythmsOfBelonging: {
     songsOfTheLandAndSoul: {
     title: "Songs of the Land and Soul",
     subtitle: "Concert",
-    description: "Explore the power of place in this evocative program of chamber music and songs by Harry T. Burleigh and Stephen Lias.",
+    description: "Explore the power of place in this evocative program of chamber music and songs by Harry T. Burleigh and Stephen Lias. With spiritual depth and natural beauty, this concert journeys through landscapes both internal and external.",
     image: getImagePath("/SongsOfTheLandAndTheSoul.png"),
     imageAlt: "Musicians performing in a serene natural setting",
     aboutTitle: "About Songs of the Land and Soul",
@@ -357,7 +357,7 @@ rhythmsOfBelonging: {
     windsOfChange: {
     title: "Winds of Change",
     subtitle: "Concert",
-    description: "An evening of winds and piano — spirited, expressive, and full of character.",
+    description: "An evening of winds and piano — spirited, expressive, and full of character. This chamber concert showcases the dynamic textures and tonal colors that only winds can deliver. Full program to be announced.",
     image: getImagePath("/WindsOfChange.png"),
     imageAlt: "Musicians performing with wind instruments and piano",
     aboutTitle: "About Winds of Change",
@@ -390,7 +390,7 @@ rhythmsOfBelonging: {
   voicesInColor: {
     title: "Voices in Color",
     subtitle: "Concert",
-    description: "Spring showcase featuring vibrant chamber music performances with diverse musical voices.",
+    description: "A vibrant kaleidoscope of works by women and composers of color, this concert speaks in a dazzling range of styles. From the meditative Winter Spirits by Katherine Hoover to the rhythmic fire of Jessie Montgomery's Starburst, and María Grever's reimagined bolero, each voice shines in vivid detail. This program will also feature a performance of Claude Bolling's jazz suite for flute and piano trio.",
     image: getImagePath("/VoicesInColor.png"),
     imageAlt: "Musicians performing vibrant chamber music",
     aboutTitle: "About Voices in Color",
@@ -423,7 +423,7 @@ rhythmsOfBelonging: {
   dhakaStandard: {
     title: "Global Grooves with Dhaka Standard",
     subtitle: "Concert",
-    description: "Experience a unique fusion of classical traditions and international influences celebrating global musical heritage.",
+    description: "Jazz, folk, and fusion meet in this electrifying cross-cultural collaboration. Featuring musicians from Bangladesh and beyond — including one of North Texas's own — Dhaka Standard brings international flavor and rhythmic fire to an unforgettable season finale.",
     image: getImagePath("/GlobalGroovesWithDhakaStandard.png"),
     imageAlt: "Dhaka Standard performing international fusion music",
     aboutTitle: "About Global Grooves with Dhaka Standard",

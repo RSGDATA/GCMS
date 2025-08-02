@@ -21,15 +21,26 @@ interface RenderConcertImageProps {
 
 const renderConcertImage = (concert: Concert): JSX.Element => {
   return (
-    <div className="w-full aspect-video bg-gray-100 flex items-center justify-center">
+    <div className="w-full bg-gray-900 overflow-hidden">
       <img
         src={concert.image}
-        alt={concert.title}
-        className={
-          concert.id === 'NightAtTheMovies'
-            ? "w-full h-full onLoad"
-            : "w-full h-full object-cover"
-        }
+        alt={concert.title || 'Concert image'}
+        className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
+        style={{
+          objectFit: 'cover',
+          objectPosition: 'center',
+          aspectRatio: 'auto'
+        }}
+        onLoad={(e) => {
+          // Ensure image fits properly after loading
+          const img = e.target as HTMLImageElement;
+          img.style.opacity = '1';
+        }}
+        onError={(e) => {
+          // Fallback for broken images
+          const img = e.target as HTMLImageElement;
+          img.style.backgroundColor = '#f3f4f6';
+        }}
       />
     </div>
   );
@@ -41,19 +52,19 @@ const ConcertCarousel = () => {
   const concerts = [
     {
       id: 'NightAtTheMovies',
-      image: getImagePath('/NightAtTheMovies-carousel.png'),
+      image: getImagePath('/NightAtTheMoviesBanner.png'),
       link: '/concerts/NightAtTheMovies',
     },
     {
       id: 'ashley',
-      image: getImagePath('/The Melodies Of Nature.png'),
+      image: getImagePath('/TheMelodiesOfNatureBanner.png'),
       link: '/concerts/ashley',
     },
     {
       id: 'eldred',
-      title: 'Eldred Concert',
-      image: getImagePath('/EldredMarshalInConcert.png'),
-      description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
+      title: '',
+      image: getImagePath('/EldredMarshalInConcertBanner.png'),
+      description: '',
       link: '/concerts/eldred',
     },
   ];
@@ -182,13 +193,17 @@ export default function HomePage() {
                 About Our Society
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                The Greenville Chamber Music Society has been bringing world-class chamber music to the Upstate since 1985. 
-                We present intimate concerts featuring renowned artists and emerging talents, fostering a deep appreciation 
-                for the chamber music tradition in our community.
+                The Greenville Chamber Music Society is a dynamic music collective founded in 2024, bringing chamber music, 
+                jazz, and beyond to Greenville, Texas. We create a space where artists can freely explore musical innovation 
+                and collaboration through our diverse programming.
+              </p>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Our inaugural season features 11 carefully curated concerts showcasing diverse musical voices, from intimate 
+                chamber works to innovative jazz collaborations and cross-genre explorations.
               </p>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                Our mission is to enrich the cultural landscape of Greenville through exceptional musical experiences 
-                that inspire, educate, and connect our community.
+                Beyond performance, we're pioneering tech-savvy methodologies to support and boost other arts nonprofits, 
+                creating a stronger, more connected cultural community in Texas and beyond.
               </p>
               <Link 
                 href="/about"
