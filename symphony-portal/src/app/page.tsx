@@ -52,7 +52,7 @@ const ConcertCarousel = () => {
   const concerts = [
     {
       id: 'NightAtTheMovies',
-      image: getImagePath('/NightAtTheMoviesBanner.png'),
+      image: getImagePath('/NIghtAtTheMoviesBanner.png'),
       link: '/concerts/NightAtTheMovies',
     },
     {
