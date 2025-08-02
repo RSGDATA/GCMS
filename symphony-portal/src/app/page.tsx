@@ -122,7 +122,7 @@ const ConcertCarousel = () => {
       </div>
 
       {/* Dots Indicator */}
-      <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
+      {/* <div className="flex justify-center mt-4 sm:mt-6 space-x-2">
         {concerts.map((_, index) => (
           <button
             key={index}
@@ -135,7 +135,7 @@ const ConcertCarousel = () => {
   aria-label={`Go to slide ${index + 1}`}
 />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
