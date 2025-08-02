@@ -127,7 +127,7 @@ const ConcertCarousel = () => {
           <button
             key={index}
             onClick={() => goToSlide(index)}
-            className={`w-2 h-2 sm:w-4 sm:h-4 rounded-full transition-colors touch-manipulation ${
+            className={`w-1 h-1 sm:w-4 sm:h-4 rounded-full transition-colors touch-manipulation ${
               index === currentSlide ? 'bg-blue-600' : 'bg-white/30 hover:bg-white/50 active:bg-white/60'
             }`}
             aria-label={`Go to slide ${index + 1}`}
