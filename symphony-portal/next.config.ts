@@ -17,6 +17,13 @@ const nextConfig: NextConfig = {
     // Don't run TypeScript checking during build
     ignoreBuildErrors: true,
   },
+  // Disable webpack caching to prevent cache-related errors
+  webpack: (config, { dev }) => {
+    if (dev) {
+      config.cache = false;
+    }
+    return config;
+  },
 };
 
 export default nextConfig;

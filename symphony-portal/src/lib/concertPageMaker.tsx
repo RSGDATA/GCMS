@@ -60,7 +60,7 @@ export const concertData = {
         price: "$35"
       }
     ],
-    ticketUrl: "https://showtimeatthegma.com"
+    ticketUrl: "https://www.etix.com/ticket/p/73090996/night-at-the-movies-greenville-greenville-municipal-auditorium"
   },
 
   pianoContest: {
@@ -105,7 +105,7 @@ export const concertData = {
   },
 
   ashley: {
-    title: "Ashley",
+    title: "GCMS",
     subtitle: "Concert",
     description: "Experience exceptional musical artistry with Ashley, featuring intimate performances that showcase technical brilliance and emotional depth in classical repertoire.",
     image: getImagePath("/The Melodies Of Nature.png"),
@@ -136,17 +136,17 @@ export const concertData = {
       {
         title: "Holiday Performance",
         description: "Festive program featuring seasonal classics and beloved favorites that celebrate the joy of the season.",
-        date: "December 13, 2025 at 1:30 PM",
+        date: "December 13, 2025 at 2:30 PM",
         venue: "Greenville Concert Hall",
         seats: "150 seats available",
         price: "$40"
       }
     ],
-    ticketUrl: "https://tickets.example.com/ashley-concert"
+    ticketUrl: "https://www.etix.com/ticket/p/98625126/the-melodies-of-nature-greenville-greenville-municipal-auditorium"
   },
 
-  gcms: {
-    title: "Echoes And Elegance",
+  EchoesAndElegance: {
+    title: "GCMS",
     subtitle: "Concert",
     description: "Experience the Greenville Chamber Music Society's signature performances featuring our talented resident musicians and special guest artists in intimate chamber music settings.",
     image: getImagePath("/EchoesAndElegance.png"),
@@ -183,7 +183,7 @@ export const concertData = {
         price: "$40"
       }
     ],
-    ticketUrl: "https://tickets.example.com/gcms-concert"
+    ticketUrl: "https://www.etix.com/ticket/p/31148816/echoes-and-elegance-greenville-greenville-municipal-auditorium"
   },
 
   eldred: {
@@ -210,7 +210,7 @@ export const concertData = {
         title: "Fall Concert",
         description: "An evening of classical masterworks and contemporary interpretations showcasing exceptional artistry.",
         date: "November 8, 2025 at 7:30 PM",
-        venue: "Heritage Main Library",
+        venue: "Greenville Municipal Auditorium",
         seats: "100 seats available",
         price: "$35"
       },
@@ -218,12 +218,12 @@ export const concertData = {
         title: "Spring Recital",
         description: "A special spring performance featuring beloved classical favorites and innovative contemporary works.",
         date: "April 12, 2026 at 7:30 PM",
-        venue: "Heritage Main Library",
+        venue: "Greenville Municipal Auditorium",
         seats: "100 seats available",
         price: "$35"
       }
     ],
-    ticketUrl: "https://tickets.example.com/eldred-concert"
+    ticketUrl: "https://www.etix.com/ticket/p/51222238/eldred-marshall-in-concert-greenville-greenville-municipal-auditorium"
   },
     allStarChristmas: {
     title: "All-Star Christmas",
@@ -251,12 +251,12 @@ export const concertData = {
         title: "All-Star Christmas Concert",
         description: "A festive orchestral performance featuring holiday classics and seasonal favorites.",
         date: "December 7, 2025 at 7:30 PM",
-        venue: "Greenville Concert Hall",
+        venue: "Greenville Municipal Auditorium",
         seats: "250 seats available",
         price: "$50"
       }
     ],
-    ticketUrl: "https://showtimeatthegma.com"
+    ticketUrl: "https://www.etix.com/ticket/p/63389680/allstar-christmas-concert-greenville-greenville-municipal-auditorium"
   },
 rhythmsOfBelonging: {
   title: "Rhythms of Belonging",
@@ -283,12 +283,12 @@ rhythmsOfBelonging: {
       title: "Rhythms of Belonging",
       description: "An inspiring concert celebrating the rhythms that connect us all, featuring global and classical influences.",
       date: "January 15, 2026 at 7:00 PM",
-      venue: "Greenville Concert Hall",
+      venue: "Greenville Municipal Auditorium",
       seats: "300 seats available",
       price: "$45"
     }
   ],
-  ticketUrl: "https://tickets.example.com/rhythms-of-belonging"
+  ticketUrl: "https://www.etix.com/ticket/p/31827899/rhythms-of-belonging-greenville-greenville-municipal-auditorium"
 },
     retroRewind: {
     title: "Retro Rewind: The Ultimate Mixtape",
@@ -320,7 +320,7 @@ rhythmsOfBelonging: {
         price: "$50"
       }
     ],
-    ticketUrl: "https://tickets.example.com/retro-rewind"
+    ticketUrl: "https://www.etix.com/ticket/p/62288808/retro-rewindthe-ultimate-mixtape-greenville-greenville-municipal-auditorium"
   },
     songsOfTheLandAndSoul: {
     title: "Songs of the Land and Soul",
@@ -347,12 +347,12 @@ rhythmsOfBelonging: {
         title: "Songs of the Land and Soul",
         description: "A journey through landscapes of spiritual depth and natural beauty.",
         date: "February 21, 2026 at 7:30 PM",
-        venue: "Greenville Concert Hall",
+        venue: "Greenville Municipal Auditorium",
         seats: "200 seats available",
         price: "$45"
       }
     ],
-    ticketUrl: "https://tickets.example.com/songs-of-the-land-and-soul"
+    ticketUrl: "https://www.etix.com/ticket/p/47664643/mtvernon-music-greenville-greenville-municipal-auditorium"
   },
     windsOfChange: {
     title: "Winds of Change",
@@ -384,6 +384,72 @@ rhythmsOfBelonging: {
         price: "$40"
       }
     ],
-    ticketUrl: "https://tickets.example.com/winds-of-change"
+    ticketUrl: "https://www.etix.com/ticket/p/76830549/winds-of-change-greenville-greenville-municipal-auditorium"
+  },
+
+  voicesInColor: {
+    title: "Voices in Color",
+    subtitle: "Concert",
+    description: "Spring showcase featuring vibrant chamber music performances with diverse musical voices.",
+    image: getImagePath("/VoicesInColor.png"),
+    imageAlt: "Musicians performing vibrant chamber music",
+    aboutTitle: "About Voices in Color",
+    aboutDescription: [
+      "Voices in Color celebrates the diversity and vibrancy of chamber music through performances that showcase different musical voices and styles. This spring concert features a carefully curated program that highlights the unique colors and textures that emerge when talented musicians come together.",
+      "Each piece in this concert represents a different 'voice' in the chamber music repertoire, from intimate duos to larger ensemble works. The program explores how different instruments, composers, and musical traditions contribute their own distinct colors to the rich tapestry of classical music."
+    ],
+    features: [
+      "Diverse repertoire showcasing different musical styles",
+      "Performances by talented chamber musicians",
+      "Intimate venue settings for optimal acoustic experience",
+      "Educational program notes exploring musical diversity",
+      "Collaborative performances highlighting ensemble artistry",
+      "Perfect introduction to chamber music for new audiences"
+    ],
+    seasonTitle: "This Season's Chamber Concerts",
+    events: [
+      {
+        title: "Voices in Color",
+        description: "Spring showcase featuring vibrant chamber music performances with diverse musical voices.",
+        date: "April 17, 2026 at 7:30 PM",
+        venue: "Greenville Municipal Auditorium",
+        seats: "150 seats available",
+        price: "$40"
+      }
+    ],
+    ticketUrl: "https://www.etix.com/ticket/p/34088588/voices-in-color-greenville-greenville-municipal-auditorium"
+  },
+
+  dhakaStandard: {
+    title: "Global Grooves with Dhaka Standard",
+    subtitle: "Concert",
+    description: "Experience a unique fusion of classical traditions and international influences celebrating global musical heritage.",
+    image: getImagePath("/GlobalGroovesWithDhakaStandard.png"),
+    imageAlt: "Dhaka Standard performing international fusion music",
+    aboutTitle: "About Global Grooves with Dhaka Standard",
+    aboutDescription: [
+      "The Global Grooves with Dhaka Standard concert series represents a groundbreaking approach to classical music, blending traditional Western classical repertoire with influences from South Asian musical traditions. These performances celebrate the universal language of music while honoring diverse cultural heritage.",
+      "Each Dhaka Standard concert features carefully selected works that demonstrate the interconnectedness of global musical traditions. From classical masterpieces to contemporary compositions that bridge cultural divides, these performances offer audiences a unique perspective on the evolution and universality of musical expression."
+    ],
+    features: [
+      "Fusion of Western classical and South Asian musical traditions",
+      "International guest artists and cultural ambassadors",
+      "Educational components exploring global musical heritage",
+      "Contemporary compositions celebrating cultural diversity",
+      "Interactive elements showcasing different musical instruments",
+      "Post-concert discussions on cross-cultural musical influences"
+    ],
+    seasonTitle: "This Season's International Concerts",
+    events: [
+      {
+        title: "Global Grooves with Dhaka Standard",
+        description: "International concert celebrating global musical traditions and cross-cultural collaboration.",
+        date: "April 25, 2026 at 7:30 PM",
+        venue: "Greenville Municipal Auditorium",
+        seats: "150 seats available",
+        price: "$40"
+      }
+    ],
+    ticketUrl: "https://www.etix.com/ticket/p/65088123/global-grooves-with-dhaka-standard-greenville-greenville-municipal-auditorium"
   },
 }

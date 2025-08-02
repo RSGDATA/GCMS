@@ -2,23 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, CreditCard } from 'lucide-react'
-import { getImagePath } from '@/lib/imagePath'
 import { getNavigationPath } from '@/lib/navigationPath'
-// import { supabase } from '@/lib/supabase'
-// import { formatDate } from '@/lib/utils'
-
-interface Concert {
-  id: string
-  title: string
-  description: string
-  date: string
-  venue: string
-  ticket_price: number
-  available_seats: number
-  image_url: string | null
-}
+import { concertData, getConcertsForDate, getConcertRoute, type Concert } from '@/lib/concertData'
 
 interface CalendarEvent {
   id: string
@@ -31,7 +17,6 @@ interface CalendarEvent {
 }
 
 export default function CalendarPage() {
-  const router = useRouter()
   const [concerts, setConcerts] = useState<Concert[]>([])
   const [loading, setLoading] = useState(true)
   const [currentDate, setCurrentDate] = useState(new Date())
@@ -43,239 +28,22 @@ export default function CalendarPage() {
 
   const fetchConcerts = async () => {
     try {
-      // Use sample data for now
-      setSampleConcerts()
+      // Use centralized concert data
+      setConcerts(concertData)
     } catch (error) {
       console.error('Error:', error)
-      setSampleConcerts()
+      setConcerts([])
     } finally {
       setLoading(false)
     }
   }
 
-  const setSampleConcerts = () => {
-    const sampleConcerts: Concert[] = [
-      {
-        id: 'NightAtTheMovies-oct',
-        title: 'Night at the Movies',
-        description: 'Experience the magic of cinema with the Greenville Pops Orchestra as blockbuster movies come to life.',
-        date: '2025-10-03T14:30:00Z',
-        venue: 'Greenville Municipal Auditorium',
-        ticket_price: 35,
-        available_seats: 500,
-        image_url: null
-      },
-      {
-        id: 'piano-contest-oct',
-        title: 'Piano Contest',
-        description: 'Witness the next generation of piano virtuosos compete in our prestigious annual competition.',
-        date: '2025-10-18T19:00:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 15,
-        available_seats: 150,
-        image_url: null
-      },
-      {
-        id: 'ashley-oct',
-        title: 'The Melodies of Nature',
-        description: 'Intimate performances showcasing technical brilliance and emotional depth',
-        date: '2025-10-19T19:30:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 40,
-        available_seats: 120,
-        image_url: null
-      },
-      {
-        id: 'eldred-nov',
-        title: 'Eldred Concert',
-        description: 'Experience the artistry of Eldred in an intimate concert setting with masterful interpretations.',
-        date: '2025-11-08T19:30:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 35,
-        available_seats: 100,
-        image_url: null
-      },
-      {
-      id: 'gpo-dec',
-      title: 'All Star Christmas Concert',
-      description: 'Holiday orchestral performance featuring festive classics and seasonal favorites.',
-      date: '2025-12-07T19:30:00Z',
-      venue: 'Greenville Concert Hall',
-      ticket_price: 50,
-      available_seats: 250,
-      image_url: null
-      },
-      {
-        id: 'ashley-dec',
-        title: 'Ashley Concert',
-        description: 'Holiday performance featuring seasonal classics and beloved favorites.',
-        date: '2025-12-13T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 40,
-        available_seats: 150,
-        image_url: null
-      },
-      {
-        id: 'gcms-dec',
-        title: 'Echoes And Elegance',
-        description: 'Holiday concert featuring Giordi, Hamin, and Robert in festive chamber works.',
-        date: '2025-12-20T19:30:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 40,
-        available_seats: 120,
-        image_url: null
-      },
-      {
-        id: 'retro-rewind-feb',
-        title: 'Retro Rewind: The Ultimate Mixtape',
-        description: 'A nostalgic journey through the greatest hits of the \'70s, \'80s, and \'90s with live performances.',
-        date: '2026-02-06T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 50,
-        available_seats: 400,
-        image_url: null
-      },
-      {
-        id: 'gpo-feb',
-        title: 'GPO Concert',
-        description: 'Winter orchestral performance featuring classical masterworks.',
-        date: '2025-02-06T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 50,
-        available_seats: 200,
-        image_url: null
-      },
-      {
-        id: 'mt-vernon-feb',
-        title: 'Mt. Vernon Concert',
-        description: 'Special concert at Mt. Vernon featuring exceptional chamber music performances.',
-        date: '2025-02-21T19:30:00Z',
-        venue: 'Mt. Vernon Historic Hall',
-        ticket_price: 45,
-        available_seats: 100,
-        image_url: null
-      },
-      {
-        id: 'gcms-mar',
-        title: 'GCMS Concert',
-        description: 'Spring showcase featuring John, Amanda, and Ashley in collaborative performances.',
-        date: '2025-03-22T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 40,
-        available_seats: 150,
-        image_url: null
-      },
-      {
-        id: 'ashley-apr',
-        title: 'Ashley Concert',
-        description: 'Spring recital featuring classical favorites and contemporary works.',
-        date: '2025-04-17T19:30:00Z',
-        venue: 'Heritage Main Library',
-        ticket_price: 40,
-        available_seats: 120,
-        image_url: null
-      },
-      {
-        id: 'piano-contest-apr',
-        title: 'Piano Contest',
-        description: 'Spring piano competition featuring advanced young pianists.',
-        date: '2025-04-18T19:00:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 15,
-        available_seats: 200,
-        image_url: null
-      },
-      {
-        id: 'dhaka-standard-apr',
-        title: 'Dhaka Standard Concert',
-        description: 'International concert celebrating global musical traditions and cross-cultural collaboration.',
-        date: '2025-04-25T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 50,
-        available_seats: 180,
-        image_url: null
-      },
-      {
-        id: 'rhythms-of-belonging-jan',
-        title: 'Rhythms of Belonging',
-        description: 'A unique musical experience celebrating the rhythms that connect us all, featuring a blend of global and classical influences.',
-        date: '2026-01-15T19:00:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 45,
-        available_seats: 300,
-        image_url: null
-      },
-      {
-        id: 'songs-of-the-land-and-soul-feb',
-        title: 'Songs of the Land and Soul',
-        description: 'A journey through landscapes of spiritual depth and natural beauty.',
-        date: '2026-02-21T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 45,
-        available_seats: 200,
-        image_url: null
-      },
-      {
-        id: 'winds-of-change-mar',
-        title: 'Winds of Change',
-        description: 'A transformative musical journey exploring themes of growth, renewal, and the power of change through dynamic chamber works.',
-        date: '2026-03-14T19:30:00Z',
-        venue: 'Greenville Concert Hall',
-        ticket_price: 50,
-        available_seats: 250,
-        image_url: null
-      }
-    ]
-    setConcerts(sampleConcerts)
-  }
-
   const handleViewConcert = (concertId: string) => {
-    console.log('Navigating to concert:', concertId)
-    
-    // Determine the concert series based on the ID
-    let concertType: string | null = null
-    
-    if (concertId.includes('NightAtTheMovies')) {
-      concertType = 'NightAtTheMovies'
-    } else if (concertId.includes('gpo-dec')) {
-      concertType = 'AllStarChristmasConcert'
-    } else if (concertId.includes('gpo')) {
-      concertType = 'NightAtTheMovies'
-    } else if (concertId.includes('piano-contest')) {
-      concertType = 'piano-contest'
-    } else if (concertId.includes('ashley')) {
-      concertType = 'ashley'
-    } else if (concertId.includes('eldred')) {
-      concertType = 'eldred'
-    } else if (concertId.includes('gcms')) {
-      concertType = 'gcms'
-    } else if (concertId.includes('mt-vernon')) {
-      concertType = 'mt-vernon'
-    } else if (concertId.includes('dhaka-standard')) {
-      concertType = 'dhaka-standard'
-    } else if (concertId.includes('rhythms-of-belonging')) {
-      concertType = 'RhythmOfBelonging'
-    } else if (concertId.includes('retro-rewind')) {
-      concertType = 'RetroRewind'
-    } else if (concertId.includes('songs-of-the-land-and-soul')) {
-      concertType = 'SongsOfTheLandAndTheSoul'
-    } else if (concertId.includes('winds-of-change')) {
-      concertType = 'WindsOfChange'
-    }
-    
-    // If no match found, log error and fallback to NightAtTheMovies
-    if (!concertType) {
-      console.error('Unknown concert ID:', concertId)
-      concertType = 'NightAtTheMovies'
-    }
-    
-    console.log('Resolved concert type:', concertType)
+    // Use centralized routing logic
+    const concertType = getConcertRoute(concertId)
     
     // Use navigation utility for consistent path handling across deployment environments
-    const targetUrl = getNavigationPath(`/concerts/${concertType}/`)
-    
-    console.log('Target URL:', targetUrl)
-    console.log('Environment:', process.env.NODE_ENV)
+    const targetUrl = getNavigationPath(`/concerts/${concertType}`)
     
     // Use window.location for reliable navigation in static export
     window.location.href = targetUrl
@@ -397,44 +165,6 @@ export default function CalendarPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <img 
-                src={getImagePath("/GCMS_Logo.png")}
-                alt="GCMS Logo" 
-                className="h-12 w-auto object-contain"
-              />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Home
-              </Link>
-              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Concerts
-              </Link>
-              <Link href="/calendar" className="text-blue-600 font-medium uppercase text-sm tracking-wide">
-                Calendar
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                About
-              </Link>
-              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Musicians
-              </Link>
-              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
-                Student Program
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Header */}
       <section className="py-20 px-4">
@@ -526,17 +256,13 @@ export default function CalendarPage() {
                             </div>
                           </div>
 
-                          <div className="flex items-center justify-between">
-                            <div className="text-lg font-bold text-blue-600">
-                              ${event.ticket_price}
-                            </div>
+                          <div className="flex justify-end">
                             <button
                               onClick={() => handleViewConcert(event.id)}
-                              disabled={event.available_seats === 0}
-                              className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-1 px-3 rounded text-sm transition-colors"
+                              className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-3 rounded text-sm transition-colors"
                             >
                               <CreditCard className="h-3 w-3" />
-                              <span>{event.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
+                              <span>Learn More</span>
                             </button>
                           </div>
                         </div>
@@ -583,17 +309,13 @@ export default function CalendarPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="text-2xl font-bold text-blue-600">
-                      ${concert.ticket_price}
-                    </div>
+                  <div className="flex justify-end">
                     <button
                       onClick={() => handleViewConcert(concert.id)}
-                      disabled={concert.available_seats === 0}
-                      className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-medium py-2 px-4 rounded-md transition-colors"
+                      className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors"
                     >
                       <CreditCard className="h-4 w-4" />
-                      <span>{concert.available_seats === 0 ? 'Sold Out' : 'Learn More'}</span>
+                      <span>Learn More</span>
                     </button>
                   </div>
                 </div>
@@ -612,53 +334,6 @@ export default function CalendarPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 py-16 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <div className="flex items-center space-x-3 mb-4">
-                <img 
-                  src={getImagePath("/GCMS_Logo.png")}
-                  alt="GCMS Logo" 
-                  className="h-12 w-auto object-contain"
-                />
-                <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
-              </div>
-              <p className="text-gray-400 mb-4">
-                Bringing world-class chamber music to the Upstate since 1985.
-              </p>
-              <div className="text-gray-400">
-                <p>Heritage Main Library</p>
-                <p>25 Heritage Green Pl, Greenville, SC 29601</p>
-                <p className="mt-2">(864) 467-3000</p>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
-              <ul className="space-y-2">
-                <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
-                <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
-                <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-                <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
-              <ul className="space-y-2">
-                <li><Link href="/students/signup" className="text-gray-400 hover:text-white transition-colors">Student Program</Link></li>
-                <li><Link href="/concerts/piano-contest" className="text-gray-400 hover:text-white transition-colors">Piano Contest</Link></li>
-                <li><Link href="/concerts/gcms" className="text-gray-400 hover:text-white transition-colors">GCMS Ensemble</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400">
-              © 2024 Greenville Chamber Music Society. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
