@@ -1,11 +1,9 @@
 /**
- * Utility function to get the correct image path for GitHub Pages deployment
+ * Utility function to get the correct image path for custom domain deployment
  * @param path - The image path starting with /
- * @returns The image path with correct base path for GitHub Pages
+ * @returns The image path (no base path needed for custom domain)
  */
 export function getImagePath(path: string): string {
-  // In production (GitHub Pages), add the /GCMS base path
-  // In development, use the path as-is
-  const basePath = process.env.NODE_ENV === 'production' ? '/GCMS' : '';
-  return `${basePath}${path}`;
+  // For custom domain deployment, no base path is needed
+  return path;
 }
