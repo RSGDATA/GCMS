@@ -4,15 +4,6 @@ import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
 import { getImagePath } from '@/lib/imagePath'
 
-interface ConcertEvent {
-  title: string
-  description: string
-  date: string
-  venue: string
-  seats: string
-  price: string
-}
-
 interface ConcertPageProps {
   title: string
   subtitle: string
@@ -23,7 +14,6 @@ interface ConcertPageProps {
   aboutDescription: string[]
   features: string[]
   seasonTitle: string
-  events: ConcertEvent[]
   ticketUrl: string
 }
 
@@ -37,7 +27,6 @@ export default function ConcertPage({
   aboutDescription,
   features,
   seasonTitle,
-  events,
   ticketUrl
 }: ConcertPageProps) {
   const handlePurchaseTicket = () => {
@@ -109,40 +98,6 @@ export default function ConcertPage({
         </div>
       </section>
 
-      {/* This Season's Concerts */}
-      <section className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-light text-gray-900 mb-12 text-center">{seasonTitle}</h2>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            {events.map((event, index) => (
-              <div key={index} className="bg-white rounded-lg p-8 shadow-lg border border-gray-200">
-                <h3 className="text-2xl font-light text-gray-900 mb-4">{event.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
-                  {event.description}
-                </p>
-                <div className="space-y-3 text-gray-600 mb-6">
-                  <div className="flex items-center">
-                    <Calendar className="h-5 w-5 mr-3 text-blue-600" />
-                    <span>{event.date}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-5 w-5 mr-3 text-blue-600" />
-                    <span>{event.venue}</span>
-                  </div>
-                </div>
-                <button
-                  onClick={handlePurchaseTicket}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-md transition-colors inline-flex items-center space-x-2"
-                >
-                  <CreditCard className="h-4 w-4" />
-                  <span>Buy Tickets</span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
     </div>
   )
