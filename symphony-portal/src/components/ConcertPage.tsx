@@ -88,10 +88,9 @@ export default function ConcertPage({
               </p>
             ))}
 
-            <h3 className="text-2xl font-light text-gray-900 mt-12 mb-6">What to Expect</h3>
-            <ul className="list-disc list-inside space-y-3 text-lg text-gray-600">
+            <ul className="list-disc list-inside space-y-3 text-lg text-gray-600 mt-12">
               {features.map((feature, index) => (
-                <li key={index}>{feature}</li>
+                <li key={index} dangerouslySetInnerHTML={{ __html: feature }}></li>
               ))}
             </ul>
           </div>
