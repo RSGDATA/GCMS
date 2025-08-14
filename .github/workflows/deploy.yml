@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Next.js to GitHub Pages
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
           NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
-          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL || 'https://rsgdata.github.io/GCMS' }}
+          NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL || 'https://greenvillechambermusicsociety.org' }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       
       - name: Upload artifact

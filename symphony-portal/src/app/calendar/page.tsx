@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, CreditCard } from 'lucide-react'
 import { getNavigationPath } from '@/lib/navigationPath'
+import { getImagePath } from '@/lib/imagePath'
 import { concertData, getConcertsForDate, getConcertRoute, type Concert } from '@/lib/concertData'
 
 interface CalendarEvent {
@@ -290,8 +292,20 @@ export default function CalendarPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {concerts.slice(0, 6).map((concert) => (
               <div key={concert.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-200">
-                <div className="h-48 bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
-                  <Music className="h-16 w-16 text-white" />
+                <div className="h-48 relative overflow-hidden">
+                  {concert.image_url ? (
+                    <Image
+                      src={getImagePath(concert.image_url)}
+                      alt={concert.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="h-full bg-gradient-to-r from-blue-500 to-blue-600 flex items-center justify-center">
+                      <Music className="h-16 w-16 text-white" />
+                    </div>
+                  )}
                 </div>
                 
                 <div className="p-6">

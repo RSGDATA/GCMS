@@ -51,7 +51,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 35,
     available_seats: 500,
-    image_url: null,
+    image_url: '/Crop-NightAtTheMovies.png',
     performer: 'GPO (Greenville Pops Orchestra)',
     type: 'orchestra'
   },
@@ -63,7 +63,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 120,
-    image_url: null,
+    image_url: '/Crop-TheMelodiesOfNature.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -77,7 +77,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 35,
     available_seats: 100,
-    image_url: null,
+    image_url: '/Crop-EldrenMarshallInConcert.png',
     performer: 'Eldred Marshall',
     type: 'solo'
   },
@@ -86,12 +86,12 @@ export const concertData: Concert[] = [
   {
     id: 'all-star-christmas-dec',
     title: 'All-Star Christmas Concert',
-    description: "The lights are twinkling, the cocoa’s warm — and there’s music in the air! Join Tatiana Mayfield, the Greenville Pops Orchestra, and a sleigh-full of special guests for an evening of holiday cheer. From beloved carols to jazzy takes on your favorite tunes, this festive concert is the perfect way to kick off a new holiday tradition with the ones you love.",
+    description: "The lights are twinkling, the cocoa's warm — and there's music in the air! Join Tatiana Mayfield, the Greenville Pops Orchestra, and a sleigh-full of special guests for an evening of holiday cheer. From beloved carols to jazzy takes on your favorite tunes, this festive concert is the perfect way to kick off a new holiday tradition with the ones you love.",
     date: utcToCentralTime('2025-12-07T20:00:00Z'), // Sunday 2:00 PM Central Time (UTC: Sunday 8:00 PM)
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 50,
     available_seats: 250,
-    image_url: null,
+    image_url: '/Crop-AllStarChristmasConcert.png',
     performer: 'GPO (Greenville Pops Orchestra)',
     type: 'orchestra'
   },
@@ -103,7 +103,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 45,
     available_seats: 300,
-    image_url: null,
+    image_url: '/Crop-RhythmsofBelonging.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -115,7 +115,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 120,
-    image_url: null,
+    image_url: '/Crop-EchoesAndElegance.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -129,7 +129,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 50,
     available_seats: 400,
-    image_url: null,
+    image_url: '/Crop-RetroRewind.png',
     performer: 'GPO (Greenville Pops Orchestra)',
     type: 'orchestra'
   },
@@ -141,7 +141,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 45,
     available_seats: 200,
-    image_url: null,
+    image_url: '/Crop-SongsOfTheLand.png',
     performer: 'Mt. Vernon Music',
     type: 'chamber'
   },
@@ -155,7 +155,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 150,
-    image_url: null,
+    image_url: '/Crop-WindsOfChange.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -164,12 +164,12 @@ export const concertData: Concert[] = [
   {
     id: 'voices-in-color-apr',
     title: 'Voices in Color',
-    description: "A vibrant kaleidoscope of works by women and composers of color, this concert speaks in a dazzling range of styles. From the meditative Winter Spirits by Katherine Hoover to the rhythmic fire of Jessie Montgomery’s Starburst, and María Grever’s reimagined bolero, each voice shines in vivid detail. This program will also feature a performance of Claude Bolling's jazz suite for flute and piano trio.",
+    description: "A vibrant kaleidoscope of works by women and composers of color, this concert speaks in a dazzling range of styles. From the meditative Winter Spirits by Katherine Hoover to the rhythmic fire of Jessie Montgomery's Starburst, and María Grever's reimagined bolero, each voice shines in vivid detail. This program will also feature a performance of Claude Bolling's jazz suite for flute and piano trio.",
     date: utcToCentralTime('2026-04-18T00:30:00Z'), // Friday 7:30 PM Central Time (UTC: Saturday 12:30 AM)
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 35,
     available_seats: 100,
-    image_url: null,
+    image_url: '/Crop-VoicesInColor.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -181,7 +181,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 150,
-    image_url: null,
+    image_url: '/Crop-GlobalGrooves.png',
     performer: 'Dhaka Standard',
     type: 'jazz'
   }
