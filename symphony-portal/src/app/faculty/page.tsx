@@ -7,40 +7,6 @@ export default function FacultyPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <Music className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Home
-              </Link>
-              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Concerts
-              </Link>
-              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Calendar
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                About
-              </Link>
-              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Musicians
-              </Link>
-              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
-                Student Program
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Back Button */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
@@ -72,52 +38,51 @@ export default function FacultyPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Sarah Mitchell</h3>
-                <p className="text-blue-600 font-medium">Artistic Director & Violin</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Robert Gonzalez</h3>
+                <p className="text-blue-600 font-medium">Violin Faculty</p>
               </div>
               <p className="text-gray-600 mb-4">
-                Dr. Sarah Mitchell brings over 20 years of performance and teaching experience to GCMS. 
-                A graduate of Juilliard School, she has performed with major orchestras worldwide.
+                Robert Gonzalez is a professional violinist and dedicated music educator based in Texas. He earned his degree in violin performance in 2016 from Texas Tech University and has since performed with several respected ensembles, including the Lubbock Symphony, Wichita Falls Symphony, Las Colinas Symphony, and the Dallas Opera. Robert’s passion for performance began early—at age 15, he was featured as a soloist with the Dallas Symphony Orchestra, performing Kreisler’s Preludium and Allegro.
+                In addition to his performance career, Robert is committed to music education. He maintains a thriving private violin studio and spent many years teaching in various after-school programs, where he helped young musicians develop both technical skill and artistic expression. Known for his expressive playing and thoughtful teaching approach, Robert bridges his experience on professional stages with a deep passion for nurturing the next generation of violinists.
               </p>
               <div className="text-sm text-gray-500">
-                <p>• DMA, Juilliard School</p>
-                <p>• MM, New England Conservatory</p>
-                <p>• BM, Oberlin Conservatory</p>
               </div>
             </div>
 
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="mb-4">
                 <h3 className="text-xl font-bold text-gray-900 mb-1">Professor James Chen</h3>
-                <p className="text-blue-600 font-medium">Piano Faculty & Collaborative Artist</p>
+                <p className="text-blue-600 font-medium">Piano Faculty</p>
               </div>
               <p className="text-gray-600 mb-4">
-                Professor James Chen is renowned for his collaborative piano work and has accompanied 
-                world-class soloists in major concert halls.
+                Giordi Frederick is a classically trained pianist and composer based in North Texas. He holds a degree in piano performance from East Texas A&M University and has been performing for over 24 years. His career spans both domestic and international stages, with a particular focus on solo and collaborative work in the Dallas–Fort Worth area. In addition to his classical foundation, Mr. Frederick serves as pianist, arranger, and composer for Dhaka Standard, an international jazz ensemble based in Dhaka, Bangladesh. His versatility as a performer is matched by his dedication to the craft of piano itself; for nearly a decade, he has owned and operated a respected piano tuning and restoration business in the DFW area. Mr. Frederick’s work reflects a deep commitment to musical excellence, cross-cultural collaboration, and the preservation of the piano tradition.
               </p>
               <div className="text-sm text-gray-500">
-                <p>• MM, Curtis Institute</p>
-                <p>• BM, Yale School of Music</p>
               </div>
             </div>
 
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Dr. Maria Rodriguez</h3>
-                <p className="text-blue-600 font-medium">Cello Faculty & Ensemble Coach</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Ashley Alarcon</h3>
+                <p className="text-blue-600 font-medium">Flute Faculty & Conductor</p>
               </div>
               <p className="text-gray-600 mb-4">
-                Dr. Maria Rodriguez combines her extensive performance career with a passion for teaching. 
-                She has been featured as a soloist with numerous orchestras.
+                Bio
               </p>
-              <div className="text-sm text-gray-500">
-                <p>• DMA, Indiana University</p>
-                <p>• MM, Cleveland Institute</p>
-                <p>• BM, Rice University</p>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="mb-4">
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Hamin Kim</h3>
+                <p className="text-blue-600 font-medium">Artist in residence</p>
               </div>
+              <p className="text-gray-600 mb-4">
+                Bio
+              </p>
             </div>
           </div>
         </div>
+        
       </section>
 
       {/* Call to Action */}
