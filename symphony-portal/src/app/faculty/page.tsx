@@ -51,7 +51,7 @@ export default function FacultyPage() {
 
             <div className="bg-white rounded-lg shadow-lg p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Professor James Chen</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">Giordi Frederick</h3>
                 <p className="text-blue-600 font-medium">Piano Faculty</p>
               </div>
               <p className="text-gray-600 mb-4">
