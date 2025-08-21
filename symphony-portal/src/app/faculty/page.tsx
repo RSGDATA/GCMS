@@ -67,7 +67,7 @@ export default function FacultyPage() {
                 <p className="text-blue-600 font-medium">Flute Faculty & Conductor</p>
               </div>
               <p className="text-gray-600 mb-4">
-                Bio
+                Ashley Alarcon is known for her engaging, inclusive, imaginative, and interactive approach  to  music.  She  is  a  professional  flutist,  educator,  arts  advocate,  and conductor  based  in  Dallas,  Texas.  She  holds  a  Masters  of  Music  in  Flute Performance  from  the  University  of  New  Mexico,  and  has  certificates  from  the Curtis Institute Mentor Network, Suzuki Flute Book 1 and philosophy Every Child Can, and is an alumnus of the prestigious Teaching Artist Training Institute.   Ms. Alarcon currently serves as the Young Musicians Manager of Teaching and Learning for the Dallas Symphony Orchestra. Her passion for using wholesome and  inclusive  approaches  to  education  has  helped  children  overcome underperformance at school and become more engaged and confident individuals. Her interest in education also extends to  mentoring Teaching Artists build upon their  existing  performance  foundation  to  enhance  their  educational  skills  in  the classroom.   As a performer, Alarcon freelances within the DFW Metroplex and, has served as interim  Principal  Flute  with  the  Queretaro  Philharmonic,  Mexico,  and  has collaborated with the Mexico City Philharmonic, Eduardo Mata Youth Orchestra, and the Mexico City Grand Opera Orchestra
               </p>
             </div>
 
@@ -111,22 +111,6 @@ export default function FacultyPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-16 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <div className="flex items-center justify-center space-x-3 mb-4">
-            <Music className="h-8 w-8 text-blue-400" />
-            <span className="text-xl font-bold text-white">Greenville Chamber Music Society</span>
-          </div>
-          <p className="text-gray-400 mb-4">
-            Bringing world-class chamber music to the Upstate since 1985.
-          </p>
-          <div className="text-gray-400">
-            <p>Heritage Main Library</p>
-            <p>25 Heritage Green Pl, Greenville, SC 29601</p>
-            <p className="mt-2">(864) 467-3000</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }
