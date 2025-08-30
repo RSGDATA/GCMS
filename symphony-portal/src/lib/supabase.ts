@@ -3,11 +3,23 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 
+// Debug logging for production
+console.log('Supabase URL:', supabaseUrl ? 'Set' : 'Missing')
+console.log('Supabase Key:', supabaseAnonKey ? 'Set' : 'Missing')
+
 if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('Missing environment variables:', {
+    url: supabaseUrl,
+    key: supabaseAnonKey ? 'Present' : 'Missing'
+  })
   throw new Error('Missing Supabase environment variables')
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false // Disable session persistence for static sites
+  }
+})
 
 // Database types for TypeScript
 export interface Musician {
