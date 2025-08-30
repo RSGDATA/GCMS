@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Music, Mail, Phone, User, Users, Heart, AlertCircle } from 'lucide-react'
 import { getImagePath } from '@/lib/imagePath'
+import { supabase } from '@/lib/supabase'
 
 export default function StudentSignupPage() {
   const router = useRouter()
@@ -30,12 +31,40 @@ export default function StudentSignupPage() {
     setMessage('')
 
     try {
+      // Convert student_age to number
+      const studentData = {
+        ...formData,
+        student_age: parseInt(formData.student_age)
+      }
+
+      // Log the data being sent
+      console.log('Sending student data:', studentData)
+
+      // Insert data into Supabase
+      const { data, error } = await supabase
+        .from('students')
+        .insert([studentData])
+        .select()
+
+      if (error) {
+        console.error('Supabase error details:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        })
+        throw new Error(error.message || 'Database error occurred')
+      }
+
+      console.log('Student registered successfully:', data)
       setMessage('Registration successful! Redirecting to student portal...')
+      
       setTimeout(() => {
         router.push('/students/dashboard')
       }, 2000)
-    } catch {
-      setMessage('An error occurred. Please try again.')
+    } catch (error) {
+      console.error('Registration error:', error)
+      setMessage(`An error occurred: ${error instanceof Error ? error.message : 'Please try again.'}`)
       setLoading(false)
     }
   }
@@ -43,43 +72,6 @@ export default function StudentSignupPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <img 
-                src={getImagePath("/GCMS_Logo.png")}
-                alt="GCMS Logo" 
-                className="h-12 w-auto object-contain"
-              />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Home
-              </Link>
-              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Concerts
-              </Link>
-              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Calendar
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                About
-              </Link>
-              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Musicians
-              </Link>
-              <Link href="/students/signup" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
-                Student Program
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
 
       {/* Main Content */}
       <div className="flex items-center justify-center min-h-[calc(100vh-5rem)] px-4 py-12">

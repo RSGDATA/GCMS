@@ -27,29 +27,7 @@ export default function MusicianDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <Music className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            <div className="flex items-center space-x-4">
-              <Bell className="h-6 w-6 text-gray-700 hover:text-blue-600 cursor-pointer transition-colors" />
-              <Link href="/musicians/login" className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors">
-                <LogOut className="h-5 w-5" />
-                <span>Logout</span>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      <div className="pt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-light text-gray-900 mb-4">Musician Dashboard</h1>

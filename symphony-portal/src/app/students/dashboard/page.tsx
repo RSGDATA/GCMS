@@ -9,45 +9,6 @@ export default function StudentDashboard() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <Music className="h-8 w-8 text-blue-600" />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Home
-              </Link>
-              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Concerts
-              </Link>
-              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Calendar
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                About
-              </Link>
-              <Link href="/musicians/login" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Musicians
-              </Link>
-              <div className="flex items-center space-x-4">
-                <Bell className="h-6 w-6 text-gray-600 hover:text-blue-600 cursor-pointer" />
-                <Link href="/students/signup" className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                  <LogOut className="h-5 w-5" />
-                  <span>Logout</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-8">

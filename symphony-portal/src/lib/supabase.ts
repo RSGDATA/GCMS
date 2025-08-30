@@ -21,6 +21,18 @@ export interface Musician {
   updated_at?: string
 }
 
+export interface MusicianAuth {
+  id?: string
+  username: string
+  email: string
+  password: string
+  musician_id?: string
+  is_active?: boolean
+  last_login?: string
+  created_at?: string
+  updated_at?: string
+}
+
 export interface Student {
   id: string
   parent_email: string
@@ -48,6 +60,17 @@ export interface Concert {
   image_url?: string
   created_at: string
   updated_at: string
+}
+
+export interface MusicianInvitation {
+  id?: string
+  invitation_code: string
+  email: string
+  invited_by?: string
+  is_used?: boolean
+  expires_at?: string
+  used_at?: string
+  created_at?: string
 }
 
 export interface TicketPurchase {

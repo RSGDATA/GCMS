@@ -30,7 +30,7 @@ export default function Footer() {
               <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
               <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
               <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-              {/* <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians</Link></li> */}
+              <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians Login</Link></li>
             </ul>
           </div>
           <div>

@@ -1,0 +1,5 @@
+-- Quick disable RLS for testing
+ALTER TABLE public.students DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.musicians DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.concerts DISABLE ROW LEVEL SECURITY;
+ALTER TABLE public.ticket_purchases DISABLE ROW LEVEL SECURITY;

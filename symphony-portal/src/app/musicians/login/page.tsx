@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Music, Mail, Lock, User, Phone, Guitar } from 'lucide-react'
 import { supabase, type Musician } from '@/lib/supabase'
+import { authenticateMusician, setUserSession, type LoginCredentials } from '@/lib/auth'
 import { getImagePath } from '@/lib/imagePath'
 
 export default function MusicianLoginPage() {
@@ -14,6 +15,7 @@ export default function MusicianLoginPage() {
   const [message, setMessage] = useState('')
   
   const [formData, setFormData] = useState({
+    username: '',
     email: '',
     password: '',
     name: '',
@@ -30,17 +32,29 @@ export default function MusicianLoginPage() {
     try {
       if (isLogin) {
         // Validate login inputs
-        if (!formData.email || !formData.password) {
-          setMessage('Please enter both email and password')
+        if (!formData.username || !formData.password) {
+          setMessage('Please enter both username and password')
           setLoading(false)
           return
         }
         
-        // For demo purposes, simulate login
-        setMessage('Login successful! Redirecting to dashboard...')
-        setTimeout(() => {
-          router.push('/musicians/dashboard')
-        }, 1500)
+        // Authenticate using the auth service
+        const authResult = await authenticateMusician({
+          username: formData.username,
+          password: formData.password
+        })
+
+        if (authResult.success && authResult.user) {
+          setUserSession(authResult.user)
+          setMessage('Login successful! Redirecting to dashboard...')
+          setTimeout(() => {
+            router.push('/musicians/dashboard')
+          }, 1500)
+        } else {
+          setMessage(authResult.message)
+          setLoading(false)
+          return
+        }
       } else {
         // Validate registration inputs (no password required for registration)
         if (!formData.email || !formData.name || !formData.phone || !formData.instrument) {
@@ -115,6 +129,7 @@ export default function MusicianLoginPage() {
         setTimeout(() => {
           setIsLogin(true)
           setFormData({
+            username: '',
             email: '',
             password: '',
             name: '',
@@ -139,45 +154,6 @@ export default function MusicianLoginPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Navigation */}
-      <nav className="bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link href="/" className="flex items-center space-x-3">
-              <img 
-                src={getImagePath("/GCMS_Logo.png")}
-                alt="GCMS Logo" 
-                className="h-12 w-auto object-contain"
-              />
-              <span className="text-xl font-bold text-gray-900">
-                <span className="hidden sm:inline">Greenville Chamber Music Society</span>
-                <span className="sm:hidden">GCMS</span>
-              </span>
-            </Link>
-            <div className="hidden md:flex space-x-8">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Home
-              </Link>
-              <Link href="/concerts" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Concerts
-              </Link>
-              <Link href="/calendar" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Calendar
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                About
-              </Link>
-              <Link href="/musicians/login" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors font-medium text-sm">
-                Musicians
-              </Link>
-              <Link href="/students/signup" className="text-gray-700 hover:text-blue-600 transition-colors font-medium uppercase text-sm tracking-wide">
-                Student Program
-              </Link>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Main Content */}
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full space-y-8">
@@ -196,24 +172,45 @@ export default function MusicianLoginPage() {
           
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <div className="space-y-4">
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                  Email Address
-                </label>
-                <div className="mt-1 relative">
-                  <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                    placeholder="Enter your email"
-                  />
+              {isLogin ? (
+                <div>
+                  <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                    Username
+                  </label>
+                  <div className="mt-1 relative">
+                    <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                    <input
+                      id="username"
+                      name="username"
+                      type="text"
+                      required
+                      value={formData.username}
+                      onChange={(e) => setFormData({...formData, username: e.target.value})}
+                      className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                      placeholder="Enter your username"
+                    />
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    Email Address
+                  </label>
+                  <div className="mt-1 relative">
+                    <Mail className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({...formData, email: e.target.value})}
+                      className="appearance-none relative block w-full pl-10 pr-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 bg-white rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                      placeholder="Enter your email"
+                    />
+                  </div>
+                </div>
+              )}
 
               {isLogin && (
                 <div>
@@ -348,27 +345,12 @@ export default function MusicianLoginPage() {
             </div>
 
             <div className="text-center">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsLogin(!isLogin)
-                  setMessage('')
-                  setFormData({
-                    email: '',
-                    password: '',
-                    name: '',
-                    phone: '',
-                    instrument: '',
-                    experience_level: 'professional'
-                  })
-                }}
+              <Link 
+                href="/musicians/register"
                 className="text-blue-600 hover:text-blue-700 text-sm transition-colors"
               >
-                {isLogin 
-                  ? "Want to join our orchestra? Apply here" 
-                  : "Already have an account? Sign in"
-                }
-              </button>
+                Need an invitation code? Register here
+              </Link>
             </div>
           </form>
         </div>
