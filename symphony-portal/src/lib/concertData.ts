@@ -87,7 +87,7 @@ export const concertData: Concert[] = [
     id: 'all-star-christmas-dec',
     title: 'All-Star Christmas Concert',
     description: "The lights are twinkling, the cocoa's warm — and there's music in the air! Join Tatiana Mayfield, the Greenville Pops Orchestra, and a sleigh-full of special guests for an evening of holiday cheer. From beloved carols to jazzy takes on your favorite tunes, this festive concert is the perfect way to kick off a new holiday tradition with the ones you love.",
-    date: utcToCentralTime('2025-12-07T20:00:00Z'), // Sunday 2:00 PM Central Time (UTC: Sunday 8:00 PM)
+    date: utcToCentralTime('2025-12-07T21:00:00Z'), // Sunday 3:00 PM Central Time (UTC: Sunday 8:00 PM)
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 50,
     available_seats: 250,
@@ -151,7 +151,7 @@ export const concertData: Concert[] = [
     id: 'winds-of-change-mar',
     title: 'Winds of Change',
     description: "An evening of winds and piano — spirited, expressive, and full of character. This chamber concert showcases the dynamic textures and tonal colors that only winds can deliver. Full program to be announced.",
-    date: utcToCentralTime('2026-03-22T19:00:00Z'), // Sunday 2:00 PM Central Time (UTC: Sunday 7:00 PM)
+    date: utcToCentralTime('2026-03-22T20:00:00Z'), // Sunday 3:00 PM Central Time (UTC: Sunday 7:00 PM)
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 150,

@@ -3,11 +3,12 @@
 "use client";
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, ChevronLeft, ChevronRight, Menu, X } from 'lucide-react'
-import { JSX, useState } from 'react'
+import { JSX, useState, useEffect } from 'react'
 import React from 'react'
 import { getImagePath } from '@/lib/imagePath'
+import { getUpcomingConcerts, getConcertRoute, Concert } from '@/lib/concertData'
 
-interface Concert {
+interface CarouselConcert {
   id: string;
   image: string;
   link: string;
@@ -16,10 +17,10 @@ interface Concert {
 }
 
 interface RenderConcertImageProps {
-  concert: Concert;
+  concert: CarouselConcert;
 }
 
-const renderConcertImage = (concert: Concert): JSX.Element => {
+const renderConcertImage = (concert: CarouselConcert): JSX.Element => {
   return (
     <div className="w-full bg-gray-900 overflow-hidden">
       <img
@@ -48,26 +49,18 @@ const renderConcertImage = (concert: Concert): JSX.Element => {
 
 const ConcertCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [concerts, setConcerts] = useState<Concert[]>([]);
 
-  const concerts = [
-    {
-      id: 'NightAtTheMovies',
-      image: getImagePath('/NIghtAtTheMoviesBanner.png'),
-      link: '/concerts/NightAtTheMovies',
-    },
-    {
-      id: 'ashley',
-      image: getImagePath('/TheMelodiesOfNatureBanner.png'),
-      link: '/concerts/ashley',
-    },
-    {
-      id: 'eldred',
-      title: '',
-      image: getImagePath('/EldredMarshalInConcertBanner.png'),
-      description: '',
-      link: '/concerts/eldred',
-    },
-  ];
+  // Load the 3 upcoming concerts dynamically
+  useEffect(() => {
+    const upcomingConcerts = getUpcomingConcerts(3);
+    setConcerts(upcomingConcerts);
+  }, []);
+
+  // If no concerts are available, don't render the carousel
+  if (concerts.length === 0) {
+    return null;
+  }
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % concerts.length);
@@ -89,19 +82,30 @@ const ConcertCarousel = () => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
-          {concerts.map((concert) => (
-            <div key={concert.id} className="w-full flex-shrink-0">
-              <Link href={concert.link} className="block relative cursor-pointer">
-                {renderConcertImage(concert)}
-                <div className="absolute inset-0 bg-black/40 flex items-end hover:bg-black/50 transition-colors">
-                  <div className="p-4 sm:p-6 md:p-8 text-white w-full">
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">{concert.title}</h3>
-                    <p className="text-sm sm:text-base md:text-lg text-gray-200 line-clamp-2 sm:line-clamp-none">{concert.description}</p>
+          {concerts.map((concert) => {
+            const concertRoute = getConcertRoute(concert.id);
+            const concertImage = concert.image_url ? getImagePath(concert.image_url) : getImagePath('/orchestra-hero.jpg');
+            
+            return (
+              <div key={concert.id} className="w-full flex-shrink-0">
+                <Link href={`/concerts/${concertRoute}`} className="block relative cursor-pointer">
+                  {renderConcertImage({ 
+                    id: concert.id, 
+                    image: concertImage, 
+                    link: `/concerts/${concertRoute}`,
+                    title: concert.title,
+                    description: concert.description
+                  })}
+                  <div className="absolute inset-0 bg-black/40 flex items-end hover:bg-black/50 transition-colors">
+                    <div className="p-4 sm:p-6 md:p-8 text-white w-full">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">{concert.title}</h3>
+                      <p className="text-sm sm:text-base md:text-lg text-gray-200 line-clamp-2 sm:line-clamp-none">{concert.description}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+                </Link>
+              </div>
+            );
+          })}
         </div>
 
         {/* Navigation Buttons */}
