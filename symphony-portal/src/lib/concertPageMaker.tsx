@@ -167,10 +167,14 @@ rhythmsOfBelonging: {
     "Montgomery, Mendez, and Coleman bring bold, modern energy to a program grounded by Mussorgsky's episodic charm in an evening of rhythm, identity, and contrast that speaks to our deeper sense of belonging."
   ],
   features: [
-    "<strong>Valerie Coleman</strong> - woodwind quintet - Afto-Cuban Concerto",
-    "<strong>Jose Angel Mendez</strong> - flute, snare drum, bass drum, cybal - Guaicaiouro Septet",
-    "<strong>Mussorgsky</strong> - woodwind quintet - Pictures at an Exhibition arranged for woodwind quintet",
-    "<strong>Jessie Montgomery</strong> - 2.0.2.0 - pno - vln, vla, cello, bass - Starburst"
+    "<strong>Jessie Montgomery</strong> - Starburst for Chamber Ensemble Arr. by Jannina Norpoth",
+    "<strong>Modest Mussorgsky</strong> - Pictures at an Exhibition for woodwind quintet Arr. Joachim Linckelmann",
+    "<strong>Jose Angel Mendez</strong> - Guaicaipuro Septet",
+    "        I. A warrior's fury",
+    "<strong>Valerie Coleman</strong> - Afro-Cuban Concerto for wind quintet",
+    "        I. Afro",
+    "        II. Vocalise",
+    "        III. Danza"
   ],
   seasonTitle: "This Season's Special Concerts",
   ticketUrl: "https://www.etix.com/ticket/p/31827899/rhythms-of-belonging-greenville-greenville-municipal-auditorium"
@@ -259,10 +263,19 @@ rhythmsOfBelonging: {
       "Each piece in this concert represents a different 'voice' in the chamber music repertoire, from intimate duos to larger ensemble works. The program explores how different instruments, composers, and musical traditions contribute their own distinct colors to the rich tapestry of classical music."
     ],
     features: [
-      "<strong>Valerie Coleman</strong> - flute, violin, cello - Maombi Asante (Prayer of Thanks)",
-      "<strong>Katherine Hoover</strong> - solo flute - Winter Spirits",
-      "<strong>Jessie Montgomery</strong> - chamber orchestra - Shift, Change, Turn",
-      "<strong>Claude Bolling</strong> - fl, pno, bass, drum set - Suite for Flute and Jazz Piano Trio"
+      "<strong>Madeleine Dring</strong> - Trio for Flute, Oboe and Piano",
+      "       I. Allegro con brio",
+      "       II. Andante simplice",
+      "       III. Allegro giocoso",
+      "<strong>Katherine Hoover</strong> - Winter Spirits for solo flute",
+      "<strong>Valerie Coleman</strong> - Maombi Asante (Prayer of Thanks) for flute, violin, cello",
+      "<strong>Claude Bolling</strong> - Suite for Flute and Jazz Piano Trio",
+      "        1. Baroque and Blue",
+      "        2. Sentimentale",
+      "        3. Javanaise",
+      "        4. Fugace",
+      "        5. Irlandaise",
+      "        6. Veloce"
     ],
     seasonTitle: "This Season's Chamber Concerts",
     ticketUrl: "https://www.etix.com/ticket/p/34088588/voices-in-color-greenville-greenville-municipal-auditorium"
