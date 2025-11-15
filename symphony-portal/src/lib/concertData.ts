@@ -108,16 +108,16 @@ export const concertData: Concert[] = [
     type: 'chamber'
   },
   {
-    id: 'echoes-and-elegance-dec',
-    title: 'Echoes and Elegance',
-    description: 'Holiday concert featuring Giordi, Hamin, and Robert in festive chamber works.',
+    id: 'echoes-through-time-dec',
+    title: 'Echoes Through Time',
+    description: 'Experience an extraordinary evening of classical music featuring world-renowned soloists. This test concert demonstrates the new bio link functionality, allowing you to learn more about each performing artist.',
     date: utcToCentralTime('2025-12-21T01:30:00Z'), // Saturday 7:30 PM Central Time (UTC: Sunday 1:30 AM)
     venue: 'Greenville Municipal Auditorium',
-    ticket_price: 40,
-    available_seats: 120,
-    image_url: '/Crop-EchoesAndElegance.png',
+    ticket_price: 45,
+    available_seats: 200,
+    image_url: '/ABCD_Banner.png',
     performer: 'GCMS Musician\'s Collective',
-    type: 'chamber'
+    type: 'special'
   },
 
   // February 2026
@@ -224,7 +224,7 @@ export const getConcertRoute = (concertId: string): string => {
     'eldred-marshall-nov': 'eldred',
     'all-star-christmas-dec': 'AllStarChristmasConcert',
     'rhythms-of-belonging-dec': 'RhythmOfBelonging',
-    'echoes-and-elegance-dec': 'EchoesAndElegance',
+    'echoes-through-time-dec': 'test-concert-with-soloists',
     'retro-rewind-feb': 'RetroRewind',
     'songs-of-the-land-and-soul-feb': 'SongsOfTheLandAndTheSoul',
     'winds-of-change-mar': 'WindsOfChange',
