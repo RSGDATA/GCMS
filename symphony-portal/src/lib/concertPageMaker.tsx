@@ -158,7 +158,7 @@ rhythmsOfBelonging: {
   title: "Rhythms of Belonging",
   subtitle: "",
   description: "Experience a powerful celebration of musical diversity and cultural identity in this dynamic concert featuring contemporary works alongside classical masterpieces. This evening explores themes of rhythm, identity, and contrast that speak to our deeper sense of belonging.",
-  image: getImagePath("/RhythmsOfBelonging.png"),
+  image: getImagePath("/RythmsofBelonging.png"),
   imageAlt: "Musicians performing in a vibrant concert setting",
   aboutTitle: "About Rhythms of Belonging",
   aboutDescription: [
@@ -169,8 +169,10 @@ rhythmsOfBelonging: {
   features: [
     "<strong>Jessie Montgomery</strong> - Starburst for Chamber Ensemble Arr. by Jannina Norpoth",
     "<strong>Modest Mussorgsky</strong> - Pictures at an Exhibition for woodwind quintet Arr. Joachim Linckelmann",
-    "<strong>Jose Angel Mendez</strong> - Guaicaipuro Septet",
-    "        I. A warrior's fury",
+    "<strong>Jose Angel Mendez</strong> - Guatorpori Septet",
+    "        I. La furia del guerrero",
+    "        II. Meditación",
+    "        III. Victoria final",
     "<strong>Valerie Coleman</strong> - Afro-Cuban Concerto for wind quintet",
     "        I. Afro",
     "        II. Vocalise",
