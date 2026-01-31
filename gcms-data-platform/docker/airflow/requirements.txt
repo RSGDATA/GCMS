@@ -1,0 +1,21 @@
+# ============================================================
+# Airflow Python Requirements
+# ============================================================
+
+# dbt
+dbt-snowflake==1.7.1
+
+# Airflow Providers
+apache-airflow-providers-snowflake==5.1.2
+apache-airflow-providers-airbyte==3.4.0
+
+# Database Connectors
+snowflake-connector-python==3.6.0
+psycopg2-binary==2.9.9
+
+# Data Processing
+pandas==2.1.4
+sqlalchemy==1.4.51
+
+# Utilities
+python-dotenv==1.0.0

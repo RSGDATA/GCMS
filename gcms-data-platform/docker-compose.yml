@@ -1,0 +1,352 @@
+version: '3.8'
+
+# ============================================================
+# GCMS Data Platform - Production-Ready Docker Compose
+# ============================================================
+# 
+# Architecture: Correct Separation of Concerns
+# 
+# Services:
+# - Orchestration: Airflow (webserver, scheduler, worker, triggerer)
+#   - Includes dbt as a compiler tool (not a separate service)
+# - Ingestion: Airbyte (webapp, server, worker, temporal)
+# - Infrastructure: Postgres (separate for Airflow & Airbyte), Redis
+#
+# dbt Philosophy:
+#   dbt is a compiler, not a service. It has no long-running process,
+#   no state, no ports, and no lifecycle independent of Airflow tasks.
+#   Therefore, it lives inside the Airflow container where it's invoked.
+#
+# Usage:
+#   docker-compose up -d
+#   docker-compose down
+#
+# ============================================================
+
+# ============================================================
+# AIRFLOW COMMON CONFIGURATION
+# ============================================================
+x-airflow-common: &airflow-common
+  build:
+    context: ./docker/airflow
+    dockerfile: Dockerfile
+  environment: &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: CeleryExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres-airflow/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres-airflow/airflow
+    AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
+    AIRFLOW__CORE__FERNET_KEY: ''
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
+    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
+    # Supabase credentials
+    SUPABASE_URL: ${SUPABASE_URL}
+    SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_KEY}
+    # Snowflake credentials
+    SNOWFLAKE_ACCOUNT: ${SNOWFLAKE_ACCOUNT}
+    SNOWFLAKE_USER: ${SNOWFLAKE_USER}
+    SNOWFLAKE_PASSWORD: ${SNOWFLAKE_PASSWORD}
+    SNOWFLAKE_DATABASE: ${SNOWFLAKE_DATABASE}
+    SNOWFLAKE_WAREHOUSE: ${SNOWFLAKE_WAREHOUSE}
+    SNOWFLAKE_ROLE: ${SNOWFLAKE_ROLE}
+    SNOWFLAKE_PRIVATE_KEY_PATH: /opt/airflow/.snowflake/snowflake_key_pkcs8
+    # Airbyte connection
+    AIRBYTE_API_URL: http://airbyte-server:8001/api/v1
+  volumes:
+    - ./airflow/dags:/opt/airflow/dags
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/plugins:/opt/airflow/plugins
+    - ./dbt:/opt/airflow/dbt  # dbt project mounted into Airflow
+    - ./scripts:/opt/airflow/scripts
+    - ./.snowflake:/opt/airflow/.snowflake:ro  # Snowflake private key (read-only)
+  user: "${AIRFLOW_UID:-50000}:0"
+  depends_on: &airflow-common-depends-on
+    redis:
+      condition: service_healthy
+    postgres-airflow:
+      condition: service_healthy
+
+services:
+  # ============================================================
+  # INFRASTRUCTURE LAYER
+  # ============================================================
+  
+  # PostgreSQL - Airflow Metadata
+  postgres-airflow:
+    image: postgres:14
+    container_name: gcms-postgres-airflow
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-airflow-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+    networks:
+      - gcms-network
+
+  # PostgreSQL - Airbyte Metadata
+  postgres-airbyte:
+    image: postgres:14
+    container_name: gcms-postgres-airbyte
+    environment:
+      POSTGRES_USER: airbyte
+      POSTGRES_PASSWORD: airbyte
+      POSTGRES_DB: airbyte
+    volumes:
+      - postgres-airbyte-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airbyte"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+    networks:
+      - gcms-network
+
+  # Redis - Celery Message Queue
+  redis:
+    image: redis:7.2-bookworm
+    container_name: gcms-redis
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 50
+      start_period: 30s
+    restart: always
+    networks:
+      - gcms-network
+
+  # ============================================================
+  # ORCHESTRATION LAYER - AIRFLOW
+  # ============================================================
+  
+  airflow-webserver:
+    <<: *airflow-common
+    container_name: gcms-airflow-webserver
+    command: webserver
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - gcms-network
+
+  airflow-scheduler:
+    <<: *airflow-common
+    container_name: gcms-airflow-scheduler
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - gcms-network
+
+  airflow-worker:
+    <<: *airflow-common
+    container_name: gcms-airflow-worker
+    command: celery worker
+    healthcheck:
+      test:
+        - "CMD-SHELL"
+        - 'celery --app airflow.providers.celery.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}" || celery --app airflow.executors.celery_executor.app inspect ping -d "celery@$${HOSTNAME}"'
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    environment:
+      <<: *airflow-common-env
+      DUMB_INIT_SETSID: "0"
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - gcms-network
+
+  airflow-triggerer:
+    <<: *airflow-common
+    container_name: gcms-airflow-triggerer
+    command: triggerer
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+    networks:
+      - gcms-network
+
+  airflow-init:
+    <<: *airflow-common
+    container_name: gcms-airflow-init
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        if [[ -z "${AIRFLOW_UID}" ]]; then
+          echo "AIRFLOW_UID not set, using default 50000"
+          export AIRFLOW_UID=50000
+        fi
+        mkdir -p /sources/logs /sources/dags /sources/plugins
+        chown -R "$${AIRFLOW_UID}:0" /sources/{logs,dags,plugins}
+        exec /entrypoint airflow version
+    environment:
+      <<: *airflow-common-env
+      _AIRFLOW_DB_MIGRATE: 'true'
+      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
+      _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
+      _PIP_ADDITIONAL_REQUIREMENTS: ''
+    user: "0:0"
+    volumes:
+      - ./airflow:/sources
+    networks:
+      - gcms-network
+
+  # ============================================================
+  # DATA INGESTION LAYER - AIRBYTE
+  # ============================================================
+  
+  airbyte-server:
+    image: airbyte/server:0.63.0
+    container_name: gcms-airbyte-server
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres-airbyte:5432/airbyte
+      DATABASE_USER: airbyte
+      DATABASE_PASSWORD: airbyte
+      DATABASE_HOST: postgres-airbyte
+      DATABASE_PORT: 5432
+      DATABASE_DB: airbyte
+      CONFIG_ROOT: /data
+      WORKSPACE_ROOT: /tmp/workspace
+      TRACKING_STRATEGY: segment
+      AIRBYTE_VERSION: 0.63.0
+      AIRBYTE_ROLE: ${AIRBYTE_ROLE:-}
+      TEMPORAL_HOST: airbyte-temporal:7233
+    ports:
+      - "8001:8001"
+    volumes:
+      - airbyte-data:/data
+      - airbyte-workspace:/tmp/workspace
+    depends_on:
+      - postgres-airbyte
+    restart: always
+    networks:
+      - gcms-network
+
+  airbyte-webapp:
+    image: airbyte/webapp:0.63.0
+    container_name: gcms-airbyte-webapp
+    environment:
+      AIRBYTE_VERSION: 0.63.0
+      API_URL: /api/v1/
+      TRACKING_STRATEGY: segment
+    ports:
+      - "8000:80"
+    depends_on:
+      - airbyte-server
+    restart: always
+    networks:
+      - gcms-network
+
+  airbyte-worker:
+    image: airbyte/worker:0.63.0
+    container_name: gcms-airbyte-worker
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres-airbyte:5432/airbyte
+      DATABASE_USER: airbyte
+      DATABASE_PASSWORD: airbyte
+      DATABASE_HOST: postgres-airbyte
+      DATABASE_PORT: 5432
+      DATABASE_DB: airbyte
+      CONFIG_ROOT: /data
+      WORKSPACE_ROOT: /tmp/workspace
+      TRACKING_STRATEGY: segment
+      AIRBYTE_VERSION: 0.63.0
+      AIRBYTE_ROLE: ${AIRBYTE_ROLE:-}
+      TEMPORAL_HOST: airbyte-temporal:7233
+      LOCAL_ROOT: /tmp/airbyte_local
+    volumes:
+      - airbyte-data:/data
+      - airbyte-workspace:/tmp/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - postgres-airbyte
+      - airbyte-temporal
+    restart: always
+    networks:
+      - gcms-network
+
+  airbyte-temporal:
+    image: airbyte/temporal:0.63.0
+    container_name: gcms-airbyte-temporal
+    environment:
+      DB: postgresql
+      DB_PORT: 5432
+      POSTGRES_USER: airbyte
+      POSTGRES_PWD: airbyte
+      POSTGRES_SEEDS: postgres-airbyte
+      DYNAMIC_CONFIG_FILE_PATH: config/dynamicconfig/development.yaml
+    volumes:
+      - airbyte-temporal-data:/etc/temporal/config/dynamicconfig
+    depends_on:
+      - postgres-airbyte
+    restart: always
+    networks:
+      - gcms-network
+
+# ============================================================
+# VOLUMES
+# ============================================================
+volumes:
+  postgres-airflow-data:
+    name: gcms-postgres-airflow-data
+  postgres-airbyte-data:
+    name: gcms-postgres-airbyte-data
+  airbyte-data:
+    name: gcms-airbyte-data
+  airbyte-workspace:
+    name: gcms-airbyte-workspace
+  airbyte-temporal-data:
+    name: gcms-airbyte-temporal-data
+
+# ============================================================
+# NETWORKS
+# ============================================================
+networks:
+  gcms-network:
+    name: gcms-data-platform
+    driver: bridge

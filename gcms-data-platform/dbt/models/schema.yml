@@ -1,0 +1,392 @@
+version: 2
+
+models:
+  # ============================================================
+  # SILVER STAGING MODELS - Data Quality Tests
+  # ============================================================
+  
+  - name: stg_concert_participant
+    description: Cleaned concert participant data with current pay terms
+    columns:
+      - name: concert_participant_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: pay_type
+        description: Payment type (lump_sum or per_service)
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['lump_sum', 'per_service']
+      
+      - name: agreed_amount
+        description: Agreed payment amount
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+  
+  - name: stg_attendance
+    description: Cleaned attendance records (current versions only)
+    columns:
+      - name: attendance_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: musician_id
+        description: Foreign key to musician
+        tests:
+          - not_null
+      
+      - name: attended
+        description: Whether musician attended
+        tests:
+          - not_null
+  
+  - name: stg_rehearsal
+    description: Cleaned rehearsal data
+    columns:
+      - name: rehearsal_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: concert_id
+        description: Foreign key to concert
+        tests:
+          - not_null
+      
+      - name: required
+        description: Whether attendance is required for pay
+        tests:
+          - not_null
+      
+      - name: service_value
+        description: Monetary value of service (coalesced to 0)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+
+  # ============================================================
+  # SILVER INTERMEDIATE MODELS - Business Logic Tests
+  # ============================================================
+  
+  - name: int_required_services
+    description: Count of required services per concert
+    columns:
+      - name: concert_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: required_service_count
+        description: Number of required services
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+  
+  - name: int_attended_services
+    description: Count of attended required services per musician per concert
+    columns:
+      - name: concert_id
+        description: Part of composite key
+        tests:
+          - not_null
+      
+      - name: musician_id
+        description: Part of composite key
+        tests:
+          - not_null
+      
+      - name: attended_service_count
+        description: Number of services attended
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+    
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - concert_id
+            - musician_id
+  
+  - name: int_service_value
+    description: Per-service value for lump-sum musicians
+    columns:
+      - name: concert_id
+        description: Part of composite key
+        tests:
+          - not_null
+      
+      - name: musician_id
+        description: Part of composite key
+        tests:
+          - not_null
+      
+      - name: per_service_value
+        description: Value per service
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+    
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - concert_id
+            - musician_id
+
+  # ============================================================
+  # GOLD FACT MODEL - Critical Payroll Tests
+  # ============================================================
+  
+  - name: fct_musician_payment
+    description: >
+      CRITICAL: The authoritative payroll calculation.
+      This model must pass all tests before payments are made.
+    columns:
+      - name: payment_key
+        description: Surrogate key
+        tests:
+          - unique
+          - not_null
+      
+      - name: concert_id
+        description: Foreign key to concert
+        tests:
+          - not_null
+      
+      - name: musician_id
+        description: Foreign key to musician
+        tests:
+          - not_null
+      
+      - name: pay_type
+        description: Payment type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['lump_sum', 'per_service']
+      
+      - name: gross_amount
+        description: Gross payment before deductions
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+      
+      - name: deductions
+        description: Deductions from gross
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+      
+      - name: net_amount
+        description: Net payment (gross - deductions)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100000
+      
+      - name: attended_services
+        description: Number of services attended
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+      
+      - name: required_services
+        description: Number of required services
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+    
+    tests:
+      # Ensure unique concert-musician combination
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - concert_id
+            - musician_id
+      
+      # Ensure net = gross - deductions
+      - dbt_utils.expression_is_true:
+          expression: "net_amount = gross_amount - deductions"
+      
+      # Ensure attended <= required
+      - dbt_utils.expression_is_true:
+          expression: "attended_services <= required_services"
+      
+      # Ensure per-service musicians have no deductions
+      - dbt_utils.expression_is_true:
+          expression: "pay_type != 'per_service' OR deductions = 0"
+
+  # ============================================================
+  # GOLD DIMENSION MODELS - Reporting Tests
+  # ============================================================
+  
+  - name: dim_musician
+    description: Musician dimension for reporting
+    columns:
+      - name: musician_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: full_name
+        description: Musician full name
+        tests:
+          - not_null
+      
+      - name: instrument
+        description: Primary instrument
+        tests:
+          - not_null
+      
+      - name: union_member
+        description: Union membership status
+        tests:
+          - not_null
+  
+  - name: dim_concert
+    description: Concert dimension for reporting
+    columns:
+      - name: concert_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      
+      - name: title
+        description: Concert title
+        tests:
+          - not_null
+      
+      - name: concert_date
+        description: Concert date
+        tests:
+          - not_null
+      
+      - name: fiscal_year_name
+        description: Fiscal year name
+        tests:
+          - not_null
+      
+      - name: season_name
+        description: Season name
+        tests:
+          - not_null
+
+  # ============================================================
+  # BRONZE SCD2 MODELS - Historical Integrity Tests
+  # ============================================================
+  
+  - name: br_attendance_scd2
+    description: Bi-temporal attendance history
+    columns:
+      - name: scd_id
+        description: SCD surrogate key
+        tests:
+          - unique
+          - not_null
+      
+      - name: natural_key
+        description: Business key (attendance_id)
+        tests:
+          - not_null
+      
+      - name: is_current
+        description: Current version flag
+        tests:
+          - not_null
+      
+      - name: effective_from
+        description: Business effective date
+        tests:
+          - not_null
+      
+      - name: recorded_at
+        description: System knowledge timestamp
+        tests:
+          - not_null
+    
+    tests:
+      # Ensure only one current version per natural key
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - natural_key
+            - is_current
+          where: "is_current = true"
+  
+  - name: br_concert_participant_scd2
+    description: Bi-temporal concert participant history
+    columns:
+      - name: scd_id
+        description: SCD surrogate key
+        tests:
+          - unique
+          - not_null
+      
+      - name: natural_key
+        description: Business key (concert_participant_id)
+        tests:
+          - not_null
+      
+      - name: is_current
+        description: Current version flag
+        tests:
+          - not_null
+    
+    tests:
+      # Ensure only one current version per natural key
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - natural_key
+            - is_current
+          where: "is_current = true"
+  
+  - name: br_contract_scd2
+    description: Bi-temporal contract history
+    columns:
+      - name: scd_id
+        description: SCD surrogate key
+        tests:
+          - unique
+          - not_null
+      
+      - name: natural_key
+        description: Business key (contract_id)
+        tests:
+          - not_null
+      
+      - name: is_current
+        description: Current version flag
+        tests:
+          - not_null
+    
+    tests:
+      # Ensure only one current version per natural key
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - natural_key
+            - is_current
+          where: "is_current = true"

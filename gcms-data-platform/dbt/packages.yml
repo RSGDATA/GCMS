@@ -1,0 +1,63 @@
+# ============================================================
+# DBT PACKAGES CONFIGURATION
+# GCMS Data Platform
+# ============================================================
+#
+# This file defines external dbt packages used in the project.
+#
+# PACKAGES INCLUDED:
+# - dbt_utils: Common macros and tests
+# - dbt_expectations: Advanced data quality tests
+#
+# INSTALLATION:
+# Run `dbt deps` to install these packages
+# ============================================================
+
+packages:
+  # --------------------------------------------------------
+  # dbt_utils - Essential utility macros
+  # --------------------------------------------------------
+  # Provides:
+  # - generate_surrogate_key: Create deterministic keys
+  # - star: Select all columns except specified ones
+  # - union_relations: Combine multiple tables
+  # - date_spine: Generate date sequences
+  # - expression_is_true: Custom test expressions
+  # --------------------------------------------------------
+  - package: dbt-labs/dbt_utils
+    version: 1.1.1
+  
+  # --------------------------------------------------------
+  # dbt_expectations - Advanced data quality tests
+  # --------------------------------------------------------
+  # Provides:
+  # - expect_column_values_to_be_between
+  # - expect_column_values_to_match_regex
+  # - expect_table_row_count_to_be_between
+  # - expect_column_values_to_be_unique
+  # - And many more Great Expectations-style tests
+  # --------------------------------------------------------
+  - package: calogica/dbt_expectations
+    version: 0.10.1
+
+# ============================================================
+# USAGE NOTES
+# ============================================================
+#
+# After adding or updating packages:
+# 1. Run: dbt deps
+# 2. Packages will be installed to dbt_packages/
+# 3. Macros become available in all models
+#
+# Example usage in models:
+#
+# {{ dbt_utils.generate_surrogate_key(['column1', 'column2']) }}
+# {{ dbt_utils.star(from=ref('model_name'), except=['excluded_col']) }}
+#
+# Example usage in tests (schema.yml):
+#
+# - dbt_expectations.expect_column_values_to_be_between:
+#     min_value: 0
+#     max_value: 100
+#
+# ============================================================

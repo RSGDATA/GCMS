@@ -1,0 +1,334 @@
+# ============================================================
+# DBT SOURCES CONFIGURATION
+# GCMS Data Platform - Raw Supabase Tables in Snowflake
+# ============================================================
+#
+# This file defines the MOVEMENT_I schema in Snowflake where Airbyte
+# lands replicated data from Supabase.
+#
+# NAMING CONVENTION:
+# - Schema: MOVEMENT_I (First Movement - Raw Data Ingestion)
+# - Tables: supabase_<table_name>
+# - Airbyte adds metadata columns: _airbyte_ab_id, _airbyte_emitted_at
+#
+# PRINCIPLE:
+# - These are the source of truth
+# - Never modified by dbt
+# - MOVEMENT_II layer mirrors these with SCD2
+# ============================================================
+
+version: 2
+
+sources:
+  - name: raw
+    description: >
+      MOVEMENT_I: Raw data replicated from Supabase via Airbyte.
+      This is the immutable source of truth - the first movement of our data symphony.
+      Never transform or modify these tables directly.
+    
+    database: "{{ target.database }}"
+    schema: MOVEMENT_I
+    
+    # Freshness checks (optional but recommended)
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+    
+    # Airbyte metadata columns present in all tables
+    quoting:
+      database: false
+      schema: false
+      identifier: false
+    
+    tables:
+      # --------------------------------------------------------
+      # CORE FOUNDATION TABLES
+      # --------------------------------------------------------
+      
+      - name: supabase_fiscal_year
+        description: Top-level accounting context for financial reporting
+        columns:
+          - name: fiscal_year_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: Human-readable fiscal year name (e.g., "FY 2025")
+          - name: start_date
+            description: Fiscal year start date
+          - name: end_date
+            description: Fiscal year end date
+          - name: _airbyte_ab_id
+            description: Airbyte internal ID
+          - name: _airbyte_emitted_at
+            description: When Airbyte extracted this record
+      
+      - name: supabase_season
+        description: Artistic grouping of concerts within a fiscal year
+        columns:
+          - name: season_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: fiscal_year_id
+            description: Foreign key to fiscal_year
+          - name: name
+            description: Season name (e.g., "2025-2026 Season")
+          - name: description
+            description: Optional season description
+      
+      - name: supabase_concert
+        description: Core business unit representing a performance event
+        columns:
+          - name: concert_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: season_id
+            description: Foreign key to season
+          - name: title
+            description: Concert title
+          - name: program_notes
+            description: Program notes for the concert
+          - name: concert_date
+            description: Date of the concert performance
+          - name: venue
+            description: Performance venue
+          - name: total_budget
+            description: Total allocated budget for this concert
+      
+      - name: supabase_person
+        description: Canonical human record (auth is NOT stored here)
+        columns:
+          - name: person_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: first_name
+            description: Person's first name
+          - name: last_name
+            description: Person's last name
+          - name: email
+            description: Email address (unique)
+          - name: phone
+            description: Phone number
+          - name: role
+            description: Primary role (musician, conductor, guest, admin)
+      
+      - name: supabase_musician
+        description: Extension table for musicians with instrument-specific data
+        columns:
+          - name: musician_id
+            description: Primary key (UUID), references person_id
+            tests:
+              - unique
+              - not_null
+          - name: instrument
+            description: Primary instrument played
+          - name: union_member
+            description: Whether musician is a union member (affects pay rules)
+      
+      - name: supabase_user_profile
+        description: Links Supabase auth.users to domain model person records
+        columns:
+          - name: user_id
+            description: Primary key (UUID), references auth.users(id)
+            tests:
+              - unique
+              - not_null
+          - name: person_id
+            description: Foreign key to person
+          - name: created_at
+            description: When the user profile was created
+      
+      # --------------------------------------------------------
+      # MUSIC & REHEARSALS TABLES
+      # --------------------------------------------------------
+      
+      - name: supabase_piece
+        description: Canonical list of musical works (repertoire)
+        columns:
+          - name: piece_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: title
+            description: Title of the musical piece
+          - name: composer
+            description: Composer name
+          - name: duration_minutes
+            description: Duration in minutes
+      
+      - name: supabase_concert_piece
+        description: Join table defining which pieces are played on a concert
+        columns:
+          - name: concert_piece_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert
+          - name: piece_id
+            description: Foreign key to piece
+          - name: program_order
+            description: Order in the concert program
+      
+      - name: supabase_rehearsal
+        description: Rehearsal events (paid or unpaid services)
+        columns:
+          - name: rehearsal_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert
+          - name: rehearsal_date
+            description: Date and time of rehearsal
+          - name: location
+            description: Rehearsal location
+          - name: required
+            description: Whether attendance is required for pay calculation
+          - name: service_value
+            description: Monetary value of this service
+      
+      # --------------------------------------------------------
+      # PARTICIPATION, ATTENDANCE & PAYMENTS TABLES
+      # --------------------------------------------------------
+      
+      - name: supabase_concert_participant
+        description: Defines who is involved in a concert and under what terms
+        columns:
+          - name: concert_participant_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert
+          - name: musician_id
+            description: Foreign key to musician
+          - name: role
+            description: Role in concert (principal, section, soloist)
+          - name: pay_type
+            description: Payment type (lump_sum or per_service)
+          - name: agreed_amount
+            description: Agreed payment amount
+      
+      - name: supabase_rsvp
+        description: Records intent (not truth) for rehearsals or concerts
+        columns:
+          - name: rsvp_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: rehearsal_id
+            description: Foreign key to rehearsal (nullable)
+          - name: concert_id
+            description: Foreign key to concert (nullable)
+          - name: musician_id
+            description: Foreign key to musician
+          - name: status
+            description: RSVP status (yes, no, tentative)
+      
+      - name: supabase_attendance
+        description: Records truth - actual attendance for pay calculations
+        columns:
+          - name: attendance_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: rehearsal_id
+            description: Foreign key to rehearsal (nullable)
+          - name: concert_id
+            description: Foreign key to concert (nullable)
+          - name: musician_id
+            description: Foreign key to musician
+          - name: attended
+            description: Whether musician actually attended
+          - name: check_in_time
+            description: When musician checked in
+      
+      - name: supabase_payment
+        description: Computed, auditable financial records
+        columns:
+          - name: payment_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert
+          - name: musician_id
+            description: Foreign key to musician
+          - name: gross_amount
+            description: Gross payment amount
+          - name: deductions
+            description: Deductions from gross
+          - name: net_amount
+            description: Net payment amount (gross - deductions)
+          - name: paid
+            description: Whether payment has been made
+          - name: payment_date
+            description: Date payment was made
+      
+      - name: supabase_contract
+        description: Legal agreements for musicians on concerts
+        columns:
+          - name: contract_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert
+          - name: musician_id
+            description: Foreign key to musician
+          - name: signed_date
+            description: Date contract was signed
+          - name: file_url
+            description: URL to contract document
+      
+      - name: supabase_tax_document
+        description: Annual tax documents (e.g., 1099s)
+        columns:
+          - name: tax_document_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: musician_id
+            description: Foreign key to musician
+          - name: tax_year
+            description: Tax year (e.g., 2025)
+          - name: document_type
+            description: Type of tax document (1099)
+          - name: file_url
+            description: URL to tax document
+      
+      - name: supabase_media
+        description: PDFs, images, and videos attached to concerts or pieces
+        columns:
+          - name: media_id
+            description: Primary key (UUID)
+            tests:
+              - unique
+              - not_null
+          - name: concert_id
+            description: Foreign key to concert (nullable)
+          - name: piece_id
+            description: Foreign key to piece (nullable)
+          - name: file_type
+            description: Type of media (pdf, image, video)
+          - name: file_url
+            description: URL to media file
+          - name: description
+            description: Media description

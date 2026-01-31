@@ -1,0 +1,170 @@
+# ============================================================
+# DBT PROJECT CONFIGURATION
+# GCMS Data Platform
+# ============================================================
+# 
+# This project transforms raw Supabase data replicated to Snowflake
+# into clean, auditable facts and dimensions following bi-temporal
+# SCD Type 2 principles.
+#
+# LAYERS (Symphony Structure):
+# - MOVEMENT_I: Raw data ingestion from Supabase
+# - MOVEMENT_II: Historical tracking with SCD2
+# - MOVEMENT_III: Business logic and transformations
+# - FINALE: Analytics, dimensions, and facts
+#
+# PRINCIPLE: History is sacred. State is derived.
+# ============================================================
+
+name: 'gcms_data_platform'
+version: '1.0.0'
+config-version: 2
+
+# Project profile (connects to Snowflake)
+profile: 'gcms'
+
+# Directories
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# ============================================================
+# MODEL CONFIGURATIONS
+# ============================================================
+
+models:
+  gcms_data_platform:
+    
+    # --------------------------------------------------------
+    # BRONZE LAYER → MOVEMENT_II (Historical Tracking)
+    # --------------------------------------------------------
+    # Purpose: Immutable mirror of source systems with SCD2
+    # Materialization: Table (for performance and stability)
+    # Schema: MOVEMENT_II
+    # --------------------------------------------------------
+    bronze:
+      +materialized: table
+      +schema: MOVEMENT_II
+      
+      # Raw Supabase mirrors (no transformations)
+      supabase:
+        +tags: ["bronze", "raw", "supabase", "movement_ii"]
+        +docs:
+          node_color: "#8B4513"  # Brown for raw data
+      
+      # SCD Type 2 history tables (bi-temporal)
+      scd2:
+        +materialized: incremental
+        +unique_key: scd_id
+        +tags: ["bronze", "scd2", "history", "movement_ii"]
+        +docs:
+          node_color: "#CD853F"  # Peru for historical tracking
+    
+    # --------------------------------------------------------
+    # SILVER LAYER → MOVEMENT_III (Business Logic)
+    # --------------------------------------------------------
+    # Purpose: Clean, business-ready data with transformations
+    # Materialization: View (for flexibility) or Table (for performance)
+    # Schema: MOVEMENT_III
+    # --------------------------------------------------------
+    silver:
+      +schema: MOVEMENT_III
+      
+      # Staging: Clean and standardize
+      staging:
+        +materialized: view
+        +tags: ["silver", "staging", "clean", "movement_iii"]
+        +docs:
+          node_color: "#C0C0C0"  # Silver
+      
+      # Intermediate: Business rules applied
+      intermediate:
+        +materialized: view
+        +tags: ["silver", "intermediate", "business_logic", "movement_iii"]
+        +docs:
+          node_color: "#A9A9A9"  # Dark gray
+    
+    # --------------------------------------------------------
+    # GOLD LAYER → FINALE (Analytics & Insights)
+    # --------------------------------------------------------
+    # Purpose: Aggregated, reporting-ready views
+    # Materialization: Table (for query performance)
+    # Schema: FINALE
+    # --------------------------------------------------------
+    gold:
+      +materialized: table
+      +schema: FINALE
+      
+      # Facts: Aggregated business metrics
+      facts:
+        +tags: ["gold", "fact", "metrics", "finale"]
+        +docs:
+          node_color: "#FFD700"  # Gold
+      
+      # Dimensions: Reporting-friendly entity views
+      dimensions:
+        +tags: ["gold", "dimension", "reporting", "finale"]
+        +docs:
+          node_color: "#DAA520"  # Goldenrod
+
+# ============================================================
+# GLOBAL CONFIGURATIONS
+# ============================================================
+
+# Require explicit data types
+require-dbt-version: [">=1.0.0", "<2.0.0"]
+
+# Query comments for observability
+query-comment:
+  comment: "dbt:{{ node.name }}:{{ run_started_at }}"
+  append: true
+
+# ============================================================
+# VARIABLES
+# ============================================================
+
+vars:
+  # SCD2 configuration
+  scd2_end_date: '9999-12-31'
+  
+  # Fiscal year configuration
+  current_fiscal_year: 2025
+  
+  # Pay calculation defaults
+  default_deduction_rate: 0.0
+
+# ============================================================
+# SEEDS
+# ============================================================
+
+seeds:
+  gcms_data_platform:
+    +schema: seeds
+    +tags: ["seed"]
+
+# ============================================================
+# TESTS
+# ============================================================
+
+tests:
+  gcms_data_platform:
+    +store_failures: true
+    +schema: test_results
+
+# ============================================================
+# ON-RUN-START / ON-RUN-END HOOKS
+# ============================================================
+
+on-run-start:
+  - "{{ log('Starting dbt run for GCMS Data Platform', info=True) }}"
+
+on-run-end:
+  - "{{ log('Completed dbt run for GCMS Data Platform', info=True) }}"
