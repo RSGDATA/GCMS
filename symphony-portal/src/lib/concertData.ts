@@ -149,13 +149,13 @@ export const concertData: Concert[] = [
   // March 2026
   {
     id: 'winds-of-change-mar',
-    title: 'Winds of Change',
-    description: "An evening of winds and piano — spirited, expressive, and full of character. This chamber concert showcases the dynamic textures and tonal colors that only winds can deliver. Full program to be announced.",
+    title: 'An Afternoon of Chamber Music',
+    description: "Join us for an intimate afternoon of chamber music featuring works by Dvořák, Rachmaninoff, and Mendelssohn. Performed by Seowon Lee (violin), Tsun-yuet Emmanuel Kwok (cello), and Xinzhuo Li (piano).",
     date: utcToCentralTime('2026-03-22T20:00:00Z'), // Sunday 3:00 PM Central Time (UTC: Sunday 7:00 PM)
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 40,
     available_seats: 150,
-    image_url: '/Crop-WindsOfChange.png',
+    image_url: '/Crop-AnAfternoon.png',
     performer: 'GCMS Musician\'s Collective',
     type: 'chamber'
   },
@@ -227,7 +227,7 @@ export const getConcertRoute = (concertId: string): string => {
     'echoes-through-time-dec': 'test-concert-with-soloists',
     'retro-rewind-feb': 'RetroRewind',
     'songs-of-the-land-and-soul-feb': 'SongsOfTheLandAndTheSoul',
-    'winds-of-change-mar': 'WindsOfChange',
+    'winds-of-change-mar': 'AnAfternoonWithRachmaninoffAndMendelssohn',
     'voices-in-color-apr': 'VoicesInColor',
     'global-grooves-dhaka-standard-apr': 'dhaka-standard'
   }
