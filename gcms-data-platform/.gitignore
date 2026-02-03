@@ -99,5 +99,18 @@ logs/
 airbyte/data/
 airbyte/logs/
 
-# Snowflake private keys
+# Snowflake private keys and credentials
 .snowflake/
+*.pem
+*.key
+*_key
+*_key.*
+snowflake_key*
+
+# Streamlit secrets
+streamlit_app/.streamlit/secrets.toml
+**/secrets.toml
+
+# dbt profiles (contains credentials)
+dbt/profiles.yml
+profiles.yml
