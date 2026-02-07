@@ -19,6 +19,7 @@ export default function Navigation() {
   const navItems = [
     { href: '/', label: 'Home' },
     { href: '/concerts', label: 'Concerts' },
+    { href: '/pops', label: 'Pops' },
     { href: '/calendar', label: 'Calendar' },
     { href: '/about', label: 'About' },
     // { href: '/musicians/login', label: 'Musicians' }, // Commented out - not ready yet

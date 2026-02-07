@@ -22,6 +22,7 @@ export const SOLOISTS = {
   CRAIG_LEFFER: 'craig-leffer',
   DESIREE_ELSEVIER: 'desiree-elsevier',
   ELIZABETH_ELSNER: 'elizabeth-elsner',
+  JASON_LIM: 'jason-lim-pops-conductor',
 } as const
 
 // Pre-defined soloist bio data - centralized like concert data
@@ -72,6 +73,17 @@ export const soloistBioData = {
     bio: [
       'Elizabeth Elsner is currently concertmaster of the Abilene Philharmonic and is an Adjunct Professor of Violin at The University of Texas at Arlington.  Since her move to the Dallas area, she has performed with the Fort Worth Symphony, the Dallas Opera, the East Texas Symphony, the Arkansas Symphony and other various area orchestras.',
       'Previously, Elizabeth held the position of concertmaster of the Midland/Odessa Symphony, and was a member of the Permian Basin Sting Quartet.    She received her Bachelor and Master of Music degrees from The Cleveland Institute of Music studying violin with Linda Cerone, Stephen Majeske and Stephen Rose,and chamber music with Peter Salaff and the Cavani Quartet.  She has been a member of the National Repertory Orchestra, Aspen Music Festival, Cleveland Pops Orchestra, and assistant concertmaster of the Peoria Symphony.'
+    ]
+  },
+  [SOLOISTS.JASON_LIM]: {
+    name: 'Jason Lim',
+    instrument: 'Conductor',
+    image: getImagePath('/PopsConductor.jpg'),
+    bio: [
+      'Jason Lim serves as Artistic Director and Conductor of the Greenville Pops Orchestra, leading the ensemble in its inaugural season. His passion for accessible, engaging programming and commitment to musical excellence make him the perfect visionary to launch this exciting new chapter in Greenville\'s cultural landscape.',
+      'With a diverse background spanning classical and popular music, Jason brings a unique perspective to the podium. His conducting style combines technical precision with an infectious enthusiasm that resonates with both musicians and audiences alike.',
+      'Jason\'s programming philosophy centers on creating memorable musical experiences that bridge the gap between classical tradition and contemporary entertainment. From beloved film scores and Broadway hits to jazz standards and pop arrangements, he curates concerts that celebrate the rich diversity of orchestral music while maintaining the highest artistic standards.',
+      'Under his leadership, the Greenville Pops Orchestra has quickly established itself as a vital part of the community\'s cultural fabric, bringing joy and entertainment to audiences of all ages and musical backgrounds.'
     ]
   }
 }
