@@ -8,7 +8,9 @@ const nextConfig: NextConfig = {
   },
   // This is needed for GitHub Pages to work correctly
   trailingSlash: true,
-  // No basePath or assetPrefix needed for custom domain deployment
+  // Required for GitHub Pages subdirectory hosting (rsgdata.github.io/GCMS)
+  basePath: '/GCMS',
+  assetPrefix: '/GCMS/',
   // Disable ESLint during build to prevent build failures
   eslint: {
     // Don't run ESLint during build
