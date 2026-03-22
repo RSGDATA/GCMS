@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { Music, Calendar, MapPin, Clock, CreditCard, ArrowLeft } from 'lucide-react'
+import { getImagePath } from '@/lib/imagePath'
 
 export default function MtVernonPage() {
   const handlePurchaseTicket = () => {
@@ -75,7 +76,7 @@ export default function MtVernonPage() {
             </div>
             <div className="relative">
               <img
-                src={`${process.env.NODE_ENV === 'production' ? '/GCMS' : ''}/chamber.png`}
+                src={getImagePath("/chamber.png")}
                 alt="Mt. Vernon concert venue"
                 className="w-full h-96 object-cover rounded-lg"
               />
