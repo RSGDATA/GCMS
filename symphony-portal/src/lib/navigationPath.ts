@@ -7,3 +7,22 @@
 export function getNavigationPath(path: string): string {
   return path;
 }
+
+/**
+ * Central configuration for footer Quick Links.
+ * Add, remove, or reorder links here — changes will appear everywhere automatically.
+ */
+export const QUICK_LINKS = [
+  { href: '/concerts', label: 'Concerts' },
+  { href: '/calendar', label: 'Calendar' },
+  { href: '/about', label: 'About' },
+  { href: '/musicians/login', label: 'Musicians Login' },
+];
+
+/**
+ * Central configuration for footer Programs links.
+ * Add, remove, or reorder links here — changes will appear everywhere automatically.
+ */
+export const PROGRAMS_LINKS = [
+  { href: '/students/signup', label: 'Student Outreach Program' },
+];

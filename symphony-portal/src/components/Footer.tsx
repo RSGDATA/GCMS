@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { getImagePath } from '@/lib/imagePath'
+import { QUICK_LINKS, PROGRAMS_LINKS } from '@/lib/navigationPath'
 
 export default function Footer() {
   return (
@@ -27,16 +28,25 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Quick Links</h3>
             <ul className="space-y-2">
-              <li><Link href="/concerts" className="text-gray-400 hover:text-white transition-colors">Concerts</Link></li>
-              <li><Link href="/calendar" className="text-gray-400 hover:text-white transition-colors">Calendar</Link></li>
-              <li><Link href="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/musicians/login" className="text-gray-400 hover:text-white transition-colors">Musicians Login</Link></li>
+              {QUICK_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4 uppercase tracking-wide">Programs</h3>
             <ul className="space-y-2">
-              {/* Programs section left blank - no programs available yet */}
+              {PROGRAMS_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="text-gray-400 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
