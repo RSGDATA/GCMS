@@ -24,7 +24,7 @@ export const concertData = {
     title: "Night at the Movies",
     subtitle: "",
     description: "Experience the magic of cinema through live orchestral performance in this spectacular celebration of film music. Vocal powerhouse Sabatina Maura performs showstoppers like Defying Gravity, The Wizard and I, and Never Enough, in an unforgettable night of drama, sparkle, and song.",
-    image: getImagePath("/NightAtTheMovies.png"),
+    image: getImagePath("/NIghtAtTheMoviesBanner.png"),
     imageAlt: "Night at the Movies - Greenville Pops Orchestra conductor",
     aboutTitle: "About Night at the Movies",
     aboutDescription: [
