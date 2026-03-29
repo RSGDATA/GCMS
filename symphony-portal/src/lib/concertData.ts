@@ -51,7 +51,7 @@ export const concertData: Concert[] = [
     venue: 'Greenville Municipal Auditorium',
     ticket_price: 35,
     available_seats: 500,
-    image_url: '/Crop-NightAtTheMovies.png',
+    image_url: '/NightAtTheMovies-carousel.png',
     performer: 'GPO (Greenville Pops Orchestra)',
     type: 'orchestra'
   },
