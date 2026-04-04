@@ -1,16 +1,19 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === 'production';
+const isGitHubPages = isProd && process.env.DEPLOY_TARGET !== 'firebase';
+
 const nextConfig: NextConfig = {
   // Only use static export for production builds, not in dev mode
-  ...(process.env.NODE_ENV === 'production' && { output: 'export' }),
+  ...(isProd && { output: 'export' }),
   images: {
     unoptimized: true,
   },
   // This is needed for GitHub Pages to work correctly
   trailingSlash: true,
-  // Required for GitHub Pages subdirectory hosting (rsgdata.github.io/GCMS)
-  basePath: '/GCMS',
-  assetPrefix: '/GCMS/',
+  // Required for GitHub Pages subdirectory hosting (rsgdata.github.io/GCMS) — skip for Firebase
+  ...(isGitHubPages && { basePath: '/GCMS' }),
+  ...(isGitHubPages && { assetPrefix: '/GCMS/' }),
   // Disable ESLint during build to prevent build failures
   eslint: {
     // Don't run ESLint during build
